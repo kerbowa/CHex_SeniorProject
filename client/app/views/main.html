@@ -7,6 +7,14 @@
   <p><a class="btn btn-lg btn-success" ng-href="/">C Hex <i class="fa fa-check"></i></a></p>
 </div>
 
+<div class="row users">  
+  <ul>
+    <li ng-repeat="user in main.awesomeUsers track by user._id">
+      {{user.email}}
+    </li>
+  </ul>
+</div>
+
 <div class="row marketing">
   <h4>Testing 1, 2, 3</h4>
   <p>
