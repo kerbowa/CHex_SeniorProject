@@ -1,0 +1,73 @@
+	 	 	
+Setup Instructions
+
+These steps were tested on Ubuntu 16.04 and windows 10.
+
+Text surrounded by < > indicates a command that should be run in the terminal.
+
+Part I : Install
+
+1. Download and install VMware Workstation 12.
+
+Go the ecs website and login https://www.ecs.csus.edu/index.php?content=ecs_portal
+Click on Vmware for EVS.
+Download VMware Workstation 12
+
+2. Download Ubuntu 16.04 LTS.
+
+Download link https://www.ubuntu.com/download/desktop
+
+3. Create a new VM with the ubuntu-16.04 iso in Vmware
+File→New Virtual Machine
+Use iso image and navigate to the ubuntu iso you downloaded
+
+4. Start the VM and install ubuntu
+
+The next steps assume you are now using Ubuntu-16.04 on the VM
+
+5. Install node.js
+
+<sudo apt-get update> 
+<sudo apt-get install curl>
+<curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash ->
+<sudo apt-get install -y nodejs>
+
+6. Install yeoman (Scaffolding generator)
+
+<sudo npm install -g yo>
+
+7. Install grunt (yeoman dependency)
+
+<sudo npm install -g grunt-cli>
+
+8. Install bower (yeoman dependency)
+
+<sudo npm install -g bower>
+
+9. Install nodemon (lets you test changes without restarting the server)
+
+<sudo npm install -g nodemon>
+
+10. Install ruby, sass, and compass (for easier CSS)
+
+<sudo apt-get install ruby>
+<sudo apt-get install ruby-all-dev>
+<gem install sass>
+<gem install compass>
+
+Part II: Test Site
+
+11. Install git
+
+<sudo apt-get install git>
+<git clone https://github.com/wobrek/CHex_SeniorProject>
+
+14. Setup project (in client directory)
+
+<cd client>
+<npm install>
+<bower install>
+<grunt serve>
+
+Reference https://start.jcolemorrison.com/building-an-angular-and-express-app-part-1/
+
