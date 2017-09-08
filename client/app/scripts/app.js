@@ -20,7 +20,8 @@ angular
     'ngTouch'
   ])
   .config(function ($routeProvider, $locationProvider) {
-      $locationProvider.hashPrefix('');
+    $locationProvider.hashPrefix('');
+    $locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
