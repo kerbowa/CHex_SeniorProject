@@ -33,6 +33,21 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/course-materials', {
+        templateUrl: 'views/course-materials.html',
+        controller: 'CourseMaterialsCtrl',
+        controllerAs: 'courseMaterials'
+      })
+      .when('/projects', {
+        templateUrl: 'views/projects.html',
+        controller: 'ProjectsCtrl',
+        controllerAs: 'projects'
+      })
+      .when('/teams', {
+        templateUrl: 'views/teams.html',
+        controller: 'TeamsCtrl',
+        controllerAs: 'teams'
+      })
       .otherwise({
         redirectTo: '/'
       });
