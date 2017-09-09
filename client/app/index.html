@@ -25,7 +25,6 @@
     <div class="header">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
-          <div class="navbar-header">
 
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
@@ -34,7 +33,6 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="/">Senior Project</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -42,10 +40,9 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="/">Home</a></li>
               <li><a ng-href="/course-materials">Course Materials</a></li>
-              <li><a ng-href="/projects">Projects</a></li>
-              <li><a ng-href="/teams">Teams</a></li>
             </ul>
-          </div>
+            <ul class="nav navbar-nav pull-right">
+            <li><a ng-href="/login">Login</a></li>
         </div>
       </div>
     </div>
@@ -91,10 +88,7 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/course-materials.js"></script>
-        <script src="scripts/controllers/projects.js"></script>
-        <script src="scripts/controllers/teams.js"></script>
         <!-- endbuild -->
 </body>
 </html>
