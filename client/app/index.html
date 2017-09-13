@@ -42,7 +42,8 @@
               <li><a ng-href="/course-materials">Course Materials</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
-            <li><a ng-href="/login">Login</a></li>
+            <div ng-include="'views/login.html'"></div>
+            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
         </div>
       </div>
     </div>
@@ -89,6 +90,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/course-materials.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -33,6 +33,11 @@ angular
         controller: 'CourseMaterialsCtrl',
         controllerAs: 'courseMaterials'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
+      })
       .otherwise({
         redirectTo: '/'
       });
