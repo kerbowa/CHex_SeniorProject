@@ -42,6 +42,10 @@ angular
         templateUrl: 'views/forms.html',
         controller: 'FormsCtrl',
         controllerAs: 'forms'
+      .when('/templates', {
+        templateUrl: 'views/templates.html',
+        controller: 'TemplatesCtrl',
+        controllerAs: 'templates'
       })
       .otherwise({
         redirectTo: '/'
