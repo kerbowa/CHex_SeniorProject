@@ -38,6 +38,11 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
+      .when('/forms', {
+        templateUrl: 'views/forms.html',
+        controller: 'FormsCtrl',
+        controllerAs: 'forms'
+      })
       .otherwise({
         redirectTo: '/'
       });
