@@ -15,48 +15,59 @@
     <!-- endbuild -->
  	  <base href="/" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <script>
+      function init() {
+          window.addEventListener('scroll', function(e){
+              var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+                  shrinkOn = 100,
+                  header = document.querySelector("header");
+              if (distanceY > shrinkOn) {
+                  classie.add(header,"smaller");
+              } else {
+                  if (classie.has(header,"smaller")) {
+                      classie.remove(header,"smaller");
+                  }
+              }
+          });
+      }
+      window.onload = init();
+  </script>
   </head>
   <body ng-app="clientApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    
+    <div id="wrapper">
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
+      <header>
+          <div class="container clearfix">
+              <h1 id="logo">
+                Senior Project CSC 190/191
+              </h1>
+              <nav>
+                  <a href="/">Home</a>
+                  <a href="/course-materials">Course Materials</a>
+                  <a href="/templates">Templates</a>
+                  <a href="/forms">Forms</a>
+              </nav>
           </div>
+      </header>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a ng-href="/course-materials">Course Materials</a></li>
-	            <li class="active"><a href="/forms">Forms</a></li>
-              <li><a ng-href="/templates">Templates</a></li>
-            </ul>
-            <ul class="nav navbar-nav pull-right">
+      <div id="main">
+        <div id="content">
+          <div class="container">
             <div ng-include="'views/login.html'"></div>
-            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-        </div>
+              <div ng-view=""></div>
       </div>
-    </div>
+      </div>
+      </div>
 
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><i class="fa fa-heart"></i> Team C Hex!</p>
+      <div class="footer">
+        <div id="info-bar">
+          <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+        </div>
       </div>
     </div>
 
@@ -93,7 +104,6 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/course-materials.js"></script>
         <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/forms.js"></script>
         <script src="scripts/controllers/templates.js"></script>
         <!-- endbuild -->
 </body>
