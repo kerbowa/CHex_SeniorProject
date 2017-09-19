@@ -91,13 +91,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   font-weight: 300; }
 
-a {
-  text-decoration: none;
-  color: #3cb5f9; }
-
-a:hover {
-  color: #0793e2; }
-
 /* =Template
 -------------------------------------------------------------- */
 #wrapper {
@@ -195,7 +188,13 @@ header {
       -o-transition: all 0.3s;
       transition: all 0.3s; }
       header nav a:hover {
-        color: white; }
+        color: silver; }
+      header nav a:active {
+        color: silver;
+       }
+      header nav a:focus {
+        color: silver;
+       }
   header.smaller {
     height: 75px; }
     header.smaller h1#logo {
@@ -289,6 +288,13 @@ header {
     margin-top: 28px;
   }
 }
+
+a {
+  text-decoration: none;
+  color: #3cb5f9; }
+
+a:hover {
+  color: #0793e2; }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
