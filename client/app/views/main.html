@@ -1,11 +1,41 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron upper">
   <div class="container">
-      <h2 style="color:#727272">College of Engineering and</h2>
-      <h2 style="color:#727272">Computer Science</h2>
-      <h2>Computer Science - Senior Project</h2>
+      <h2 style="color:#727272">College of ECS</h2>
+      <h1>Department of Computer Science</h2>
   </div>
 </div>
+
+<!-- Header -->
+<header class="intro-header">
+  <div class="container">
+    <div class="intro-message">
+      <h1>Senior Project</h1>
+      <h3></h3>
+      <hr class="intro-divider">
+      <ul class="list-inline intro-social-buttons">
+        <li class="list-inline-item">
+          <a href="#" class="btn btn-secondary btn-lg">
+            <i class="fa fa-twitter fa-fw"></i>
+            <span class="network-name">Twitter</span>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#" class="btn btn-secondary btn-lg">
+            <i class="fa fa-github fa-fw"></i>
+            <span class="network-name">Github</span>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#" class="btn btn-secondary btn-lg">
+            <i class="fa fa-linkedin fa-fw"></i>
+            <span class="network-name">Linkedin</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
 
 <div class="navbar navbar-default" role="navigation">
   <div class="container">
@@ -28,8 +58,26 @@
   </div>
 </div>
 
+<div class="page-layout">
 <div class="container bg">
+
   <div class="container">
+    <div class="calloutbox">
+      <h3 style="text-align:center;">Schedule</h3>
+      <p style="text-align: center;">Two Tenture Track positions coming soon. TBA</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="calloutbox">
+      <h3 style="text-align:center;">Schedule</h3>
+      <p style="text-align: center;">Two Tenture Track positions coming soon. TBA</p>
+    </div>
+  </div>
+
+  <div class="container">
+
+
     <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-4">
@@ -47,17 +95,43 @@
         <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
       </div>
+
     </div>
 
     <hr>
   </div> <!-- /container -->
   <div class="container">
+
     <div class="row users">
-      <ul>
-        <li ng-repeat="user in main.awesomeUsers track by user._id">
-          {{user.email}}
-        </li>
-      </ul>
+
+      <div class="col-sm-6">
+        <ul>
+          <li ng-repeat="user in main.awesomeUsers track by user._id">
+            {{user.email}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="container">
+          <div class="calloutbox">
+            <h3 style="text-align:center;">Schedule</h3>
+            <p style="text-align: center;">Two Tenture Track positions coming soon. TBA</p>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="calloutbox">
+            <h3 style="text-align:center;">Schedule</h3>
+            <p style="text-align: center;">Two Tenture Track positions coming soon. TBA</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+      </div>
+
+
     </div>
 
     <div class="row marketing">
@@ -75,6 +149,7 @@
       <p>We can use Karma if we decide we want to use Unit tests, it came with the scaffolding.</p>
     </div>
   </div>
+</div>
 </div>
 
 <div class="jumbotron lower">
