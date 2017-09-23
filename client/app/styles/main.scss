@@ -167,6 +167,12 @@ body, h1, h2, h3, h4, h5, h6 {
   font-family: 'PT Sans', sans-serif;
 }
 
+a {
+text-decoration: none;
+color: #3cb5f9; }
+
+a:hover {
+  color: #0793e2; }
 
 .nav.navbar-nav li a:hover {
   background-color: grey;
