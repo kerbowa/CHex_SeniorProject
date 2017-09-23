@@ -45,39 +45,37 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      
-      <div class="jumbotron upper">
-        <div class="container">
-          <h2>College of ECS</h2>
-          <h1>Department of Computer</h1>
-          <h1>Science</h1>
-      </div>
-      </div>
+    <top-banner>
+      <div id="wrapper">
+
       <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-          </div>
-        
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-      <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/course-materials">Course Materials</a></li>
-              <li><a ng-href="#/templates">Templates</a></li>
-              <li><a ng-href="#/forms">Forms</a></li>
-      </ul>
-
+        <header>
+            <div class="container clearfix">
+                <h2 id="logo">
+                  College of ECS
+                </h2>
+                <h1 id="logo">
+                  Department of Computer
+                </h1>
+                <h1 id="logo">
+                  Science
+                </h1>
+              <nav>
+              <a ng-href="#/">Home</a>
+              <a ng-href="#/course-materials">Course Materials</a>
+              <a ng-href="#/templates">Templates</a>
+              <a ng-href="#/forms">Forms</a>
+            </nav>
+            </div>
+        </header>
+      </div>
+      </div>
+    </top-banner>
+    
+     
       <div id="main">
         <div id="content">
-          <div class="container">
+          <div class="container main-container">
             <div ng-include="'views/login.html'"></div>
               <div ng-view=""></div>
       </div>
