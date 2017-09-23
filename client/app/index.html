@@ -14,6 +14,10 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link href="v-accordion.css" rel="stylesheet" />
+    <!-- Import font from Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <!-- endbuild -->
  	  <base href="/" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -39,25 +43,37 @@
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
-    <div id="wrapper">
 
-    <div class="navbar navbar-default" role="navigation">
-      <header>
-          <div class="container clearfix">
-              <h1 id="logo">
-                Senior Project CSC 190/191
-              </h1>
-              <nav>
-                  <a ng-href="#/">Home</a>
-                  <a ng-href="#/course-materials">Course Materials</a>
-                  <a ng-href="#/templates">Templates</a>
-                  <a ng-href="#/forms">Forms</a>
-              </nav>
+    <!-- Add your site or application content here -->
+    <div class="header">
+      
+      <div class="jumbotron upper">
+        <div class="container">
+          <h2>College of ECS</h2>
+          <h1>Department of Computer</h1>
+          <h1>Science</h1>
+      </div>
+      </div>
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
           </div>
-      </header>
-    </div>
+        
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
+      <ul class="nav navbar-nav">
+              <li class="active"><a href="#/">Home</a></li>
+              <li><a ng-href="#/course-materials">Course Materials</a></li>
+              <li><a ng-href="#/templates">Templates</a></li>
+              <li><a ng-href="#/forms">Forms</a></li>
+      </ul>
 
       <div id="main">
         <div id="content">
@@ -67,11 +83,20 @@
       </div>
       </div>
       </div>
+            
+    <div class="jumbotron lower">
+      <div class="container">
+      <img src="images/Primary_Horizontal_White_tag.png" alt="Sac State"><br>
+        <p style="font-weight:bold;">Bob Buckley</p>
+        <p>Riverside 3002</p>
+        <p>buckley@csus.edu</p>
+        <p>(916) 278-7324</p>
+      </div>
+    </div>
 
-      <div class="footer">
-        <div id="info-bar">
-          <a href="" data-toggle="modal" data-target="#login-modal">Login</a>
-        </div>
+    <div class="footer">
+      <div class="container">
+        <p><i style="color:red" class="fa fa-heart"></i> Team C Hex!</p>
       </div>
     </div>
 
