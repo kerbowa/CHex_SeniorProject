@@ -76,7 +76,6 @@
       <div id="main">
         <div id="content">
           <div class="container main-container">
-            <div ng-include="'views/login.html'"></div>
               <div ng-view=""></div>
       </div>
       </div>
@@ -85,16 +84,18 @@
     <div class="jumbotron lower">
       <div class="container">
       <img src="images/Primary_Horizontal_White_tag.png" alt="Sac State"><br>
-        <p style="font-weight:bold;">Bob Buckley</p>
-        <p>Riverside 3002</p>
-        <p>buckley@csus.edu</p>
-        <p>(916) 278-7324</p>
+        <div class="footer-info">
+          <p style="font-weight:bold;">Bob Buckley</p>
+          <p>Riverside 3002</p>
+          <p>buckley@csus.edu</p>
+          <p>(916) 278-7324</p>
+        </div>
       </div>
     </div>
 
     <div class="footer">
       <div class="container">
-        <p><i style="color:red" class="fa fa-heart"></i> Team C Hex!</p>
+        <p><i style="color:red" class="fa fa-heart footer-info"></i> Team C Hex!</p>
       </div>
     </div>
 
