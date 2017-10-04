@@ -48,11 +48,6 @@ angular
         controller: 'TemplatesCtrl',
         controllerAs: 'templates'
       })
-      .when('/dashboard', {
-        templateUrl: 'views/dashboard.html',
-        controller: 'DashboardCtrl',
-        controllerAs: 'dashboard'
-      })
       .otherwise({
         redirectTo: '/'
       });

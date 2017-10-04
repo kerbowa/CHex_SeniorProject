@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
+var passport = require('passport');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -16,23 +17,21 @@ app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, '/dist')));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
 
 //app.use('/', index);
-app.use('/api/users', users);
+//app.use('/api/users', users);
 app.use('/api/login', login);
 
-// In production, we'll actually serve our angular app from express
 if (app.get('env') === 'production') {  
-  app.use(express.static(path.join(__dirname, '/dist')));
 
   // production error handler
   // no stacktraces leaked to user
