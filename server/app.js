@@ -8,6 +8,7 @@ var cors = require('cors')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
 app.use('/api/users', users);
+app.use('/api/login', login);
 
 // In production, we'll actually serve our angular app from express
 if (app.get('env') === 'production') {  
