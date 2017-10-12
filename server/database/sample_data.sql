@@ -77,7 +77,13 @@ INSERT INTO STUDENT(STUDENT_ID, NAME, EMAIL, TEAM_ID)
 VALUES (216718581, "Christopher Raudel Diaz", "student@email.com", 3);
 
 INSERT INTO STUDENT(STUDENT_ID, NAME, EMAIL, TEAM_ID)
-VALUES (213306029, "Justin Doucette", "student@email.com", 4);
+VALUES (204718849, "Nikola Tesla", "student@email.com", 3);
+
+INSERT INTO STUDENT(STUDENT_ID, NAME, EMAIL, TEAM_ID)
+VALUES (244776841, "Frank Sinatra", "student@email.com", 3);
+
+INSERT INTO STUDENT(STUDENT_ID, NAME, EMAIL, TEAM_ID)
+VALUES (213306099, "Justin Doucette", "student@email.com", 4);
 
 INSERT INTO STUDENT(STUDENT_ID, NAME, EMAIL, TEAM_ID)
 VALUES (214561036, "Breeana Arkisi George", "student@email.com", 4);
@@ -86,7 +92,13 @@ INSERT INTO STUDENT(STUDENT_ID, NAME, EMAIL, TEAM_ID)
 VALUES (215596629, "Oscar Gutierrez", "student@email.com", 4);
 
 INSERT INTO STUDENT(STUDENT_ID, NAME, EMAIL, TEAM_ID)
-VALUES (212917407, "Gregory Anthony Guzman", "student@email.com", 4);
+VALUES (214917407, "Mike Jones", "student@email.com", 4);
+
+INSERT INTO STUDENT(STUDENT_ID, NAME, EMAIL, TEAM_ID)
+VALUES (212117407, "Tupac Shakur", "student@email.com", 4);
+
+INSERT INTO STUDENT(STUDENT_ID, NAME, EMAIL, TEAM_ID)
+VALUES (212912407, "Kendrick Lamar", "student@email.com", 4);
 
 /* password is "1234" */
 INSERT INTO ADMIN(ID, USERNAME, HASH, SALT)
