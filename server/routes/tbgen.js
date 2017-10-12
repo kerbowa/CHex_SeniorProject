@@ -10,19 +10,19 @@ var path = require('path');
 function generateTaskBoard(teamName, members) {
   //Load the docx file as a binary
   var template = fs
-    .readFileSync(path.resolve(__dirname, 'Sprint-task-board-templte.docx'), 'binary');
+    .readFileSync(path.resolve(__dirname, 'Sprint-task-board-template.docx'), 'binary');
   var zip = new JSZip(template);
   
   var doc = new Docxtemplater();
   doc.loadZip(zip);
 
   doc.setData({
-      first_name1: members[0],
-      first_name2: members[2],
-      first_name3: members[4],
-      first_name4: members[6],
-      first_name5: members[8],
-      first_name6: members[10],
+      name1: members[0],
+      name2: members[2],
+      name3: members[4],
+      name4: members[6],
+      name5: members[8],
+      name6: members[10],
       initial1: members[1],
       initial2: members[3],
       initial3: members[5],
@@ -52,7 +52,7 @@ function generateTaskBoard(teamName, members) {
 }
 
 router.get('/', function(req, res, next) {
-	generateTaskBoard("Test Team", ["Daniel Hayes",
+	generateTaskBoard("Team CHex", ["Daniel Hayes",
                                   "DH",
                                   "Vi M Le",
                                   "VL",
