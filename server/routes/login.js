@@ -5,6 +5,8 @@ var crypto = require('crypto');
 var db = new sqlite3.Database('database/chex.db');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var Jwt = require('jsonwebtoken');
+var privateKey = "chex_private";
 
 function hashPassword(password, salt) {
   var hash = crypto.createHash('sha256');
@@ -38,12 +40,18 @@ passport.serializeUser(function(user, done) {
 router.post('/', passport.authenticate('local'), function(req, res) {
 
   // Print posted login form data. 
-  console.log('yes');
-  console.log(req.body);
+  var tokenData = {
+    username: req.user.USERNAME,
+    id: req.user.ID
+  };
 
-  res.jason({
-    'msg': 'success!'
-  });
+  var result = {
+    username: req.user.USERNAME,
+    token: Jwt.sign(tokenData, privateKey)
+  };
+
+  console.log(result);
+  return res.json(result);
 });
 
 module.exports = router;

@@ -10,7 +10,7 @@
 
 angular.module('clientApp')  
   .controller('MainCtrl', ['$http', function ($http) {
-    var req = $http.get('/api/users');
+    var req = $http.get('/api/tbgen');
     var scope = this;
     req.then(function (res) {
       scope.awesomeUsers = res.data.users;

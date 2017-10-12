@@ -8,7 +8,7 @@ var cors = require('cors')
 var passport = require('passport');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var tbgen = require('./routes/tbgen');
 var login = require('./routes/login');
 
 var app = express();
@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 //app.use('/', index);
-//app.use('/api/users', users);
+app.use('/api/tbgen', tbgen);
 app.use('/api/login', login);
 
 if (app.get('env') === 'production') {  
