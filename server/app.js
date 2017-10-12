@@ -11,7 +11,6 @@ var index = require('./routes/index');
 var tbgen = require('./routes/tbgen');
 var login = require('./routes/login');
 var gettb = require('./routes/gettb');
-var download = require('./routes/download');
 
 var app = express();
 
@@ -20,6 +19,7 @@ app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, '/dist')));
+app.use('/media', express.static(path.join(__dirname, '/media')));
 app.set('view engine', 'jade');
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -33,7 +33,6 @@ app.use(passport.initialize());
 app.use('/api/tbgen', tbgen);
 app.use('/api/login', login);
 app.use('/api/gettb', gettb);
-app.use('/api/download', download);
 
 if (app.get('env') === 'production') {  
 
