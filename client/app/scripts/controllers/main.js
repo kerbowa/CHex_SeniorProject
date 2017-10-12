@@ -10,14 +10,6 @@
 
 angular.module('clientApp')  
   .controller('MainCtrl', ['$http', function ($http) {
-    var req = $http.get('/api/tbgen');
-    var scope = this;
-    req.then(function (res) {
-      scope.awesomeUsers = res.data.users;
-    });
-    req.catch(function (err) {
-      console.log(err);
-    });
     scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
