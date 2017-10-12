@@ -35,9 +35,10 @@
 								Sprint Task Board 190
 							</div>
 							<div class="td">
-								<a href="http://athena.ecs.csus.edu/~buckley/CSc190/Poject_Charter_Template.pdf">pdf</a>
-								<a href="http://athena.ecs.csus.edu/~buckley/CSc190/Poject_Charter_Template.docx">docx</a>
-                <a ng-click="tbgen()" id="tbgen" name="tbgen" class="btn btn btn-success"><i class="fa fa-object-group" aria-hidden="true"></i></a>
+                <a ng-repeat="team in templates.teamNames track by team._id" ng-href="{{team.filepath}}" target="_blank">
+                  {{team.name}}
+                  <br>
+                </a>
 							</div>
 						</div>
 						<div class="tr">

@@ -10,7 +10,7 @@ var path = require('path');
 function generateTaskBoard(teamName, names, initials) {
   //Load the docx file as a binary
   var template = fs
-    .readFileSync(path.resolve(__dirname, 'Sprint-task-board-template.docx'), 'binary');
+    .readFileSync(path.resolve(__dirname, '../media/Internal Templates/Sprint-task-board-template.docx'), 'binary');
   var zip = new JSZip(template);
   
   var doc = new Docxtemplater();
@@ -48,7 +48,7 @@ function generateTaskBoard(teamName, names, initials) {
   var buf = doc.getZip()
                .generate({type: 'nodebuffer'});
 
-  fs.writeFileSync(path.resolve(__dirname, teamName + '-sprint-task-board.docx'), buf);
+  fs.writeFileSync(path.resolve(__dirname, '../media/Generated Files/' + teamName +'-sprint-task-board.docx'), buf);
 }
 
 function generateTaskBoardsForAllTeams() { 
