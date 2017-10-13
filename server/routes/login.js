@@ -40,9 +40,11 @@ passport.serializeUser(function(user, done) {
 router.post('/', passport.authenticate('local'), function(req, res) {
 
   // Print posted login form data. 
+  var expiry = new Date();
   var tokenData = {
+    id_: req.user.ID,
     username: req.user.USERNAME,
-    id: req.user.ID
+    exp: parseInt(expiry.getTime() / 1000)
   };
 
   var result = {

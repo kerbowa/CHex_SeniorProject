@@ -10,11 +10,6 @@
 
 angular.module('clientApp')  
   .controller('MainCtrl', ['$http', function ($http) {
-    scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
   }])
 
 	.directive('hoverClass', function () {
