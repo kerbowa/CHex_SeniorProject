@@ -11,6 +11,7 @@ var index = require('./routes/index');
 var tbgen = require('./routes/tbgen');
 var login = require('./routes/login');
 var gettb = require('./routes/gettb');
+var getstudents = require('./routes/getstudents');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use(passport.initialize());
 app.use('/api/tbgen', tbgen);
 app.use('/api/login', login);
 app.use('/api/gettb', gettb);
+app.use('/api/getstudents', getstudents);
 
 if (app.get('env') === 'production') {  
 
