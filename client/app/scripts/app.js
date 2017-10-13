@@ -8,65 +8,68 @@
  *
  * Main module of the application.
  */
-angular
-  .module('clientApp', [
+var app = angular.module('clientApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
     'ngMessages',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngSanitize',
     'ngTouch',
     'vAccordion'
-  ])
-  .factory('AuthenticationService', Service)
-  .config(function ($routeProvider, $locationProvider) {
-    $locationProvider.hashPrefix('');
-    $routeProvider
-      .when('/', {
+  ]);
+  app.factory('AuthenticationService', Service);
+  app.config(function ($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('main', {
+        url: '/main',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/course-materials', {
+      .state('course-materials', {
+        url: '/course-materials',
         templateUrl: 'views/course-materials.html',
         controller: 'CourseMaterialsCtrl',
         controllerAs: 'courseMaterials'
       })
-      .when('/login', {
+      .state('login', {
+        url: '/login',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .when('/forms', {
+      .state('forms', {
+        url: '/forms',
         templateUrl: 'views/forms.html',
         controller: 'FormsCtrl',
         controllerAs: 'forms'
       })
-      .when('/templates', {
+      .state('templates', {
+        url: '/templates',
         templateUrl: 'views/templates.html',
         controller: 'TemplatesCtrl',
         controllerAs: 'templates'
       })
-      .when('/dashboard', {
+      .state('dashboard', {
+        url: '/dashboard',
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard'
-      }) 
-      .otherwise({
-        redirectTo: '/'
       });
-  });
+      $urlRouterProvider.otherwise('/main');
+    });
 
     function Service($http, $localStorage) {
         var service = {};
- 
+
 				service.Login = Login;
         service.Logout = Logout;
- 
+
         return service;
- 
+
         function Login(username, password, callback) {
             $http.post('/api/login', { username: username, password: password })
                 .success(function (response) {
@@ -74,10 +77,10 @@ angular
                     if (response.token) {
                         // store username and token in local storage to keep user logged in between page refreshes
                         $localStorage.currentUser = { username: username, token: response.token };
- 
+
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
- 
+
                         // execute callback with true to indicate successful login
                         callback(true);
                     } else {
@@ -86,7 +89,7 @@ angular
                     }
                 });
         }
- 
+
         function Logout() {
             // remove user from local storage and clear http auth header
             delete $localStorage.currentUser;
