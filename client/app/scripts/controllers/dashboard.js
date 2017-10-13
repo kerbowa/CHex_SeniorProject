@@ -19,6 +19,15 @@ angular.module('clientApp')
       });
     };
 
+    $scope.tbdel = function() {
+      var req = $http.get('/api/tbdel');
+      req.then(function (res) {
+      });
+      req.catch(function (err) {
+        console.log(err);
+      });
+    };
+
     $scope.logout = function() {
       var req = $http.get('/api/tbgen');
 		  authentication.logout(function() {
