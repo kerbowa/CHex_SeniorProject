@@ -29,7 +29,6 @@ angular.module('clientApp')
     };
 
     $scope.logout = function() {
-      var req = $http.get('/api/tbgen');
 		  authentication.logout(function() {
         $location.path('/');
       });
