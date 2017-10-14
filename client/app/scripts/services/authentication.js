@@ -43,7 +43,7 @@
       }
     };
 
-    login = function(user, callback) {
+    var login = function(user, callback) {
       var request = $http.post('/api/login', user);
 
       request.then(function (data) {
@@ -55,7 +55,7 @@
       });
     };
 
-    logout = function(callback) {
+    var logout = function(callback) {
       delete $localStorage.token;
       callback();
     };
