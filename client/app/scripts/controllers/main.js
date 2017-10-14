@@ -7,28 +7,9 @@
  * # MainCtrl
  * Controller of the clientApp
  */
-
-angular.module('clientApp')  
-  .controller('MainCtrl', ['$http', function ($http) {
-  }])
-
-	.directive('hoverClass', function () {
-    return {
-        restrict: 'A',
-        scope: {
-            hoverClass: '@'
-        },
-        link: function (scope, element) {
-            element.on('mouseenter', function() {
-                element.addClass(scope.hoverClass);
-            });
-            element.on('mouseleave', function() {
-                element.removeClass(scope.hoverClass);
-            });
-        }
-    };
-});
-
+angular.module('clientApp')
+  .controller('MainCtrl', ['$scope', '$http', '$location', 'authentication', function ($scope, $http, $location, authentication) {
+  }]);
 /*!
  * classie v1.0.0
  * class helper functions
