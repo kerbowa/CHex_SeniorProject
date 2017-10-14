@@ -44,7 +44,7 @@ router.post('/', passport.authenticate('local'), function(req, res) {
   var tokenData = {
     id_: req.user.ID,
     username: req.user.USERNAME,
-    exp: parseInt(expiry.getTime() / 1000)
+    exp: parseInt(expiry.getTime() / 1000 + (60*30))
   };
 
   var result = {

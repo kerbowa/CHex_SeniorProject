@@ -20,7 +20,6 @@
       var payload;
 
       if(token){
-        return true;
         payload = token.split('.')[1];
         payload = $window.atob(payload);
         payload = JSON.parse(payload);
