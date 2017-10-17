@@ -17,6 +17,7 @@ function generateTaskBoard(teamName, names, initials) {
   doc.loadZip(zip);
 
   doc.setData({
+      teamname: teamName,
       name1: names[0],
       name2: names[1],
       name3: names[2],
