@@ -21,12 +21,28 @@
 			<p>Senior Project is frequently mentioned by industry leaders as one of the most valuable aspects of our students' education. In site visits to prominent companies, we are told repeatedly that our graduates can "hit the ground running," and are more versatile than graduates from many prestigious institutions.</p>
             <br>
             <br>
-			<h4>CSc 190: Senior Project - Part I</h4>
-			<p>The first of a two-course sequence in which student teams undertake a project to develop and deliver a software product. Approved project sponsors must be from industry, government, a non-profit organization, or other area. Teams apply software engineering principles in the preparation of a software proposal, a project management plan and a software requirements specification. All technical work is published using guidelines modeled after IEEE documentation standards. Oral and written reports are required.</p>
-            <br>
-            <br>
-			<h4>CSc 191: Senior Project - Part II</h4>
-			<p>Teams apply software engineering principles to the design, implementation and testing of their software product. All technical work is published using guidelines modeled after IEEE documentation standards along with an appropriate user manual. Oral and written reports are required. Senior project is completed with the successful delivery, installation and demonstration of the software along with all approved documentation.</p>
+			<!-- add `multiple` attribute to allow multiple sections to open at once -->
+				<v-accordion class="vAccordion--default" multiple>
+				 
+				  <!-- add expanded attribute to open the section -->
+				  <v-pane expanded="pane.toggle">
+				    <v-pane-header>
+				      CSc 190: Senior Project (Part I)
+				    </v-pane-header>
+				    <v-pane-content>
+				      The first of a two-course sequence in which student teams undertake a project to develop and deliver a software product. Approved project sponsors must be from industry, government, a non-profit organization, or other area. Teams apply software engineering principles in the preparation of a software proposal, a project management plan and a software requirements specification. All technical work is published using guidelines modeled after IEEE documentation standards. Oral and written reports are required.
+				    </v-pane-content>
+				  </v-pane> 
+				  <v-pane expanded="pane.collapse">
+				    <v-pane-header>
+				      CSc 191: Senior Project (Part II)
+				    </v-pane-header>
+				    <v-pane-content>
+				      Teams apply software engineering principles to the design, implementation and testing of their software product. All technical work is published using guidelines modeled after IEEE documentation standards along with an appropriate user manual. Oral and written reports are required. Senior project is completed with the successful delivery, installation and demonstration of the software along with all approved documentation.
+				    </v-pane-content>
+				  </v-pane>
+				 
+				</v-accordion>
 		</div>
 		<div class="col-sm-4">
 			<div class="calloutbox">
