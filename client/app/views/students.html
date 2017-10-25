@@ -1,18 +1,32 @@
-<p>This is the students view.</p>
-
 <div ng-app="clientApp" ng-controller="StudentsCtrl">
 
-	Students:
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Eamil</th>
-			<th>Team</th>
-		<tr ng-repeat="s in students.studentNames">
-			<td>{{ s.name }}</td>
-			<td>{{ s.email}}</td>
-			<td>{{ s.team }}</td>
-		</tr>
-	</table>
-
+	<h3>Students</h3>
+	Filter: 
+	<input type="text" ng-model="filter" />
+	<div class="container-fluid" style="margin-top:20px">
+		<div class="row">
+			<div class="col col-12 col-md-auto">
+				<div class="panel panel-default panel-table">
+					<div class="panel-heading">
+						<div class="tr">
+							<div class="td">Name</div>
+							<div class="td">Email</div>
+							<div class="td">Team</div>
+							<div class="td"></div>
+							<div class="td"></div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="tr" ng-repeat="s in students.studentNames | filter:filter">
+							<div class="td">{{ s.name }}</div>
+							<div class="td">{{ s.email}}</div>
+							<div class="td">{{ s.team }}</div>
+							<div class="td">Edit</div>
+							<div class="td">Delete</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
