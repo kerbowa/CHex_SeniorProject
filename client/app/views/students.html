@@ -1,1 +1,18 @@
 <p>This is the students view.</p>
+
+<div ng-app="clientApp" ng-controller="StudentsCtrl">
+
+	Students:
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Eamil</th>
+			<th>Team</th>
+		<tr ng-repeat="s in students.studentNames">
+			<td>{{ s.name }}</td>
+			<td>{{ s.email}}</td>
+			<td>{{ s.team }}</td>
+		</tr>
+	</table>
+
+</div>

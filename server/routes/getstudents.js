@@ -10,16 +10,16 @@ router.get('/', function(req, res, next) {
   var allStudents = {
     student: []
   };
-   db.all('SELECT * FROM STUDENT', function(err, rows) {
+  db.all('SELECT * FROM STUDENT', function(err, rows) {
     for (i = 0; i < rows.length; i++) {
-      allStudents.student.push({"_id" : rows[i].STUDENT_ID,
-                           "name" : rows[i].NAME,
-                           "email" : rows[i].EMAIL,
-                            "team" : rows[i].TEAM_ID});
-     }
-    console.log(allStudents);
+      allStudents.student.push({"_id" : i,
+                               "name" : rows[i].NAME,
+                               "email" : rows[i].EMAIL,
+                               "team" : rows[i].TEAM_ID});
+    }
+    //console.log(allStudents);
     res.json(allStudents);
-   });
+  });
   db.close();
 });
 
