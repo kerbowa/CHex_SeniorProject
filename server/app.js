@@ -13,6 +13,7 @@ var login = require('./routes/login');
 var gettb = require('./routes/gettb');
 var tbdel = require('./routes/tbdel');
 var getstudents = require('./routes/getstudents');
+var getstudents = require('./routes/getstudents');
 var getteams = require('./routes/getteams');
 
 var app = express();

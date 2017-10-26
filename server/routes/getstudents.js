@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var path = require('path');
-var hostname = "localhost:9000";
+var hostname = "localhost:3000";
 
 router.get('/', function(req, res, next) {
   var sqlite3 = require('sqlite3').verbose();
