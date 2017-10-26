@@ -73,7 +73,9 @@ angular
 
 function run($rootScope, $location, authentication) {
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
-      if ($location.path() === '/dashboard' && !authentication.isLoggedIn()) {
+      if (($location.path() === '/dashboard' ||
+          $location.path() === '/team-management' ||
+          $location.path() === '/students') && !authentication.isLoggedIn()) {
         $location.path('/login');
       }
     });
