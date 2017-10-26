@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngStorage',
     'ngTouch',
-    'vAccordion'
+    'vAccordion',
+    'ngMaterial'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
@@ -53,7 +54,12 @@ angular
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard'
-      }) 
+      })
+      .when('/team-management', {
+        templateUrl: 'views/team-management.html',
+        controller: 'TeamManagementCtrl',
+        controllerAs: 'teamManagement'
+      })
       .otherwise({
         redirectTo: '/'
       });
