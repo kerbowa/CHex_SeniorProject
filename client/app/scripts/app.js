@@ -54,6 +54,11 @@ angular
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard'
       }) 
+      .when('/email', {
+        templateUrl: 'views/email.html',
+        controller: 'EmailCtrl',
+        controllerAs: 'email'
+      }) 
       .otherwise({
         redirectTo: '/'
       });

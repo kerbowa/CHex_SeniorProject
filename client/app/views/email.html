@@ -1,0 +1,191 @@
+<nav class="navbar navbar-default navbar-static-top navbar-dashboard">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">
+				Administrator
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
+			<form class="navbar-form navbar-left" method="GET" role="search">
+				<div class="form-group">
+					<input type="text" name="q" class="form-control" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn btn-success"><i class="fa fa-search" aria-hidden="true"></i></button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a ng-click="logout()" href="">Logout</a></li>
+				<li class="dropdown ">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Account
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li class="dropdown-header">SETTINGS</li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class="divider"></li>
+						</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid main-container-dashboard">
+	<div class="col-md-2 sidebar">
+		<ul class="nav nav-pills nav-stacked">
+			<li class="active"><a href="#">Home</a></li>
+			<li><a ng-click="tbgen()" id="tbgen" name="tbgen" href="">Create Sprint Task Boards <i class="fa fa-object-group" aria-hidden="true"></i></a></li>
+			<li><a ng-click="tbdel()" id="tbgen" name="tbgen" href="">Delete Sprint Task Boards <i class="fa fa-object-group" aria-hidden="true"></i></a></li>
+			<li><a href="#/email">Email</a></li>
+			<li><a href="#">Some other link</a></li>
+			<li><a ng-click="logout()" href="">Logout</a></li>
+		</ul>
+	</div>
+
+	<div class="col-md-10 content">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Email
+			</div>
+			<div class="panel-body">
+				<form ng-submit="email()" ng-controller="EmailCtrl" method="post" name="email_form">
+					<!-- Email Recipients -->
+					Email Recipient:<br>
+					<!-- Teams/Students -->
+					<div class="panel panel-default panel-table">
+						<!-- add 'multiple' attribute to allow multiple sections to open at once -->
+						<v-accordion class="vAccordion--default" multiple>
+							<!-- add expanded attribute to open the section -->
+							<v-pane>
+								<v-pane-header>
+									<input type="checkbox" value="Students"><span>Students</span>
+								</v-pane-header>
+								<v-pane-content>
+						
+									<!-- add 'multiple' attribute to allow multiple sections to open at once -->
+									<v-accordion class="vAccordion--default" multiple>
+										<!-- add expanded attribute to open the section -->
+										<!-- Team CHex -->
+										<v-pane>
+											<v-pane-header>
+												<input type="checkbox" value="Team CHex"><span>Team CHex</span>
+											</v-pane-header>
+											<!-- Team CHex Members -->
+											<v-pane-content>
+												<div class="panel panel-default panel-table">
+													<div class="panel-body">
+														<div class="tr">
+															<div class="td"><input type="checkbox" value="Ali Iqbal"><span>Ali Iqbal</span></div>
+															<div class="td"><input type="checkbox" value="Austin Kerbow"><span>Austin Kerbow</span></div>
+															<div class="td"><input type="checkbox" value="Derek Nguyen"><span>Derek Nguyen</span></div>
+															<div class="td"><input type="checkbox" value="DJ Hayes"><span>DJ Hayes</span></div>
+															<div class="td"><input type="checkbox" value="Jammy Loeur"><span>Jammy Loeur</span></div>
+															<div class="td"><input type="checkbox" value="Vi Le"><span>Vi Le</span></div>
+														</div>
+													</div>
+												</div>
+											</v-pane-content>
+										</v-pane>
+										<!-- Team 2 -->
+										<v-pane>
+											<v-pane-header>
+												<input type="checkbox" value="Team 2"><span>Team 2</span>
+											</v-pane-header>
+											<!-- Team 2 Members -->
+											<v-pane-content>
+												<div class="panel panel-default panel-table">
+													<div class="panel-body">
+														<div class="tr">
+															<div class="td"><input type="checkbox" value="Member1"><span>Member1</span></div>
+															<div class="td"><input type="checkbox" value="Member2"><span>Member2</span></div>
+															<div class="td"><input type="checkbox" value="Member3"><span>Member3</span></div>
+															<div class="td"><input type="checkbox" value="Member4"><span>Member4</span></div>
+															<div class="td"><input type="checkbox" value="Member5"><span>Member5</span></div>
+															<div class="td"><input type="checkbox" value="Member6"><span>Member6</span></div>
+														</div>
+													</div>
+												</div>
+											</v-pane-content>
+										</v-pane>
+								 	</v-accordion>
+								</v-pane-content>
+							</v-pane>
+						</v-accordion>
+					</div>
+					<!-- Clients -->
+					<div class="panel panel-default panel-table">
+						<!-- add 'multiple' attribute to allow multiple sections to open at once -->
+						<v-accordion class="vAccordion--default" multiple>
+							<!-- add expanded attribute to open the section -->
+							<v-pane expanded>
+								<v-pane-header>
+									<input type="checkbox" value="Clients"><span>Clients</span>
+								</v-pane-header>
+								<v-pane-content>
+									<div class="panel panel-default panel-table">
+										<div class="panel-body">
+											<div class="tr">
+												<div class="td"><input type="checkbox" value="Client1"><span>Client1</span></div>
+												<div class="td"><input type="checkbox" value="Client2"><span>Client2</span></div>
+												<div class="td"><input type="checkbox" value="Client3"><span>Client3</span></div>
+												<div class="td"><input type="checkbox" value="Client4"><span>Client4</span></div>
+												<div class="td"><input type="checkbox" value="Client5"><span>Client5</span></div>
+												<div class="td"><input type="checkbox" value="Client6"><span>Client6</span></div>
+											</div>
+										</div>
+									</div>
+								</v-pane-content>
+							</v-pane>
+					 	</v-accordion>
+					</div>
+					<!-- Faculty Advisors -->
+					<div class="panel panel-default panel-table">
+						<!-- add 'multiple' attribute to allow multiple sections to open at once -->
+						<v-accordion class="vAccordion--default" multiple>
+							<!-- add expanded attribute to open the section -->
+							<v-pane expanded>
+								<v-pane-header>
+									<input type="checkbox" value="Faculty Advisors"><span>Faculty Advisors</span>
+								</v-pane-header>
+								<v-pane-content>
+									<div class="panel panel-default panel-table">
+										<div class="panel-body">
+											<div class="tr">
+												<div class="td"><input type="checkbox" value="FacultyAdvisor1"><span>FacultyAdvisor1</span></div>
+												<div class="td"><input type="checkbox" value="FacultyAdvisor2"><span>FacultyAdvisor2</span></div>
+												<div class="td"><input type="checkbox" value="FacultyAdvisor3"><span>FacultyAdvisor3</span></div>
+												<div class="td"><input type="checkbox" value="FacultyAdvisor4"><span>FacultyAdvisor4</span></div>
+												<div class="td"><input type="checkbox" value="FacultyAdvisor5"><span>FacultyAdvisor5</span></div>
+												<div class="td"><input type="checkbox" value="FacultyAdvisor6"><span>FacultyAdvisor6</span></div>
+											</div>
+										</div>
+									</div>
+								</v-pane-content>
+							</v-pane>
+					 	</v-accordion>
+					</div><p>
+
+					<!-- Subject Line -->
+					Subject:<br>
+					<input type="text" size="70" maxlength="256" name="subject"><p>
+
+					<!-- Message -->
+					Message:<br>
+					<textarea rows="10" cols="70" name="message"></textarea><p>
+
+					<input type="submit" value="Submit"></a>
+					<input type="reset" value="Reset">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
