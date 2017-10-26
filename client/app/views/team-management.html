@@ -15,11 +15,11 @@
     <!-- add `multiple` attribute to allow multiple sections to open at once -->
 
       <md-list flex="">
-        <md-list-item ng-repeat="item in teams">
+        <md-list-item ng-repeat="team in teamNames | filter: { course: '190' }">
           <v-accordion class="vAccordian--default" multiple>
             <v-pane expanded="pane.toggle">
               <v-pane-header>
-                <h5 md-ink-ripple="#C4B581"><b>{{item.teamname}}</b></h5>
+                <h5 md-ink-ripple="#C4B581"><b>{{team.name}}</b></h5>
               </v-pane-header>
               <v-pane-content>
                 <div class="md-list-item-text" layout="column">
@@ -41,6 +41,30 @@
 
     <md-subheader class="md-primary">CSc 191 Teams</md-subheader>
     <md-divider></md-divider>
+    <md-list flex="">
+      <md-list-item ng-repeat="team in teamNames | filter: { course: '191' }">
+        <v-accordion class="vAccordian--default" multiple>
+          <v-pane expanded="pane.toggle">
+            <v-pane-header>
+              <h5 md-ink-ripple="#C4B581"><b>{{team.name}}</b></h5>
+            </v-pane-header>
+            <v-pane-content>
+              <div class="md-list-item-text" layout="column">
+                <p><b>Faculty Advisor:</b> {{item.advisor}} - {{item.advisoremail}}</p>
+                <p><b>Client:</b> {{item.clientname}} - {{item.clientemail}}</p>
+
+                <p><b>Team Members</b></p>
+
+                <p ng-repeat="item in members">
+                  {{item.member}} - {{item.email}}
+                </p ng-if="!$last">
+                <md-divider></md-divider>
+              </div>
+            </v-pane-content>
+          </v-pane>
+        </v-accordion>
+      </md-list-item ng-if="!$last">
+    </md-list>
     <md-subheader class="md-primary">Retired Teams</md-subheader>
     <md-divider></md-divider>
   </div>
@@ -64,4 +88,18 @@
     <md-checkbox ng-model="disableInkBar">Disable Ink Bar</md-checkbox>
 
   </md-content>
+
+  <div layout="column" layout-align="center center">
+    <md-select placeholder="Student" ng-model="student" md-on-open="loadStudents()" style="min-width: 200px">
+      <md-option ng-value="student" ng-repeat="student in studentNames">{{student.name}}</md-option>
+    </md-select>
+    <p class="md-caption">Selected the student: {{ student ? student.name : 'No one yet' }}</p>
+  </div>
+  <div layout="column" layout-align="center center">
+    <md-select placeholder="Team" ng-model="team" md-on-open="loadTeams()" style="min-width: 200px">
+      <md-option ng-value="team" ng-repeat="team in teamNames">{{team.name}}</md-option>
+    </md-select>
+    <p class="md-caption">Selected the team: {{ team ? team.name : 'No one yet' }}</p>
+  </div>
+
 </div>
