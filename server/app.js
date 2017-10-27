@@ -14,6 +14,7 @@ var gettb = require('./routes/gettb');
 var tbdel = require('./routes/tbdel');
 var getstudents = require('./routes/getstudents');
 var getteams = require('./routes/getteams');
+var getclients = require('./routes/getclients');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use('/api/gettb', gettb);
 app.use('/api/tbdel', tbdel);
 app.use('/api/getstudents', getstudents);
 app.use('/api/getteams', getteams);
+app.use('/api/getclients', getclients);
 
 if (app.get('env') === 'production') {
 
