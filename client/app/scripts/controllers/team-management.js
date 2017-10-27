@@ -63,35 +63,9 @@ angular.module('clientApp')
     });
 
     $scope.loadStudents = function() {
-      $scope.studentNames;
+      $scope.studentList;
     };
 
-    $scope.members = [{
-      member: 'Jammy Loeur',
-      email: 'jammyloeur@csus.edu',
-    },
-    {
-      member: 'DJ Hayes',
-      email: 'djhayes@csus.edu',
-    },
-    {
-      member: 'Austin Kerbow',
-      email: 'austinkerbow@csus.edu',
-    }];
-    $scope.teams = [{
-      teamname: 'CHex',
-      advisor: 'Yin Jin',
-      advisoremail: 'yinjin@csus.edu',
-      clientname: 'Robert Buckley',
-      clientemail: 'buckley@csus.edu',
-    },
-    {
-      teamname: 'Team 2',
-      advisor: 'Ted Krovetz',
-      advisoremail: 'krovetz@csus.edu',
-      clientname: 'Hugh Mungus',
-      clientemail: 'hughmungus@csus.edu',
-    }];
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
