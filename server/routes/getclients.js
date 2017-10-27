@@ -7,20 +7,19 @@ var hostname = "localhost:9000";
 router.get('/', function(req, res, next) {
   var sqlite3 = require('sqlite3').verbose();
   var db = new sqlite3.Database('database/chex.db');
-  var allTeams = {
-    team: []
+  var allClients = {
+    client: []
   };
-  db.all('SELECT * FROM TEAM', function(err, rows) {
+  db.all('SELECT * FROM CLIENT', function(err, rows) {
     for (i = 0; i < rows.length; i++) {
-      allTeams.team.push({"_id" : i,
-                               "team_id": rows[i].ID,
+      allClients.client.push({"_id" : i,
+                               "client_id": rows[i].ID,
                                "name" : rows[i].NAME,
-                               "course" : rows[i].COURSE,
-                               "advisor": rows[i].ADVISOR_ID,
-                               "client": rows[i].CLIENT_ID});
+                               "email" : rows[i].EMAIL,
+                               "status": rows[i].STATUS});
     }
-    //console.log(allTeams);
-    res.json(allTeams);
+    //console.log(allClients);
+    res.json(allClients);
   });
   db.close();
 });
