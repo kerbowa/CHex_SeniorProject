@@ -21,7 +21,8 @@ angular
     'ngSanitize',
     'ngStorage',
     'ngTouch',
-    'vAccordion'
+    'vAccordion',
+    'ngMaterial'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -59,6 +60,18 @@ angular
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard'
+      })
+      .state('dashboard.team-management', {
+        url: '/dashboard/team-management',
+        templateUrl: 'views/team-management.html',
+        controller: 'TeamManagementCtrl',
+        controllerAs: 'teamManagement'
+      })
+      .state('dashboard.students', {
+        url: '/dashboard/students',
+        templateUrl: 'views/students.html',
+        controller: 'StudentsCtrl',
+        controllerAs: 'students'
       })
       .state('public', {
          templateUrl: 'views/public.html',

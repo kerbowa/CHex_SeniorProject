@@ -12,7 +12,7 @@ angular.module('clientApp')
 
   $scope.submit = function() {
 		authentication.login($scope.user, function() {
-      $state.go('dashboard');
+      $state.go('dashboard.team-management');
     });
 	};
 }]);
