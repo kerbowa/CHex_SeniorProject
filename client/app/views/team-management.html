@@ -176,12 +176,15 @@
     </md-select>
     <p class="md-caption">Selected the client: {{ client ? client.name : 'No one yet' }}</p>
   </div>
+<md-form>
   <div layout="column" layout-align="center center">
     <md-select placeholder="Advisor" ng-model="advisor" md-on-open="loadAdvisors()" style="min-width: 200px">
       <md-option ng-value="advisor" ng-repeat="advisor in advisorList">{{advisor.name}}</md-option>
     </md-select>
+    <md-button ng-click="DeleteAdviser()">Delete</md-button>
     <p class="md-caption">Selected the advisor: {{ advisor ? advisor.name : 'No one yet' }}</p>
   </div>
+</md-form>
 
 </div>
 </div>

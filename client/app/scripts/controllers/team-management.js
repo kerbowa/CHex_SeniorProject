@@ -22,6 +22,10 @@ angular.module('clientApp')
     $scope.advisors = null;
     $scope.advisorList = null;
 
+    $scope.DeleteAdvisor = function() {
+      $http.post('')
+    }
+
     var req = $http.get('/api/getstudents');
     var scope = this;
     req.then(function (res) {
