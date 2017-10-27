@@ -80,7 +80,7 @@
               </v-pane-header>
               <v-pane-content>
                 <md-list flex="">
-                  <md-list-item class="md-3-line" ng-repeat="advisor in advisorList" ng-repeat="team in teamList"
+                  <md-list-item class="md-3-line" ng-repeat="advisor in advisorList"
                   ng-if="advisor.advisor_id === team.advisor" ng-click="null">
                     <div class="md-list-item-text" layout="column">
                       <h3>Faculty Advisor</h3>
@@ -88,7 +88,7 @@
                       <p>{{ advisor.email }}</p>
                     </div>
                   </md-list-item>
-                  <md-list-item class="md-3-line" ng-repeat="client in clientList" ng-repeat="team in teamList"
+                  <md-list-item class="md-3-line" ng-repeat="client in clientList"
                   ng-if="client.client_id === team.client" ng-click="null">
                     <div class="md-list-item-text" layout="column">
                       <h3>Client</h3>
@@ -97,7 +97,7 @@
                     </div>
                   </md-list-item>
                 <md-subheader>Team Members</md-subheader>
-                <md-list-item class="md-2-line" ng-repeat="student in studentList" ng-repeat="team in teamList"
+                <md-list-item class="md-2-line" ng-repeat="student in studentList"
                 ng-if="student.team === team.team_id" ng-click="null">
                   <div class="md-list-item-text" layout="column">
                     <h4>{{ student.name }}</h4>
@@ -123,7 +123,7 @@
             </v-pane-header>
             <v-pane-content>
               <md-list flex="">
-                <md-list-item class="md-3-line" ng-repeat="advisor in advisorList" ng-repeat="team in teamList"
+                <md-list-item class="md-3-line" ng-repeat="advisor in advisorList"
                 ng-if="advisor.advisor_id === team.advisor" ng-click="null">
                   <div class="md-list-item-text" layout="column">
                     <h3>Faculty Advisor</h3>
@@ -131,7 +131,7 @@
                     <p>{{ advisor.email }}</p>
                   </div>
                 </md-list-item>
-                <md-list-item class="md-3-line" ng-repeat="client in clientList" ng-repeat="team in teamList"
+                <md-list-item class="md-3-line" ng-repeat="client in clientList"
                 ng-if="client.client_id === team.client" ng-click="null">
                   <div class="md-list-item-text" layout="column">
                     <h3>Client</h3>
@@ -140,7 +140,7 @@
                   </div>
                 </md-list-item>
               <md-subheader>Team Members</md-subheader>
-              <md-list-item class="md-2-line" ng-repeat="student in studentList" ng-repeat="team in teamList"
+              <md-list-item class="md-2-line" ng-repeat="student in studentList"
               ng-if="student.team === team.team_id" ng-click="null">
                 <div class="md-list-item-text" layout="column" style="padding:4px 0px">
                   <h4>{{ student.name }}</h4>
