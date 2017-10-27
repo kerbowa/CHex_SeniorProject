@@ -82,6 +82,8 @@ angular
   })
   .run(['$transitions', '$state', 'authentication', ($transitions, $state, authentication) => {
     $transitions.onBefore( { to: 'dashboard.**' }, function(trans) {
-       return authentication.isLoggedIn();
+      if (!authentication.isLoggedIn()) {
+        return trans.router.stateService.target('login');
+      }
     })
   }]);
