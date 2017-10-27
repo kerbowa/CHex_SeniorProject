@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
                                "client_id": rows[i].ID,
                                "name" : rows[i].NAME,
                                "email" : rows[i].EMAIL,
-                               "status": rows[i].STATUS;
+                               "status": rows[i].STATUS});
     }
     //console.log(allClients);
     res.json(allClients);

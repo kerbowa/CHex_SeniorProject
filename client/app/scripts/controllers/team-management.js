@@ -11,15 +11,18 @@ angular.module('clientApp')
   .controller('TeamManagementCtrl', ['$scope', '$http', '$timeout', '$window', function ($scope, $http, $window, $timeout) {
     $scope.student = null;
     $scope.students = null;
-    $scope.studentNames = null;
+    $scope.studentList = null;
     $scope.team = null;
     $scope.teams = null;
-    $scope.teamNames = null;
+    $scope.teamList = null;
+    $scope.client = null;
+    $scope.clients = null;
+    $scope.clientList = null;
 
     var req = $http.get('/api/getstudents');
     var scope = this;
     req.then(function (res) {
-      $scope.studentNames = res.data.student;
+      $scope.studentList = res.data.student;
       console.log(res);
     });
     req.catch(function(err) {
@@ -29,7 +32,17 @@ angular.module('clientApp')
     var req = $http.get('/api/getteams');
     var scope = this;
     req.then(function (res) {
-      $scope.teamNames = res.data.team;
+      $scope.teamList = res.data.team;
+      console.log(res);
+    });
+    req.catch(function(err) {
+      console.log(err);
+    });
+
+    var req = $http.get('/api/getclients');
+    var scope = this;
+    req.then(function (res) {
+      $scope.clientList = res.data.client;
       console.log(res);
     });
     req.catch(function(err) {

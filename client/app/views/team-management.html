@@ -15,7 +15,7 @@
     <!-- add `multiple` attribute to allow multiple sections to open at once -->
 
       <md-list flex="">
-        <md-list-item ng-repeat="team in teamNames" ng-if="team.course === '190'">
+        <md-list-item ng-repeat="team in teamList" ng-if="team.course === '190'">
           <v-accordion class="vAccordian--default" multiple>
             <v-pane expanded="pane.toggle">
               <v-pane-header>
@@ -24,11 +24,11 @@
               <v-pane-content>
                 <div class="md-list-item-text" layout="column">
                   <p>Faculty Advisor: {{item.advisor}} - {{item.advisoremail}}</p>
-                  <p>Client: {{item.clientname}} - {{item.clientemail}}</p>
+                  <p ng-repeat="client in clientList" ng-repeat="team in teamList" ng-if="client.client_id === team.client">Client: {{client.name}} - {{client.email}}</p>
 
                   <p>Team Members</p>
 
-                  <p ng-repeat="student in studentNames" ng-repeat="team in teamNames" ng-if="student.team == team.team_id">
+                  <p ng-repeat="student in studentList" ng-repeat="team in teamList" ng-if="student.team == team.team_id">
                     {{student.name}} - {{student.email}}
                   </p ng-if="!$last">
                   <md-divider></md-divider>
@@ -42,7 +42,7 @@
     <md-subheader class="md-primary">CSc 191 Teams</md-subheader>
     <md-divider></md-divider>
     <md-list flex="">
-      <md-list-item ng-repeat="team in teamNames" ng-if="team.course === '191'">
+      <md-list-item ng-repeat="team in teamList" ng-if="team.course === '191'">
         <v-accordion class="vAccordian--default" multiple>
           <v-pane expanded="pane.toggle">
             <v-pane-header>
@@ -51,11 +51,12 @@
             <v-pane-content>
               <div class="md-list-item-text" layout="column">
                 <p>Faculty Advisor: {{item.advisor}} - {{item.advisoremail}}</p>
-                <p>Client: {{item.clientname}} - {{item.clientemail}}</p>
+                <p ng-repeat="client in clientList" ng-repeat="team in teamList" ng-if="client.client_id === team.client">Client: {{client.name}} - {{client.email}}</p>
 
-                <p><b>Team Members</b></p>
 
-                <p ng-repeat="student in studentNames" ng-repeat="team in teamNames" ng-if="student.team === team.team_id">
+                <p>Team Members</p>
+
+                <p ng-repeat="student in studentList" ng-repeat="team in teamList" ng-if="student.team === team.team_id">
                   {{student.name}} - {{student.email}}
                 </p ng-if="!$last">
                 <md-divider></md-divider>
@@ -91,13 +92,13 @@
 
   <div layout="column" layout-align="center center">
     <md-select placeholder="Student" ng-model="student" md-on-open="loadStudents()" style="min-width: 200px">
-      <md-option ng-value="student" ng-repeat="student in studentNames">{{student.name}}</md-option>
+      <md-option ng-value="student" ng-repeat="student in studentList">{{student.name}}</md-option>
     </md-select>
     <p class="md-caption">Selected the student: {{ student ? student.name : 'No one yet' }}</p>
   </div>
   <div layout="column" layout-align="center center">
     <md-select placeholder="Team" ng-model="team" md-on-open="loadTeams()" style="min-width: 200px">
-      <md-option ng-value="team" ng-repeat="team in teamNames">{{team.name}}</md-option>
+      <md-option ng-value="team" ng-repeat="team in teamList">{{team.name}}</md-option>
     </md-select>
     <p class="md-caption">Selected the team: {{ team ? team.name : 'No one yet' }}</p>
   </div>
