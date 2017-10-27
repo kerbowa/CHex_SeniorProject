@@ -8,11 +8,11 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('LoginCtrl', ['$scope', '$http', '$location', 'authentication', function ($scope, $http, $location, authentication) {
+  .controller('LoginCtrl', ['$scope', '$http', '$state', 'authentication', function ($scope, $http, $state, authentication) {
 
   $scope.submit = function() {
 		authentication.login($scope.user, function() {
-      $location.path('/dashboard');
+      $state.go('dashboard');
     });
 	};
 }]);

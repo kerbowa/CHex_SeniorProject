@@ -13,7 +13,6 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <link href="v-accordion.css" rel="stylesheet" />
     <!-- Import font from Google Font -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
@@ -40,68 +39,7 @@
   </script>
   </head>
   <body ng-app="clientApp">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!-- Add your site or application content here -->
-    <top-banner>
-      <div id="wrapper">
-
-      <div class="navbar navbar-default" role="navigation">
-        <header>
-            <div class="container clearfix">
-                <h2 id="logo">
-                  College of ECS
-                </h2>
-                <h1 id="logo">
-                  Department of Computer
-                </h1>
-                <h1 id="logo">
-                  Science
-                </h1>
-              <nav>
-              <a ui-sref="main">Home</a>
-              <a ui-sref="course-materials">Course Materials</a>
-              <a ui-sref="templates">Templates</a>
-              <a ui-sref="forms">Forms</a>
-              <a ui-sref="dashboard">Dashboard</a>
-              <a ui-sref="login">Login</a>
-            </nav>
-            </div>
-        </header>
-      </div>
-      </div>
-    </top-banner>
-    
-     
-      <div id="main">
-        <div id="content">
-          <div class="container main-container">
-              <div ui-view=""></div>
-      </div>
-      </div>
-      </div>
-            
-    <div class="jumbotron lower">
-      <div class="container">
-      <img src="images/Primary_Horizontal_White_tag.png" alt="Sac State"><br>
-        <div class="footer-info">
-          <p style="font-weight:bold;">Bob Buckley</p>
-          <p>Riverside 3002</p>
-          <p>buckley@csus.edu</p>
-          <p>(916) 278-7324</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><i style="color:red" class="fa fa-heart footer-info"></i > Team C Hex!</p>
-      </div>
-    </div>
-
-
+  <div ui-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -125,6 +63,7 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui-router/release/stateEvents.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/v-accordion/dist/v-accordion.js"></script>
@@ -141,6 +80,7 @@
         <script src="scripts/controllers/dashboard.js"></script>
         <script src="scripts/controllers/forms.js"></script>
         <script src="scripts/services/authentication.js"></script>
+        <script src="scripts/controllers/public.js"></script>
         <!-- endbuild -->
 </body>
 </html>

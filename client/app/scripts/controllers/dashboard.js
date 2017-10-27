@@ -8,7 +8,11 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('DashboardCtrl', ['$scope', '$http', '$location', 'authentication', function ($scope, $http, $location, authentication) {
+  .controller('DashboardCtrl', ['$scope', '$http', '$location', '$transitions', 'authentication', function ($scope, $http, $location, $transitions, authentication) {
+
+    $transitions.onBefore( { to: 'dashboard.**' }, function(trans) {
+      return authentication.isLoggedIn();
+    });
 
     $scope.tbgen = function() {
       var req = $http.get('/api/tbgen');

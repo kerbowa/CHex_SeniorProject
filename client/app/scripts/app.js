@@ -17,6 +17,7 @@ angular
     'ngResource',
     'ngRoute',
     'ui.router',
+    'ui.router.state.events',
     'ngSanitize',
     'ngStorage',
     'ngTouch',
@@ -24,13 +25,13 @@ angular
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('main', {
-        url: '/main',
+      .state('public.main', {
+        url: '/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .state('course-materials', {
+      .state('public.course-materials', {
         url: '/course-materials',
         templateUrl: 'views/course-materials.html',
         controller: 'CourseMaterialsCtrl',
@@ -42,32 +43,32 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .state('forms', {
+      .state('public.forms', {
         url: '/forms',
         templateUrl: 'views/forms.html',
         controller: 'FormsCtrl',
         controllerAs: 'forms'
       })
-      .state('templates', {
+      .state('public.templates', {
         url: '/templates',
         templateUrl: 'views/templates.html',
         controller: 'TemplatesCtrl',
         controllerAs: 'templates'
       })
       .state('dashboard', {
-        url: '/dashboard',
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard'
+      })
+      .state('public', {
+         templateUrl: 'views/public.html',
+         controller: 'PublicCtrl',
+         controllerAs: 'public'
       });
-         $urlRouterProvider.otherwise('/main');
-  })
-  .run(['$rootScope', '$location', 'authentication', run]);
-
-function run($rootScope, $state, authentication) {
-    $rootScope.$on('$stateChangeStart', function(event, nextRoute, currentRoute) {
-      if ($state.is('dashboard') && !authentication.isLoggedIn()) {
-        $state.path('/login');
-      }
-    });
-  }
+      $urlRouterProvider.otherwise('/');
+    /*
+			$transitions.onBefore( { to: 'dashboard.**' }, function(trans) {
+        return authentication.isLoggedIn();
+      });
+      */
+  });
