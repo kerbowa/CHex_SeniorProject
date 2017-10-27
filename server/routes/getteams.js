@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
   db.all('SELECT * FROM TEAM', function(err, rows) {
     for (i = 0; i < rows.length; i++) {
       allTeams.team.push({"_id" : i,
+                               "team_id": rows[i].ID,
                                "name" : rows[i].NAME,
                                "course" : rows[i].COURSE,
                                "advisor": rows[i].ADVISOR_ID,

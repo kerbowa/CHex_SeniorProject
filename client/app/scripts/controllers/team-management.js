@@ -12,6 +12,8 @@ angular.module('clientApp')
     $scope.student = null;
     $scope.students = null;
     $scope.studentNames = null;
+    $scope.team = null;
+    $scope.teams = null;
     $scope.teamNames = null;
 
     var req = $http.get('/api/getstudents');
@@ -37,7 +39,6 @@ angular.module('clientApp')
     $scope.loadStudents = function() {
       $scope.studentNames;
     };
-
 
     $scope.members = [{
       member: 'Jammy Loeur',
