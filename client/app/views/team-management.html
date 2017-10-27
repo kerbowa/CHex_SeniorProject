@@ -23,7 +23,7 @@
               </v-pane-header>
               <v-pane-content>
                 <div class="md-list-item-text" layout="column">
-                  <p>Faculty Advisor: {{item.advisor}} - {{item.advisoremail}}</p>
+                  <p ng-repeat="advisor in advisorList" ng-repeat="team in teamList" ng-if="advisor.advisor_id === team.advisor">Faculty Advisor: {{advisor.name}} - {{advisor.email}}</p>
                   <p ng-repeat="client in clientList" ng-repeat="team in teamList" ng-if="client.client_id === team.client">Client: {{client.name}} - {{client.email}}</p>
 
                   <p>Team Members</p>
@@ -50,9 +50,8 @@
             </v-pane-header>
             <v-pane-content>
               <div class="md-list-item-text" layout="column">
-                <p>Faculty Advisor: {{item.advisor}} - {{item.advisoremail}}</p>
+                <p ng-repeat="advisor in advisorList" ng-repeat="team in teamList" ng-if="advisor.advisor_id === team.advisor">Faculty Advisor: {{advisor.name}} - {{advisor.email}}</p>
                 <p ng-repeat="client in clientList" ng-repeat="team in teamList" ng-if="client.client_id === team.client">Client: {{client.name}} - {{client.email}}</p>
-
 
                 <p>Team Members</p>
 
@@ -101,6 +100,18 @@
       <md-option ng-value="team" ng-repeat="team in teamList">{{team.name}}</md-option>
     </md-select>
     <p class="md-caption">Selected the team: {{ team ? team.name : 'No one yet' }}</p>
+  </div>
+  <div layout="column" layout-align="center center">
+    <md-select placeholder="Client" ng-model="client" md-on-open="loadClients()" style="min-width: 200px">
+      <md-option ng-value="client" ng-repeat="client in clientList">{{client.name}}</md-option>
+    </md-select>
+    <p class="md-caption">Selected the client: {{ client ? client.name : 'No one yet' }}</p>
+  </div>
+  <div layout="column" layout-align="center center">
+    <md-select placeholder="Advisor" ng-model="advisor" md-on-open="loadAdvisors()" style="min-width: 200px">
+      <md-option ng-value="advisor" ng-repeat="advisor in advisorList">{{advisor.name}}</md-option>
+    </md-select>
+    <p class="md-caption">Selected the advisor: {{ advisor ? advisor.name : 'No one yet' }}</p>
   </div>
 
 </div>

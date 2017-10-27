@@ -18,6 +18,9 @@ angular.module('clientApp')
     $scope.client = null;
     $scope.clients = null;
     $scope.clientList = null;
+    $scope.advisor = null;
+    $scope.advisors = null;
+    $scope.advisorList = null;
 
     var req = $http.get('/api/getstudents');
     var scope = this;
@@ -43,6 +46,16 @@ angular.module('clientApp')
     var scope = this;
     req.then(function (res) {
       $scope.clientList = res.data.client;
+      console.log(res);
+    });
+    req.catch(function(err) {
+      console.log(err);
+    });
+
+    var req = $http.get('/api/getadvisors');
+    var scope = this;
+    req.then(function (res) {
+      $scope.advisorList = res.data.advisor;
       console.log(res);
     });
     req.catch(function(err) {
