@@ -78,10 +78,10 @@ angular
          controller: 'PublicCtrl',
          controllerAs: 'public'
       });
-      $urlRouterProvider.otherwise('/');
-    /*
-			$transitions.onBefore( { to: 'dashboard.**' }, function(trans) {
-        return authentication.isLoggedIn();
-      });
-      */
-  });
+    $urlRouterProvider.otherwise('/');
+  })
+  .run(['$transitions', '$state', 'authentication', ($transitions, $state, authentication) => {
+    $transitions.onBefore( { to: 'dashboard.**' }, function(trans) {
+       return authentication.isLoggedIn();
+    })
+  }]);
