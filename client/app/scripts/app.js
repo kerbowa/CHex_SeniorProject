@@ -26,6 +26,11 @@ angular
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
+      .state('public', {
+         templateUrl: 'views/public.html',
+         controller: 'PublicCtrl',
+         controllerAs: 'public'
+      })
       .state('public.main', {
         url: '/',
         templateUrl: 'views/main.html',
@@ -37,12 +42,6 @@ angular
         templateUrl: 'views/course-materials.html',
         controller: 'CourseMaterialsCtrl',
         controllerAs: 'courseMaterials'
-      })
-      .state('login', {
-        url: '/login',
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'login'
       })
       .state('public.forms', {
         url: '/forms',
@@ -73,10 +72,17 @@ angular
         controller: 'StudentsCtrl',
         controllerAs: 'students'
       })
-      .state('public', {
-         templateUrl: 'views/public.html',
-         controller: 'PublicCtrl',
-         controllerAs: 'public'
+      .state('dashboard.email', {
+        url: '/dashboard/email',
+        templateUrl: 'views/email.html',
+        controller: 'EmailCtrl',
+        controllerAs: 'email'
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
       });
     $urlRouterProvider.otherwise('/');
   })
