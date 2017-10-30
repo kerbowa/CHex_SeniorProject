@@ -17,6 +17,7 @@ function generateTaskBoard(teamName, names, initials) {
   doc.loadZip(zip);
 
   doc.setData({
+      teamname: teamName,
       name1: names[0],
       name2: names[1],
       name3: names[2],
@@ -78,6 +79,8 @@ function generateTaskBoardsForAllTeams() {
           }
           // Actually generate the taskboard.
           generateTaskBoard(teamRow.NAME, names, initials);
+          // Update database to reflect that the taskboard was generated.
+          db.run('UPDATE TEAM SET TB_GENERATED = 1 WHERE ID = ?', teamRow.ID, function(err) {});
         });
       });
     });
@@ -90,20 +93,6 @@ function getInitials(name) {
 }
 
 router.get('/', function(req, res, next) {
-  /*
-	generateTaskBoard("Team CHex", ["Daniel Hayes",
-                                  "DH",
-                                  "Vi M Le",
-                                  "VL",
-                                  "Ali Haider Iqbal",
-                                  "AI",
-                                  "Jammy Loeur",
-                                  "JL",
-                                  "Austin Kerbow",
-                                  "AK",
-                                  "Derek Hien Nguyen",
-                                  "DN"]);
- */                                 
   generateTaskBoardsForAllTeams();
   res.sendStatus(200);
 });

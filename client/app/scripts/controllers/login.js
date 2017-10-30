@@ -8,18 +8,11 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('LoginCtrl', ['$scope', '$http', AuthenticationService, function ($scope, $http) {
-  var vm = this;
+  .controller('LoginCtrl', ['$scope', '$http', '$state', 'authentication', function ($scope, $http, $state, authentication) {
 
   $scope.submit = function() {
-    vm.loading = true;
-    AuthenticationService.Login($scope.user.username, $scope.user.password, function (result) {
-      if (result === true) {
-        $location.path('/dashboard');
-      } else {
-        vm.error = 'Username or password is incorrect';
-        vm.loading = false;
-      }
+		authentication.login($scope.user, function() {
+      $state.go('dashboard.team-management');
     });
-  };
+	};
 }]);
