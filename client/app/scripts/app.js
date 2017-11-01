@@ -72,6 +72,12 @@ angular
         controller: 'StudentsCtrl',
         controllerAs: 'students'
       })
+      .state('dashboard.clients', {
+        url: '/dashboard/clients',
+        templateUrl: 'views/clients.html',
+        controller: 'ClientsCtrl',
+        controllerAs: 'clients'
+      })
       .state('dashboard.email', {
         url: '/dashboard/email',
         templateUrl: 'views/email.html',
