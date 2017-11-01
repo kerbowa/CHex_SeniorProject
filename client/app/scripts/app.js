@@ -16,67 +16,80 @@ angular
     'ngMessages',
     'ngResource',
     'ngRoute',
+    'ui.router',
+    'ui.router.state.events',
     'ngSanitize',
     'ngStorage',
     'ngTouch',
     'vAccordion',
     'ngMaterial'
   ])
-  .config(function ($routeProvider, $locationProvider) {
-    $locationProvider.hashPrefix('');
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('public', {
+         templateUrl: 'views/public.html',
+         controller: 'PublicCtrl',
+         controllerAs: 'public'
+      })
+      .state('public.main', {
+        url: '/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/course-materials', {
+      .state('public.course-materials', {
+        url: '/course-materials',
         templateUrl: 'views/course-materials.html',
         controller: 'CourseMaterialsCtrl',
         controllerAs: 'courseMaterials'
       })
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'login'
-      })
-      .when('/forms', {
+      .state('public.forms', {
+        url: '/forms',
         templateUrl: 'views/forms.html',
         controller: 'FormsCtrl',
         controllerAs: 'forms'
       })
-      .when('/templates', {
+      .state('public.templates', {
+        url: '/templates',
         templateUrl: 'views/templates.html',
         controller: 'TemplatesCtrl',
         controllerAs: 'templates'
       })
-      .when('/dashboard', {
+      .state('dashboard', {
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard'
       })
-      .when('/team-management', {
+      .state('dashboard.team-management', {
+        url: '/dashboard/team-management',
         templateUrl: 'views/team-management.html',
         controller: 'TeamManagementCtrl',
         controllerAs: 'teamManagement'
       })
-      .when('/students', {
+      .state('dashboard.students', {
+        url: '/dashboard/students',
         templateUrl: 'views/students.html',
         controller: 'StudentsCtrl',
         controllerAs: 'students'
       })
-      .otherwise({
-        redirectTo: '/'
+      .state('dashboard.email', {
+        url: '/dashboard/email',
+        templateUrl: 'views/email.html',
+        controller: 'EmailCtrl',
+        controllerAs: 'email'
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
       });
+    $urlRouterProvider.otherwise('/');
   })
-  .run(['$rootScope', '$location', 'authentication', run]);
-
-function run($rootScope, $location, authentication) {
-    $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
-      if (($location.path() === '/dashboard' ||
-          $location.path() === '/team-management' ||
-          $location.path() === '/students') && !authentication.isLoggedIn()) {
-        $location.path('/login');
+  .run(['$transitions', '$state', 'authentication', ($transitions, $state, authentication) => {
+    $transitions.onBefore( { to: 'dashboard.**' }, function(trans) {
+      if (!authentication.isLoggedIn()) {
+        return trans.router.stateService.target('login');
       }
-    });
-  }
+    })
+  }]);
