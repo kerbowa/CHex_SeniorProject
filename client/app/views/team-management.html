@@ -101,24 +101,6 @@
     <md-divider></md-divider>
   </div>
 
-  <div layout="column" layout-align="center center">
-    <md-select placeholder="Student" ng-model="student" md-on-open="loadStudents()" style="min-width: 200px">
-      <md-option ng-value="student" ng-repeat="student in studentList">{{student.name}}</md-option>
-    </md-select>
-    <p class="md-caption">Selected the student: {{ student ? student.name : 'No one yet' }}</p>
-  </div>
-  <div layout="column" layout-align="center center">
-    <md-select placeholder="Team" ng-model="team" md-on-open="loadTeams()" style="min-width: 200px">
-      <md-option ng-value="team" ng-repeat="team in teamList">{{team.name}}</md-option>
-    </md-select>
-    <p class="md-caption">Selected the team: {{ team ? team.name : 'No one yet' }}</p>
-  </div>
-  <div layout="column" layout-align="center center">
-    <md-select placeholder="Client" ng-model="client" md-on-open="loadClients()" style="min-width: 200px">
-      <md-option ng-value="client" ng-repeat="client in clientList">{{client.name}}</md-option>
-    </md-select>
-    <p class="md-caption">Selected the client: {{ client ? client.name : 'No one yet' }}</p>
-  </div>
 <md-form>
   <div layout="column" layout-align="center center">
     <md-select placeholder="Advisor" ng-model="advisor" md-on-open="loadAdvisors()" style="min-width: 200px">
@@ -129,7 +111,15 @@
   </div>
 </md-form>
 
+
+<md-toolbar class="md-theme-light">
+  <div class="md-toolbar-tools">
+    <h2 class="md-flex">Create Team</h2>
+    <span flex=""></span>
+  </div>
+</md-toolbar>
 <!-- Create Team Form -->
+<div class="md-padding">
 <md-form>
   <div layout="column" layout-align="center center">
 
@@ -153,13 +143,9 @@
     </md-select>
     <p class="md-caption">Selected the client: {{ client ? client.name : 'No one yet' }}</p>
 
-    <md-select placeholder="Student" ng-model="student" md-on-open="loadStudents()" style="min-width: 200px">
-      <md-option ng-value="student" ng-repeat="student in studentList">{{student.name}}</md-option>
-    </md-select>
-    <p class="md-caption">Selected the student: {{ student ? student.name : 'No one yet' }}</p>
-
-    <md-button  ng-click="createTeam()" type="submit">Create Team</md-button>
+    <md-button class="md-primary md-raised" ng-click="createTeam()" type="submit">Create Team</md-button>
   </div>
 </md-form>
+</div>
 
 </div>
