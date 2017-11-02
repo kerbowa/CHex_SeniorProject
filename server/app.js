@@ -17,7 +17,7 @@ var getstudents = require('./routes/getstudents');
 var getteams = require('./routes/getteams');
 var getclients = require('./routes/getclients');
 var getadvisors = require('./routes/getadvisors');
-var email = require('.routes/email');
+var email = require('./routes/email');
 
 var app = express();
 

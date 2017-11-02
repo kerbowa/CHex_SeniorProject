@@ -26,7 +26,7 @@ router.post('/', function(req, res) {
 		from: 'throwaway19238@gmail.com',
 		
 		//Receiver(s)
-		to: 'cowking000@yahoo.com' + 'dereknguyen1994@gmail.com',
+		to: 'cowking000@yahoo.com' + ', ' + 'dereknguyen1994@gmail.com',
 		
 		//Subject line
 		subject: req.body.subject,
