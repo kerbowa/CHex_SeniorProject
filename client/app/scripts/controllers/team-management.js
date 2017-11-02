@@ -41,10 +41,17 @@ angular.module('clientApp')
         $scope.initFirst();
       };
 
+      $scope.editTeam = function() {
+        $scope.statusMsg = 'Sending data to server...';
+        
+      }
+
       $scope.createTeam = function() {
         $scope.statusMsg = 'Sending data to server...';
-        var Indata = {'param': $scope.student, 'param2': $scope.team,
-          'param3': $scope.advisor, 'param4': $scope.client, 'param5': $scope.course};
+        var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
+            'param4': $scope.client, 'param5': $scope.studentOne, 'param6': $scope.studentTwo,
+            'param7': $scope.studentThree, 'param8': $scope.studentFour, 'param9': $scope.studentFive,
+            'param10': $scope.studentSix};
         $http({
           url: '/api/createteam',
           method: 'POST',

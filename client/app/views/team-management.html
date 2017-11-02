@@ -61,10 +61,15 @@
       <md-list-item ng-repeat="team in teamList" ng-if="team.course === '191'">
         <v-accordion class="vAccordian--default" multiple>
           <v-pane expanded="pane.toggle">
+            <div layout="row">
             <v-pane-header md-ink-ripple="#C4B581">
               <h5>{{team.name}}</h5>
+
             </v-pane-header>
-            <v-pane-content>
+              <md-button ng-click="toggle=!toggle">Edit</md-button>
+            </div>
+            <v-pane-content ng-show="toggle">
+
               <md-list flex="">
                 <md-list-item class="md-3-line" ng-repeat="advisor in advisorList"
                 ng-if="advisor.advisor_id === team.advisor" ng-click="null">
@@ -93,6 +98,7 @@
             </md-list>
             <md-divider></md-divider>
             </v-pane-content>
+
           </v-pane>
         </v-accordion>
       </md-list-item ng-if="!$last">
@@ -142,6 +148,30 @@
       <md-option ng-value="client" ng-repeat="client in clientList">{{client.name}}</md-option>
     </md-select>
     <p class="md-caption">Selected the client: {{ client ? client.name : 'No one yet' }}</p>
+
+    <md-select placeholder="Student One" ng-model="studentOne" md-on-open="loadStudents()" style="min-width: 200px">
+      <md-option ng-value="studentOne" ng-repeat="studentOne in studentList">{{studentOne.name}}</md-option>
+    </md-select>
+
+    <md-select placeholder="Student Two" ng-model="studentTwo" md-on-open="loadStudents()" style="min-width: 200px">
+      <md-option ng-value="studentTwo" ng-repeat="studentTwo in studentList">{{studentTwo.name}}</md-option>
+    </md-select>
+
+    <md-select placeholder="Student Three" ng-model="studentThree" md-on-open="loadStudents()" style="min-width: 200px">
+      <md-option ng-value="studentThree" ng-repeat="studentThree in studentList">{{studentThree.name}}</md-option>
+    </md-select>
+
+    <md-select placeholder="Student Four" ng-model="studentFour" md-on-open="loadStudents()" style="min-width: 200px">
+      <md-option ng-value="studentFour" ng-repeat="studentFour in studentList">{{studentFour.name}}</md-option>
+    </md-select>
+
+    <md-select placeholder="Student Five" ng-model="studentFive" md-on-open="loadStudents()" style="min-width: 200px">
+      <md-option ng-value="studentFive" ng-repeat="studentFive in studentList">{{studentFive.name}}</md-option>
+    </md-select>
+
+    <md-select placeholder="Student Six" ng-model="studentSix" md-on-open="loadStudents()" style="min-width: 200px">
+      <md-option ng-value="studentSix" ng-repeat="studentSix in studentList">{{studentSix.name}}</md-option>
+    </md-select>
 
     <md-button class="md-primary md-raised" ng-click="createTeam()" type="submit">Create Team</md-button>
   </div>
