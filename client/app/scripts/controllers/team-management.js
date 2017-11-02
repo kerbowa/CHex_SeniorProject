@@ -9,73 +9,82 @@
  */
 angular.module('clientApp')
   .controller('TeamManagementCtrl', ['$scope', '$http', '$timeout', '$window', function ($scope, $http, $window, $timeout) {
-    $scope.student = null;
-    $scope.students = null;
-    $scope.studentList = null;
-    $scope.team = null;
-    $scope.teams = null;
-    $scope.teamList = null;
-    $scope.client = null;
-    $scope.clients = null;
-    $scope.clientList = null;
-    $scope.advisor = null;
-    $scope.advisors = null;
-    $scope.advisorList = null;
 
-    $scope.DeleteAdvisor = function() {
-      $http.post('')
+    $scope.initFirst = function() {
+
+      $scope.student = null;
+      $scope.students = null;
+      $scope.studentList = null;
+      $scope.team = null;
+      $scope.teams = null;
+      $scope.teamList = null;
+      $scope.client = null;
+      $scope.clients = null;
+      $scope.clientList = null;
+      $scope.advisor = null;
+      $scope.advisors = null;
+      $scope.advisorList = null;
+
+      $scope.deleteAdvisor = function() {
+        $scope.statusMsg = 'Sending data to server...';
+        $http({
+          url: '/api/deladvisor',
+          method: 'POST',
+          data: $scope.advisor,
+          headers: {'Content-Type': 'application/json'}
+        })
+        $scope.initFirst();
+      };
+
+      var req = $http.get('/api/getstudents');
+      var scope = this;
+      req.then(function (res) {
+        $scope.studentList = res.data.student;
+        console.log(res);
+      });
+      req.catch(function(err) {
+        console.log(err);
+      });
+
+      var req = $http.get('/api/getteams');
+      var scope = this;
+      req.then(function (res) {
+        $scope.teamList = res.data.team;
+        console.log(res);
+      });
+      req.catch(function(err) {
+        console.log(err);
+      });
+
+      var req = $http.get('/api/getclients');
+      var scope = this;
+      req.then(function (res) {
+        $scope.clientList = res.data.client;
+        console.log(res);
+      });
+      req.catch(function(err) {
+        console.log(err);
+      });
+
+      var req = $http.get('/api/getadvisors');
+      var scope = this;
+      req.then(function (res) {
+        $scope.advisorList = res.data.advisor;
+        console.log(res);
+      });
+      req.catch(function(err) {
+        console.log(err);
+      });
+
+      this.awesomeThings = [
+        'HTML5 Boilerplate',
+        'AngularJS',
+        'Karma'
+      ];
     }
+}])
 
-    var req = $http.get('/api/getstudents');
-    var scope = this;
-    req.then(function (res) {
-      $scope.studentList = res.data.student;
-      console.log(res);
-    });
-    req.catch(function(err) {
-      console.log(err);
-    });
 
-    var req = $http.get('/api/getteams');
-    var scope = this;
-    req.then(function (res) {
-      $scope.teamList = res.data.team;
-      console.log(res);
-    });
-    req.catch(function(err) {
-      console.log(err);
-    });
-
-    var req = $http.get('/api/getclients');
-    var scope = this;
-    req.then(function (res) {
-      $scope.clientList = res.data.client;
-      console.log(res);
-    });
-    req.catch(function(err) {
-      console.log(err);
-    });
-
-    var req = $http.get('/api/getadvisors');
-    var scope = this;
-    req.then(function (res) {
-      $scope.advisorList = res.data.advisor;
-      console.log(res);
-    });
-    req.catch(function(err) {
-      console.log(err);
-    });
-
-    $scope.loadStudents = function() {
-      $scope.studentList;
-    };
-
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  }])
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('green', {

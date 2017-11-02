@@ -17,6 +17,7 @@ var getstudents = require('./routes/getstudents');
 var getteams = require('./routes/getteams');
 var getclients = require('./routes/getclients');
 var getadvisors = require('./routes/getadvisors');
+var deladvisor = require('./routes/deladvisor');
 
 var app = express();
 
@@ -44,6 +45,7 @@ app.use('/api/getstudents', getstudents);
 app.use('/api/getteams', getteams);
 app.use('/api/getclients', getclients);
 app.use('/api/getadvisors', getadvisors);
+app.use('/api/deladvisor', deladvisor);
 
 if (app.get('env') === 'production') {
 

@@ -1,4 +1,4 @@
-<div class="navBardemoBasicUsage">
+<div class="navBardemoBasicUsage" ng-init="initFirst()">
   <md-toolbar class="md-theme-light">
     <div class="md-toolbar-tools">
       <h2 class="md-flex">Team Management</h2>
@@ -124,7 +124,7 @@
     <md-select placeholder="Advisor" ng-model="advisor" md-on-open="loadAdvisors()" style="min-width: 200px">
       <md-option ng-value="advisor" ng-repeat="advisor in advisorList">{{advisor.name}}</md-option>
     </md-select>
-    <md-button ng-click="DeleteAdviser()">Delete</md-button>
+    <md-button ng-click="deleteAdvisor()" type="submit">Delete</md-button>
     <p class="md-caption">Selected the advisor: {{ advisor ? advisor.name : 'No one yet' }}</p>
   </div>
 </md-form>
