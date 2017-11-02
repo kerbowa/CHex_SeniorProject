@@ -129,4 +129,37 @@
   </div>
 </md-form>
 
+<!-- Create Team Form -->
+<md-form>
+  <div layout="column" layout-align="center center">
+
+    <md-input-container style="min-width: 200px">
+      <input placeholder="Team Name" ng-model="team.name">
+    </md-input-container>
+    <p class="md-caption">Selected the team: {{ team ? team.name : 'No one yet' }}</p>
+
+    <md-select placeholder="Course" ng-model="course" md-on-open="loadCourses()" style="min-width:200px">
+      <md-option ng-value="course" ng-repeat="course in courseList">{{course.name}}</md-option>
+    </md-select>
+    <p class="md-caption">Selected the course: {{ course ? course.name : 'No one yet' }}</p>
+
+    <md-select placeholder="Advisor" ng-model="advisor" md-on-open="loadAdvisors()" style="min-width: 200px">
+      <md-option ng-value="advisor" ng-repeat="advisor in advisorList">{{advisor.name}}</md-option>
+    </md-select>
+    <p class="md-caption">Selected the advisor: {{ advisor ? advisor.name : 'No one yet' }}</p>
+
+    <md-select placeholder="Client" ng-model="client" md-on-open="loadClients()" style="min-width: 200px">
+      <md-option ng-value="client" ng-repeat="client in clientList">{{client.name}}</md-option>
+    </md-select>
+    <p class="md-caption">Selected the client: {{ client ? client.name : 'No one yet' }}</p>
+
+    <md-select placeholder="Student" ng-model="student" md-on-open="loadStudents()" style="min-width: 200px">
+      <md-option ng-value="student" ng-repeat="student in studentList">{{student.name}}</md-option>
+    </md-select>
+    <p class="md-caption">Selected the student: {{ student ? student.name : 'No one yet' }}</p>
+
+    <md-button  ng-click="createTeam()" type="submit">Create Team</md-button>
+  </div>
+</md-form>
+
 </div>

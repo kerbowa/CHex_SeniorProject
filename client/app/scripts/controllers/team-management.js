@@ -25,12 +25,30 @@ angular.module('clientApp')
       $scope.advisors = null;
       $scope.advisorList = null;
 
+      $scope.courseList = [
+        { name: "190"},
+        { name: "191"}
+      ]
+
       $scope.deleteAdvisor = function() {
         $scope.statusMsg = 'Sending data to server...';
         $http({
           url: '/api/deladvisor',
           method: 'POST',
           data: $scope.advisor,
+          headers: {'Content-Type': 'application/json'}
+        })
+        $scope.initFirst();
+      };
+
+      $scope.createTeam = function() {
+        $scope.statusMsg = 'Sending data to server...';
+        var Indata = {'param': $scope.student, 'param2': $scope.team,
+          'param3': $scope.advisor, 'param4': $scope.client, 'param5': $scope.course};
+        $http({
+          url: '/api/createteam',
+          method: 'POST',
+          data: Indata,
           headers: {'Content-Type': 'application/json'}
         })
         $scope.initFirst();

@@ -18,6 +18,7 @@ var getteams = require('./routes/getteams');
 var getclients = require('./routes/getclients');
 var getadvisors = require('./routes/getadvisors');
 var deladvisor = require('./routes/deladvisor');
+var createteam = require('./routes/createteam');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/api/getteams', getteams);
 app.use('/api/getclients', getclients);
 app.use('/api/getadvisors', getadvisors);
 app.use('/api/deladvisor', deladvisor);
+app.use('/api/createteam', createteam);
 
 if (app.get('env') === 'production') {
 

@@ -13,7 +13,7 @@ router.post('/', function(req, res) {
 
   db.all('DELETE FROM ADVISOR WHERE ID = ?', [id], function(err, result) {
     if (err) throw err;
-    console.log("Deleted Record: " + id + name + email);
+    console.log("Deleted Record: " + " " + id + " " + name + " " + email);
   });
 
   res.end();
