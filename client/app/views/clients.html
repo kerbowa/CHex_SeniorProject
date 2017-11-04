@@ -1,0 +1,33 @@
+
+  <h3>Clients</h3>
+  Filter: 
+  <input type="text" ng-model="filter" />
+  <div class="container-fluid" style="margin-top:20px">
+    <div class="row">
+      <div class="col col-12 col-md-auto">
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <div class="tr">
+              <div class="td">ID</div>
+              <div class="td">Name</div>
+              <div class="td">Email</div>
+              <div class="td">Status</div>
+              <div class="td"></div>
+              <div class="td"></div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="tr" ng-repeat="c in clients.clientNames | filter:filter">
+              <div class="td">{{ c.client_id }}</div>
+              <div class="td">{{ c.name}}</div>
+              <div class="td">{{ c.email }}</div>
+              <div class="td">{{ c.status }}</div>
+              <div class="td">Edit</div>
+              <div class="td">Delete</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
