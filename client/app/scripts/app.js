@@ -92,7 +92,7 @@ angular
       });
     $urlRouterProvider.otherwise('/');
   })
-  .run(['$transitions', '$state', 'authentication', ($transitions, $state, authentication) => {
+  .run(['$transitions', '$state', 'authentication', function ($transitions, $state, authentication) {
     $transitions.onBefore( { to: 'dashboard.**' }, function(trans) {
       if (!authentication.isLoggedIn()) {
         return trans.router.stateService.target('login');
