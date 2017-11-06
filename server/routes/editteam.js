@@ -36,7 +36,16 @@ router.post('/', function(req, res) {
   // update students
 
 
-  console.log();
+  console.log(teamName);
+  console.log(course);
+  console.log(advisorId);
+  console.log(clientId);
+  console.log(studentOne);
+  console.log(studentTwo);
+  console.log(studentThree);
+  console.log(studentFour);
+  console.log(studentFive);
+  console.log(studentSix);
   db.close();
 });
 
