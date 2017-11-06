@@ -23,30 +23,34 @@ router.post('/', function(req, res) {
   }
   // studentOne
   if (req.body.param5 != null) {
-    var studentOne = req.body.param5.name;
+    var studentOne = req.body.param5.student_id;
   }
   // studentTwo
   if (req.body.param6 != null) {
-    var studentTwo = req.body.param6.name;
+    var studentTwo = req.body.param6.student_id;
   }
   // studentThree
   if (req.body.param7 != null) {
-    var studentThree = req.body.param7.name;
+    var studentThree = req.body.param7.student_id;
   }
   // studentFour
   if (req.body.param8 != null) {
-    var studentFour = req.body.param8.name;
+    var studentFour = req.body.param8.student_id;
   }
   // studentFive
   if (req.body.param9 != null) {
-    var studentFive = req.body.param9.name;
+    var studentFive = req.body.param9.student_id;
   }
   // studentSix
   if (req.body.param10 != null) {
-    var studentSix = req.body.param10.name;
+    var studentSix = req.body.param10.student_id;
   }
 
   db.all('INSERT INTO TEAM (NAME, COURSE, TB_GENERATED, ADVISOR_ID, CLIENT_ID) VALUES (?, ?, ?, ?, ?)', [teamName, course, 0, advisorId, clientId], function(err, result) {
+    if (err) throw err;
+  });
+
+  db.all('UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?', [team.TEAM_ID , studentOne], function(err, result) {
     if (err) throw err;
   });
 

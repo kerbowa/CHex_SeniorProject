@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
   db.all('SELECT * FROM STUDENT', function(err, rows) {
     for (i = 0; i < rows.length; i++) {
       allStudents.student.push({"_id" : i,
+                               "student_id" : rows[i].STUDENT_ID,
                                "name" : rows[i].NAME,
                                "email" : rows[i].EMAIL,
                                "team" : rows[i].TEAM_ID});

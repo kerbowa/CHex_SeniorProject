@@ -19,11 +19,8 @@ var getclients = require('./routes/getclients');
 var getadvisors = require('./routes/getadvisors');
 var deladvisor = require('./routes/deladvisor');
 var createteam = require('./routes/createteam');
-<<<<<<< HEAD
 var editteam = require('./routes/editteam');
-=======
 var email = require('./routes/email');
->>>>>>> origin/master
 
 var app = express();
 
