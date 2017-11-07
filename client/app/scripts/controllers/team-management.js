@@ -120,7 +120,6 @@ angular.module('clientApp')
     }
 }])
 
-
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('green', {
