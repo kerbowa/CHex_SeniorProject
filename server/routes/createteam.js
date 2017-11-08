@@ -46,36 +46,31 @@ router.post('/', function(req, res) {
     var studentSix = req.body.param10.student_id;
   }
 
-
-
-  db.serialize(function() {
-    db.run('INSERT INTO TEAM (NAME, COURSE, TB_GENERATED, ADVISOR_ID, CLIENT_ID) VALUES (?, ?, ?, ?, ?)',
+  db.run(
+    'INSERT INTO TEAM (NAME, COURSE, TB_GENERATED, ADVISOR_ID, CLIENT_ID) VALUES (?, ?, ?, ?, ?)',
     [teamName, course, 0, advisorId, clientId], function(err, result) {
-      if (err) throw err;
-    });
-
-    var newTeam = {};
-
-    // get record of newly created team
-    db.all('SELECT * FROM TEAM WHERE ID = (SELECT MAX(ID) FROM TEAM)', function (err, rows) {
-      if(err) {
+      if (err) {
         throw err;
+      } else {
+        // get record of newly created team
+        db.all(
+          'SELECT * FROM TEAM WHERE ID = (SELECT MAX(ID) FROM TEAM)',
+           function(err, rows) {
+              if (err) {
+                throw err;
+              } else {
+                db.run(
+                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+                   rows[0].ID, studentOne, function(err, result) {
+                     if (err) throw err;
+                   });
+              }
+        });
       }
-      else {
-        newTeam = rows[0].ID;
-        console.log(newTeam);
-      }
-    });
+  });
 
-    // update student TEAM_ID fields to newly created team
-    db.run('UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?', [newTeam, studentOne], function(err, result) {
-      if (err) throw err;
-    });
-
-  })
-
-  console.log();
   db.close();
+  res.sendStatus(200);
 });
 
 module.exports = router;
