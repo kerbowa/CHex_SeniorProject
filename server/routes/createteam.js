@@ -63,7 +63,32 @@ router.post('/', function(req, res) {
                   'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
                    rows[0].ID, studentOne, function(err, result) {
                      if (err) throw err;
-                   });
+                });
+                db.run(
+                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+                   rows[0].ID, studentTwo, function(err, result) {
+                     if (err) throw err;
+                });
+                db.run(
+                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+                   rows[0].ID, studentThree, function(err, result) {
+                     if (err) throw err;
+                });
+                db.run(
+                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+                   rows[0].ID, studentFour, function(err, result) {
+                     if (err) throw err;
+                });
+                db.run(
+                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+                   rows[0].ID, studentFive, function(err, result) {
+                     if (err) throw err;
+                });
+                db.run(
+                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+                   rows[0].ID, studentSix, function(err, result) {
+                     if (err) throw err;
+                });
               }
         });
       }

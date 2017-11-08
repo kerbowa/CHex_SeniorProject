@@ -31,17 +31,6 @@ angular.module('clientApp')
         { name: "191"}
       ]
 
-      $scope.deleteAdvisor = function() {
-        $scope.statusMsg = 'Sending data to server...';
-        $http({
-          url: '/api/deladvisor',
-          method: 'POST',
-          data: $scope.advisor,
-          headers: {'Content-Type': 'application/json'}
-        })
-        $scope.initFirst();
-      };
-
       $scope.editTeam = function() {
         $scope.statusMsg = 'Sending data to server...';
         var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
