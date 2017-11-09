@@ -9,11 +9,14 @@
  */
 angular.module('clientApp')
   .controller('ClientsCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
-    $scope.customers = [
-      { name: "DJ Hayes", city: "Sacramento"},
-      { name: "Ellie Davidson", city: "Sacramento"},
-      { name: "Kyle Ray", city: "West Sacramento"}
-    ]
+        
+        $scope.client_id =null;
+        $scope.clientname =null;
+        $scope.clientemail =null;
+        $scope.clientstatus =null;
+
+        $scope.reverseOrder = true;
+        $scope.sortField = 'client_id';
 
   var req = $http.get('/api/getclients');
   var scope = this;
@@ -24,4 +27,50 @@ angular.module('clientApp')
   req.catch(function (err) {
     console.log(err);
   });
-  }]);
+
+
+  $scope.sortBy = function(sortField) {
+      $scope.reverseOrder = ($scope.sortField === sortField) ? !$scope.reverseOrder : false;
+      $scope.sortField = sortField;
+    };
+
+    
+    $scope.addClient = function() {
+
+        var Indata = {'param1': $scope.client_id, 'param2': $scope.clientname, 'param3': $scope.clientemail, 'param4': $scope.clientstatus};
+
+   
+       $http({
+          url: '/api/createclient',
+          method: 'POST',
+          data: Indata,
+          headers: {'Content-Type': 'application/json'}
+        })
+
+        req.then(function (res) {
+         console.log(res);
+         alert('Client has been added');
+
+        });
+
+        req.catch(function (err) {
+        console.log(err);
+        });
+  };
+
+
+
+
+  $scope.editClient = function() {
+    
+    alert('This will allow you to edit client');
+  };
+
+  $scope.deleteClient = function() {
+ 
+    alert('This will allow you to delete client');
+  };
+
+
+}] ) ;
+

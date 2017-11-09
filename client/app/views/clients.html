@@ -1,33 +1,81 @@
-
-  <h3>Clients</h3>
+<md-toolbar class="md-theme-light">
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">Clients</h2>
+      <span flex=""></span>
+       <md-button style="color:#C4B581" align='left' class="md-primary md-raised" aria-label="Create Client" data-toggle="modal" data-target="#myModal">
+        Create Client
+    </md-button>
+    </div>
+  </md-toolbar>
+  <h3 ></h3>
   Filter: 
-  <input type="text" ng-model="filter" />
-  <div class="container-fluid" style="margin-top:20px">
+  <input type="text" ng-model="filter" /> 
+  <div class="container-fluid" style="margin-top:20px" ng-controller="ClientsCtrl">
     <div class="row">
       <div class="col col-12 col-md-auto">
         <div class="panel panel-default panel-table">
           <div class="panel-heading">
             <div class="tr">
-              <div class="td">ID</div>
-              <div class="td">Name</div>
-              <div class="td">Email</div>
-              <div class="td">Status</div>
-              <div class="td"></div>
-              <div class="td"></div>
+              <div class="td" ><a href="" ng-click="sortBy('client_id')">ID</a></div>
+              <div class="td" align="center"><a href="" ng-click="sortBy('name')">Name</a></div>
+              <div class="td" align="center"><a href="" ng-click="sortBy('email')">Email</a></div>
+              <div class="td" align="center"><a href="" ng-click="sortBy('status')">Status</a></div>
+              <div class="td" align="center">Edit</div>
+              <div class="td" align="center">Delete</div>
             </div>
           </div>
           <div class="panel-body">
-            <div class="tr" ng-repeat="c in clients.clientNames | filter:filter">
+            <div class="tr" ng-repeat="c in clients.clientNames | orderBy:sortField:reverseOrder | filter:filter">
               <div class="td">{{ c.client_id }}</div>
-              <div class="td">{{ c.name}}</div>
-              <div class="td">{{ c.email }}</div>
-              <div class="td">{{ c.status }}</div>
-              <div class="td">Edit</div>
-              <div class="td">Delete</div>
+              <div class="td" >{{ c.name}}</div>
+              <div class="td" >{{ c.email }}</div>
+              <div class="td" >{{ c.status }}</div>
+              <div class="td" align="center"><md-button class="md-raised md-default" ng-click="editClient()">Edit</md-button></div>
+              <div class="td" align="center"><md-button class="md-raised md-default" ng-click="deleteClient()">Delete</div>
+            </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+       <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">New Client:</h4>
+      </div>
+      <div class="modal-body">
+        <form name="clientForm" ng-app="clientApp" ng-controller="ClientsCtrl">
+          <div class="form-group">
+            <label for="client_id" class="control-label">Client ID:</label>
+            <input type="number" class="form-control" id="client_id" ng-model="client_id" >
+            <span ng-show="form.size.$error.required">The ID is required!</span>
+          </div>
+          <div class="form-group">
+            <label for="clientname" class="control-label">Name:</label>
+            <input type="text" class="form-control" id="clientname" ng-model="clientname">
+            <span ng-show="form.size.$error.required">The name is required!</span>
+          </div>
+          <div class="form-group">
+            <label for="clientemail" class="control-label">Email:</label>
+            <input type="email" class="form-control" id="clientemail" ng-model="clientemail">
+            <span ng-show="form.size.$error.required">The email is required!</span>
+          </div>
+          <div class="form-group">
+            <label for="clientstatus" class="control-label">Status:</label>
+            <input type="text" class="form-control" id="clientstatus" ng-model="clientstatus">
+            <span ng-show="form.size.$error.required">The status is required!</span>                      
+          </div>
+        </form>
+      </div>
+    <div class="modal-footer" ng-controller="ClientsCtrl">
+        <md-button type="button" class="btn btn-default" data-dismiss="modal">Close</md-button>
+        <md-button type="button" class="btn btn-default" ng-click="addClient()" value="Submit">Submit</md-button>
+      </div>
   </div>
+</div>
+
 

@@ -16,6 +16,9 @@ VALUES (3, "I.M. Client", "client3@email.com", "Active");
 INSERT INTO CLIENT(ID, NAME, EMAIL, STATUS)
 VALUES (4, "Clint The Client", "client4@email.com", "Active");
 
+INSERT INTO CLIENT(ID, NAME, EMAIL, STATUS)
+VALUES (5, "The Client", "client56@email.com", "In-Active");
+
 INSERT INTO TEAM(ID, NAME, COURSE, TB_GENERATED, ADVISOR_ID, CLIENT_ID)
 VALUES (1, "C Hex", "191", 0, 1, 1);
 
