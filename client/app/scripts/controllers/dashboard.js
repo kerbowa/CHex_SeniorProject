@@ -16,24 +16,6 @@ angular.module('clientApp')
     });
     */
 
-    $scope.tbgen = function() {
-      var req = $http.get('/api/tbgen');
-      req.then(function (res) {
-      });
-      req.catch(function (err) {
-        console.log(err);
-      });
-    };
-
-    $scope.tbdel = function() {
-      var req = $http.get('/api/tbdel');
-      req.then(function (res) {
-      });
-      req.catch(function (err) {
-        console.log(err);
-      });
-    };
-
     $scope.logout = function() {
 		  authentication.logout(function() {
         $location.path('/');

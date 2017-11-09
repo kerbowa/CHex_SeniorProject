@@ -84,6 +84,18 @@ angular
         controller: 'EmailCtrl',
         controllerAs: 'email'
       })
+      .state('dashboard.content-management', {
+        url: '/dashboard/content-management',
+        templateUrl: 'views/content-management.html',
+        controller: 'ContentManagementCtrl',
+        controllerAs: 'contentManagement'
+      })
+      .state('dashboard.template-management', {
+        url: '/dashboard/template-management',
+        templateUrl: 'views/template-management.html',
+        controller: 'TemplateManagementCtrl',
+        controllerAs: 'templateManagement'
+      })
       .state('login', {
         url: '/login',
         templateUrl: 'views/login.html',

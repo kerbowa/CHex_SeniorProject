@@ -15,17 +15,7 @@
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
-			<form class="navbar-form navbar-left" method="GET" role="search">
-				<div class="form-group">
-					<input type="text" name="q" class="form-control" placeholder="Search">
-				</div>
-				<button type="submit" class="btn btn btn-success"><i class="fa fa-search" aria-hidden="true"></i></button>
-			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a ui-sref="dashboard.team-management">Team Management</a></li>
-				<li><a ui-sref="dashboard.students">Students</a></li>
-				<li><a ui-sref="dashboard.clients">Clients</a></li>
-				<li><a ui-sref="dashboard.email">Email</a></li>
 				<li><a ui-sref="public.main">Back To Site</a></li>
 				<li><a ng-click="logout()" ui-sref="public.main">Logout</a></li>
 						</ul>
@@ -38,10 +28,12 @@
 		<div class="col-md-2 sidebar">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active"><a href="#">Home</a></li>
-        <li><a ng-click="tbgen()" id="tbgen" name="tbgen" href="">Create Sprint Task Boards <i class="fa fa-object-group" aria-hidden="true"></i></a></li>
-        <li><a ng-click="tbdel()" id="tbgen" name="tbgen" href="">Delete Sprint Task Boards <i class="fa fa-object-group" aria-hidden="true"></i></a></li>
-				<li><a href="#">Will move taskboard links later</a></li>
-				<li><a ng-click="logout()" href="">Logout</a></li>
+        <li><a ui-sref="dashboard.team-management">Manage Teams</a></li>
+        <li><a ui-sref="dashboard.students">Manage Students</a></li>
+        <li><a ui-sref="dashboard.clients">Manage Clients</a></li>
+        <li><a ui-sref="dashboard.template-management">Manage Templates</a></li>
+        <li><a ui-sref="dashboard.content-management">Manage Site Content</a></li>
+        <li><a ui-sref="dashboard.email">Email</a></li>
 			</ul>
 		</div>
       
