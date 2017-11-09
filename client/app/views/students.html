@@ -1,30 +1,33 @@
-
-	<h3>Students</h3>
-	Filter: 
-	<input type="text" ng-model="filter" />
-	<div class="container-fluid" style="margin-top:20px">
-		<div class="row">
-			<div class="col col-12 col-md-auto">
-				<div class="panel panel-default panel-table">
-					<div class="panel-heading">
-						<div class="tr">
-							<div class="td">Name</div>
-							<div class="td">Email</div>
-							<div class="td">Team</div>
-							<div class="td"></div>
-							<div class="td"></div>
-						</div>
+<h3>Students</h3>
+Filter: 
+<input type="text" ng-model="filter" />
+<div class="container-fluid" style="margin-top:20px">
+	<div class="row">
+		<div class="col col-12 col-md-auto">
+			<div class="panel panel-default panel-table">
+				<div class="panel-heading">
+					<div class="tr">
+						<div class="td">Name</div>
+						<div class="td">Email</div>
+						<div class="td">Team</div>
+						<div class="td"></div>
+						<div class="td"></div>
 					</div>
-					<div class="panel-body">
-						<div class="tr" ng-repeat="s in students.studentNames | filter:filter">
-							<div class="td">{{ s.name }}</div>
-							<div class="td">{{ s.email}}</div>
-							<div class="td">{{ s.team }}</div>
-							<div class="td">Edit</div>
-							<div class="td">Delete</div>
+				</div>
+				<div class="panel-body">
+					<div class="tr" ng-repeat="s in students.studentNames | filter:filter">
+						<div class="td">{{ s.name }}</div>
+						<div class="td">{{ s.email}}</div>
+						<div class="td">{{ s.team }}</div>
+						<div class="td">Edit</div>
+						<div class="td">
+							<a ng-click="deletestudent(s._id)" href="">
+								Delete
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
