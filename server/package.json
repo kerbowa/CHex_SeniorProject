@@ -8,11 +8,13 @@
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "console-stamp": "^0.2.6",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
     "debug": "~2.6.3",
     "docxtemplater": "^3.1.9",
     "express": "~4.15.2",
+    "ipware": "^1.0.0",
     "jade": "^1.11.0",
     "jsonwebtoken": "^8.0.1",
     "jszip": "^2.6.1",

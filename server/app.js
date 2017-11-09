@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
 var passport = require('passport');
+var getIP = require('ipware')().get_ip;
+var stamp = require('console-stamp')(console);
 
 var index = require('./routes/index');
 var tbgen = require('./routes/tbgen');
@@ -25,6 +27,13 @@ var email = require('./routes/email');
 var app = express();
 
 app.use(cors());
+
+// Add basic logging.
+app.use(function (req, res, next) {
+    var ipInfo = getIP(req);
+    console.log(ipInfo);
+    next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
