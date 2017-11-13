@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('DashboardCtrl', ['$scope', '$http', '$location', '$transitions', 'authentication', function ($scope, $http, $location, $transitions, authentication) {
+  .controller('DashboardCtrl', ['$scope', '$http', '$state', '$transitions', 'authentication', function ($scope, $http, $state, $transitions, authentication) {
 
     /*
     $transitions.onBefore( { to: 'dashboard.**' }, function(trans) {
@@ -18,7 +18,7 @@ angular.module('clientApp')
 
     $scope.logout = function() {
 		  authentication.logout(function() {
-        $location.path('/');
+        $state.go('public.main');
       });
     };
   }]);

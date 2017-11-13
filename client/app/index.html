@@ -43,6 +43,48 @@
   </script>
   </head>
   <body ng-app="clientApp">
+    <top-banner>
+      <div class="navbar navbar-default navbar-static-top" role="navigation">
+       <div class="container">
+       <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+       </div>
+       <div class="navbar-collapse collapse" id="nav_bar">
+         <ul class="nav navbar-nav navbar-right" style="font-size: 17px;">
+            <li><a ui-sref="public.main" class="active-page">Home</a></li>
+            <li class="dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">CSC 190<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li style="font-size: 17px;"><a ui-sref="public.190.csc190-course-materials">Course Materials</a></li>
+              <li class="divider"></li>
+              <li style="font-size: 17px;"><a ui-sref="public.190.csc190-forms">Forms</a></li>
+              <li class="divider"></li>
+              <li style="font-size: 17px;"><a ui-sref="public.190.csc190-templates">Templates</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">CSC 191<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+
+              <li style="font-size: 17px;"><a ui-sref="public.191.csc191-course-materials">Course Materials</a></li>
+              <li class="divider"></li>
+              <li style="font-size: 17px;"><a ui-sref="public.191.csc191-forms">Forms</a></li>
+              <li class="divider"></li>
+              <li style="font-size: 17px;"><a ui-sref="public.191.csc191-templates">Templates</a></li>
+              </ul>
+            </li>
+            <li><a ui-sref="dashboard.team-management">Dashboard</a></li>
+             <li><a ui-sref="login">Login</a></li>
+         </ul>
+       </div>
+      </div>
+        </div>
+      </top-banner>
   <div ui-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
