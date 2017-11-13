@@ -37,23 +37,51 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .state('public.course-materials', {
-        url: '/course-materials',
-        templateUrl: 'views/course-materials.html',
-        controller: 'CourseMaterialsCtrl',
-        controllerAs: 'courseMaterials'
+      .state('public.190', {
+        templateUrl: 'views/190-content.html',
+        controller: '190ContentCtrl',
+        controllerAs: '190Content'
       })
-      .state('public.forms', {
-        url: '/forms',
-        templateUrl: 'views/forms.html',
-        controller: 'FormsCtrl',
-        controllerAs: 'forms'
+      .state('public.191', {
+        templateUrl: 'views/191-content.html',
+        controller: '191ContentCtrl',
+        controllerAs: '191Content'
       })
-      .state('public.templates', {
-        url: '/templates',
-        templateUrl: 'views/templates.html',
-        controller: 'TemplatesCtrl',
-        controllerAs: 'templates'
+      .state('public.190.csc190-course-materials', {
+        url: '/190-course-materials',
+        templateUrl: 'views/csc190-course-materials.html',
+        controller: 'Csc190CourseMaterialsCtrl',
+        controllerAs: 'csc190CourseMaterials'
+      })
+      .state('public.190.csc190-forms', {
+        url: '/190-forms',
+        templateUrl: 'views/csc190-forms.html',
+        controller: 'Csc190FormsCtrl',
+        controllerAs: 'csc190Forms'
+      })
+      .state('public.190.csc190-templates', {
+        url: '/190-templates',
+        templateUrl: 'views/csc190-templates.html',
+        controller: 'Csc190TemplatesCtrl',
+        controllerAs: 'csc190Templates'
+      })
+      .state('public.191.csc191-course-materials', {
+        url: '/191-course-materials',
+        templateUrl: 'views/csc191-course-materials.html',
+        controller: 'Csc191CourseMaterialsCtrl',
+        controllerAs: 'csc191CourseMaterials'
+      })
+      .state('public.191.csc191-forms', {
+        url: '/191-forms',
+        templateUrl: 'views/csc191-forms.html',
+        controller: 'Csc191FormsCtrl',
+        controllerAs: 'csc191Forms'
+      })
+      .state('public.191.csc191-templates', {
+        url: '/191-templates',
+        templateUrl: 'views/csc191-templates.html',
+        controller: 'Csc191TemplatesCtrl',
+        controllerAs: 'csc191Templates'
       })
       .state('dashboard', {
         templateUrl: 'views/dashboard.html',
@@ -85,7 +113,6 @@ angular
         controllerAs: 'email'
       })
       .state('dashboard.content-management', {
-        url: '/dashboard/content-management',
         templateUrl: 'views/content-management.html',
         controller: 'ContentManagementCtrl',
         controllerAs: 'contentManagement'

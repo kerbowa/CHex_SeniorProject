@@ -54,7 +54,9 @@
     <script type="text/ng-template" id="dialog1.addContent.html">
       <md-dialog aria-label="Add Category">
         <form ng-cloak>
-          <md-toolbar>
+          <md-toolbar><div ng-show="selectedContentType == 'uploadFile'">
+                  </div>
+
             <div class="md-toolbar-tools">
               <h2>Add Content</h2>
               <span flex></span>
@@ -109,6 +111,9 @@
                   </div>
 
                   <div ng-show="selectedContentType == 'uploadFile'">
+                    <md-content layout-padding layout="row" layout-align="start end">
+                      <aps-upload-file></aps-upload-file>
+                    </md-content>
                   </div>
 
                 </div>

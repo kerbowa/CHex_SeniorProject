@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:CourseMaterialsCtrl
+ * @name clientApp.controller:Csc191CourseMaterialsCtrl
  * @description
- * # CourseMaterialsCtrl
+ * # Csc191CourseMaterialsCtrl
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('CourseMaterialsCtrl', function () {
+  .controller('Csc191CourseMaterialsCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
