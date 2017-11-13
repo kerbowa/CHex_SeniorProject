@@ -23,6 +23,7 @@ var deladvisor = require('./routes/deladvisor');
 var createteam = require('./routes/createteam');
 var editteam = require('./routes/editteam');
 var email = require('./routes/email');
+var getcontent = require('./routes/getcontent')
 
 var app = express();
 
@@ -62,6 +63,7 @@ app.use('/api/email', email);
 app.use('/api/deladvisor', deladvisor);
 app.use('/api/createteam', createteam);
 app.use('/api/editteam', editteam);
+app.use('/api/getcontent', getcontent);
 
 if (app.get('env') === 'production') {
 
