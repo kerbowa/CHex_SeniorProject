@@ -74,6 +74,46 @@ angular.module('clientApp')
        };
      }
 
+     $scope.editTeam = function(ev) {
+       $mdDialog.show({
+         controller: DialogController,
+         templateUrl: 'dialog2.tmpl.html',
+         parent: angular.element(document.body),
+         targetEvent: ev,
+         scope: $scope.$new(), // Uses prototypal inheritance to gain access to parent scope
+         clickOutsideToClose:false,
+         fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+       })
+       .then(function() {
+       }, function() {
+         $scope.status = 'You cancelled the dialog.';
+       });
+     };
+
+    function DialogController($scope, $mdDialog) {
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+      $scope.createteam = function() {
+        $scope.statusMsg = 'Sending data to server...';
+        var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
+            'param4': $scope.client, 'param5': $scope.studentOne, 'param6': $scope.studentTwo,
+            'param7': $scope.studentThree, 'param8': $scope.studentFour, 'param9': $scope.studentFive,
+            'param10': $scope.studentSix};
+        $http({
+          url: '/api/editteam',
+          method: 'POST',
+          data: Indata,
+          headers: {'Content-Type': 'application/json'}
+        })
+        $scope.initFirst();
+        $mdDialog.hide();
+      };
+    }
+
       $scope.editTeam = function() {
         $scope.statusMsg = 'Sending data to server...';
         var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
