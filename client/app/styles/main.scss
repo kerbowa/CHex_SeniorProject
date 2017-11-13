@@ -65,9 +65,8 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .callout, .calloutbox {
-  float: right;
   width: 250px;
-  background: #ECECEC;
+  background: rgba(255, 255, 255, 0.6);
   padding: 20px;
   margin-right: 20px;
   margin-top: 20px;
@@ -88,7 +87,7 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .main-container {
-  padding-top: 140px;
+  padding-top: 0px;
 }
 
 .intro-header {
@@ -169,6 +168,7 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .navbar {
   background-color: white;
+  margin-bottom: 0px;
 }
 
 .nav.navbar-nav li a {
@@ -184,7 +184,7 @@ a:hover {
   color: #0793e2; }
 
 .nav.navbar-nav li a:hover {
-  background-color: grey;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive: Portrait tablets and up */
@@ -206,4 +206,7 @@ a:hover {
   .jumbotron {
     border-bottom: 0;
   }
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #043927;
 }
