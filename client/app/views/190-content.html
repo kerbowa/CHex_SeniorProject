@@ -1,0 +1,17 @@
+<div class="navBardemoBasicUsage" ng-init="initFirst()">
+  <md-content class="md-padding">
+    <h1>CSC 190 Senior Project Part 1</h1>
+    <br>
+    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+      <md-nav-item md-nav-sref="public.190.csc190-course-materials" name="csc190CM">
+        Course Materials
+      </md-nav-item>
+      <md-nav-item md-nav-sref="public.190.csc190-templates" name="csc190TM">
+        Templates
+      </md-nav-item>
+      <md-nav-item md-nav-sref="public.190.csc190-forms" name="csc190FM">
+        Forms
+      </md-nav-item>
+    </md-nav-bar>
+    <div ui-view=""></div>
+  </md-content>

@@ -8,6 +8,23 @@
 @import './team-management';
 @import './email';
 
+* {
+   font-size: 20px;
+}
+
+a {
+text-decoration: underline;
+color: Blue;
+}
+
+a:visited {
+    color: DarkBlue;
+}
+
+a:active {
+    color: DarkBlue;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -176,36 +193,12 @@ body, h1, h2, h3, h4, h5, h6 {
   font-family: 'PT Sans', sans-serif;
 }
 
-a {
-text-decoration: none;
-color: #3cb5f9; }
-
-a:hover {
-  color: #0793e2; }
-
 .nav.navbar-nav li a:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+md-nav-bar md-nav-ink-bar {
+  background: DarkGreen;
 }
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #043927;
