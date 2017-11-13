@@ -8,10 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('ContentManagementCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('ContentManagementCtrl', ['$scope', '$http', '$mdDialog',
+    function ($scope, $http, $mdDialog) {
+      $scope.currentNavItem = 'csc190CM';
+  }]);

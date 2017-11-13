@@ -1,0 +1,128 @@
+<div class="navBardemoBasicUsage" ng-init="initFirst()">
+  <div class="md-padding">
+
+    <md-list flex="">
+    </md-list>
+
+    <md-button class="md-primary md-raised" aria-label="add-cm" ng-click="showAddContent($event)">
+      Add New Content
+    </md-button>
+
+    <md-button class="md-primary md-raised" aria-label="add-cm" ng-click="showAddCategory($event)">
+      Add New Category
+    </md-button>
+    </section>
+  </div>
+
+<div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
+
+  <script type="text/ng-template" id="dialog2.addCategory.html">
+    <md-dialog aria-label="Add Content">
+      <form ng-cloak>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>Add Category</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+              <i class="material-icons" aria-label="Close dialog">clear</i>
+            </md-button>
+          </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+          <div class="md-dialog-content">
+            <md-form>
+              <div layout-align="center center">
+
+                <div>
+                  <md-input-container>
+                    <input placeholder="Category Name" ng-model="title" style="min-width: 500px" required>
+                  </md-input-container>
+                </div>
+
+        <md-dialog-actions layout="row">
+          <md-button class="md-primary md-raised" ng-disabled= ng-click="createteam()">
+            Add Category
+          </md-button>
+        </md-dialog-actions>
+
+      </form>
+    </md-dialog>
+  </script>
+  <div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
+
+    <script type="text/ng-template" id="dialog1.addContent.html">
+      <md-dialog aria-label="Add Category">
+        <form ng-cloak>
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>Add Content</h2>
+              <span flex></span>
+              <md-button class="md-icon-button" ng-click="cancel()">
+                <i class="material-icons" aria-label="Close dialog">clear</i>
+              </md-button>
+            </div>
+          </md-toolbar>
+
+          <md-dialog-content>
+            <div class="md-dialog-content">
+              <md-form>
+                <div layout-align="center center">
+
+                  <div>
+                    <md-input-container>
+                      <input placeholder="Title" ng-model="title" style="min-width: 500px" required>
+                    </md-input-container>
+                  </div>
+
+                  <div>
+                    <md-input-container>
+                      <label>Category</label>
+                      <md-select placeholder="Category" ng-model="selectedContentType" style="min-width: 500px" required>
+                        <md-option ng-value="contentType" ng-repeat="contentType in contentTypes">{{contentType.name}}</md-option>
+                      </md-select>
+                    </md-input-container>
+                  </div>
+
+                  <div>
+                    <md-input-container class="md-block">
+                      <label>Description</label>
+                      <textarea ng-model="contentDescription" md-maxlength="100" rows="3" md-select-on-focus></textarea>
+                    </md-input-container>
+                  </div>
+
+                  <div>
+                    <md-input-container>
+                      <md-radio-group ng-model="selectedContentType">
+                        <md-radio-button value="externalLink">External Link</md-radio-button>
+                        <md-radio-button value="uploadFile">Upload File</md-radio-button>
+                      </md-radio-group>
+                    </md-input-container>
+                  </div>
+
+                  <div ng-show="selectedContentType == 'externalLink'">
+                    <div>
+                      <md-input-container>
+                        <input placeholder="URL" ng-model="url" style="min-width: 500px" required>
+                      </md-input-container>
+                    </div>
+                  </div>
+
+                  <div ng-show="selectedContentType == 'uploadFile'">
+                  </div>
+
+                </div>
+              </md-form>
+            </div>
+          </md-dialog-content>
+
+          <md-dialog-actions layout="row">
+            <md-button class="md-primary md-raised" ng-disabled= ng-click="createteam()">
+              Add Content
+            </md-button>
+          </md-dialog-actions>
+
+        </form>
+      </md-dialog>
+    </script>
+</div>

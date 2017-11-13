@@ -24,12 +24,12 @@ angular
     'vAccordion',
     'ngMaterial'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('public', {
-         templateUrl: 'views/public.html',
-         controller: 'PublicCtrl',
-         controllerAs: 'public'
+        templateUrl: 'views/public.html',
+        controller: 'PublicCtrl',
+        controllerAs: 'public'
       })
       .state('public.main', {
         url: '/',
@@ -90,6 +90,42 @@ angular
         controller: 'ContentManagementCtrl',
         controllerAs: 'contentManagement'
       })
+      .state('dashboard.content-management.manage-csc190-course-materials', {
+        url: '/dashboard/content-management/manage-csc190-course-materials',
+        templateUrl: 'views/manage-csc190-course-materials.html',
+        controller: 'ManageCsc190CourseMaterialsCtrl',
+        controllerAs: 'manageCsc190CourseMaterials'
+      })
+      .state('dashboard.content-management.manage-csc191-course-materials', {
+        url: '/dashboard/content-management/manage-csc191-course-materials',
+        templateUrl: 'views/manage-csc191-course-materials.html',
+        controller: 'ManageCsc191CourseMaterialsCtrl',
+        controllerAs: 'manageCsc191CourseMaterials'
+      })
+      .state('dashboard.content-management.manage-csc190-templates', {
+        url: '/dashboard/content-management/manage-csc190-templates',
+        templateUrl: 'views/manage-csc190-templates.html',
+        controller: 'ManageCsc190TemplatesCtrl',
+        controllerAs: 'manageCsc190Templates'
+      })
+      .state('dashboard.content-management.manage-csc191-templates', {
+        url: '/dashboard/content-management/manage-csc191-templates',
+        templateUrl: 'views/manage-csc191-templates.html',
+        controller: 'ManageCsc191TemplatesCtrl',
+        controllerAs: 'manageCsc191Templates'
+      })
+      .state('dashboard.content-management.manage-csc190-forms', {
+        url: '/dashboard/content-management/manage-csc190-forms',
+        templateUrl: 'views/manage-csc190-forms.html',
+        controller: 'ManageCsc190FormsCtrl',
+        controllerAs: 'manageCsc190Forms'
+      })
+      .state('dashboard.content-management.manage-csc191-forms', {
+        url: '/dashboard/content-management/manage-csc190-forms',
+        templateUrl: 'views/manage-csc191-forms.html',
+        controller: 'ManageCsc191FormsCtrl',
+        controllerAs: 'manageCsc191Forms'
+      })
       .state('dashboard.template-management', {
         url: '/dashboard/template-management',
         templateUrl: 'views/template-management.html',
@@ -102,10 +138,13 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       });
+
     $urlRouterProvider.otherwise('/');
   })
-  .run(['$transitions', '$state', 'authentication', function ($transitions, $state, authentication) {
-    $transitions.onBefore( { to: 'dashboard.**' }, function(trans) {
+  .run(['$transitions', '$state', 'authentication', function($transitions, $state, authentication) {
+    $transitions.onBefore({
+      to: 'dashboard.**'
+    }, function(trans) {
       if (!authentication.isLoggedIn()) {
         return trans.router.stateService.target('login');
       }
