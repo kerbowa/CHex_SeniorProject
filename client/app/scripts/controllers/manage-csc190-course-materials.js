@@ -20,12 +20,16 @@ angular.module('clientApp')
         $scope.linkText = null;
         $scope.contentDescription = null;
         $scope.contentUrl = null;
+        $scope.content = null;
+        $scope.selectedContentType = 'externalLink';
         $scope.submitCreateCategory = false;
         $scope.submitCreateContent = false;
+        $scope.course = '190';
+        $scope.page = 'Course Materials';
 
         var data = {
-          course: "190",
-          page: "Course Materials"
+          course: $scope.course,
+          page: $scope.page
         };
         var req = $http.post('/api/getcontent', data);
         req.then(function(data) {
@@ -33,8 +37,6 @@ angular.module('clientApp')
         }).catch(function() {
           console.log("Could not get page content");
         });
-
-
 
         $scope.showAddContent = function(ev) {
           $mdDialog.show({
@@ -75,8 +77,8 @@ angular.module('clientApp')
                 $scope.contentDescription = "";
               }
               var data = {
-                course: "190",
-                page: "Course Materials",
+                course: $scope.course,
+                page: $scope.page,
                 title: $scope.contentTitle,
                 category: $scope.category.ID,
                 linkText: $scope.linkText,
@@ -125,11 +127,91 @@ angular.module('clientApp')
           $scope.submitCreateCategory = true;
             if ($scope.categoryName != null) {
               var data = {
-                course: "190",
-                page: "Course Materials",
+                course: $scope.course,
+                page: $scope.page,
                 name: $scope.categoryName
               };
               var req = $http.post('/api/createcategory', data);
+              req.then(function(data) {
+                $scope.initFirst();
+                $mdDialog.hide();
+              }).catch(function() {
+                console.log("Could not add category");
+                $mdDialog.hide();
+              });
+            }
+          };
+        }
+
+        $scope.showDeleteCategory = function(ev, category) {
+          $scope.category = category;
+          $mdDialog.show({
+              controller: DeleteCategoryDialogController,
+              templateUrl: 'dialog3.deleteCategory.html',
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              scope: $scope.$new(), // Uses prototypal inheritance to gain access to parent scope
+              clickOutsideToClose: false,
+              fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+            })
+            .then(function() {}, function() {
+              $scope.status = 'You cancelled the dialog.';
+            });
+        };
+
+        function DeleteCategoryDialogController($scope, $mdDialog) {
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+          $scope.deleteCategory = function() {
+            if ($scope.category != null) {
+              var data = {
+                categoryID: $scope.category.ID
+              };
+              var req = $http.post('/api/deletecategory', data);
+              req.then(function(data) {
+                $scope.initFirst();
+                $mdDialog.hide();
+              }).catch(function() {
+                console.log("Could not add category");
+                $mdDialog.hide();
+              });
+            }
+          };
+        }
+
+        $scope.showDeleteContent = function(ev, content) {
+          $scope.content = content;
+          $mdDialog.show({
+              controller: DeleteContentDialogController,
+              templateUrl: 'dialog4.deleteContent.html',
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              scope: $scope.$new(), // Uses prototypal inheritance to gain access to parent scope
+              clickOutsideToClose: false,
+              fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+            })
+            .then(function() {}, function() {
+              $scope.status = 'You cancelled the dialog.';
+            });
+        };
+
+        function DeleteContentDialogController($scope, $mdDialog) {
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+          $scope.deleteContent = function() {
+            if ($scope.content != null) {
+              var data = {
+                contentID: $scope.content.ID
+              };
+              var req = $http.post('/api/deletecontent', data);
               req.then(function(data) {
                 $scope.initFirst();
                 $mdDialog.hide();

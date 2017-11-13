@@ -8,11 +8,9 @@ router.post('/', function(req, res) {
   var sqlite3 = require('sqlite3').verbose();
   var db = new sqlite3.Database('database/chex.db');
 
-  var name = req.body.name;
-  var course = req.body.course;
-  var page = req.body.page;
+  var ID = req.body.contentID;
 
-  db.all('INSERT INTO CONTENT_CATEGORY(NAME, COURSE, PAGE) VALUES (?, ?, ?)', [name, course, page], function(err, result) {
+  db.run('DELETE FROM CONTENT WHERE ID = ?', ID, function(err, result) {
     if (err) throw err;
     db.close();
     res.sendStatus(200);

@@ -26,6 +26,8 @@ var email = require('./routes/email');
 var getcontent = require('./routes/getcontent')
 var createcategory = require('./routes/createcategory');
 var createcontent = require('./routes/createcontent');
+var deletecategory = require('./routes/deletecategory');
+var deletecontent = require('./routes/deletecontent');
 
 var app = express();
 
@@ -68,6 +70,8 @@ app.use('/api/editteam', editteam);
 app.use('/api/getcontent', getcontent);
 app.use('/api/createcategory', createcategory);
 app.use('/api/createcontent', createcontent);
+app.use('/api/deletecategory', deletecategory);
+app.use('/api/deletecontent', deletecontent);
 
 if (app.get('env') === 'production') {
 
