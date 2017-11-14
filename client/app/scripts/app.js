@@ -136,7 +136,6 @@ angular
         controllerAs: 'contentManagement'
       })
       .state('dashboard.content-management.manage-190-content', {
-        url: '/dashboard/manage-content',
         templateUrl: 'views/manage-190-content.html',
         controller: 'Manage190ContentCtrl',
         controllerAs: 'manage190Content'
@@ -147,31 +146,50 @@ angular
         controllerAs: 'manage191Content'
       })
       .state('dashboard.content-management.manage-190-content.manage-csc190-course-materials', {
+        url: '/dashboard/manage-content',
+        data: {
+          'currentNavItem': 'csc190CM'
+        },
         templateUrl: 'views/manage-csc190-course-materials.html',
         controller: 'ManageCsc190CourseMaterialsCtrl',
         controllerAs: 'manageCsc190CourseMaterials'
       })
       .state('dashboard.content-management.manage-191-content.manage-csc191-course-materials', {
+        data: {
+          'currentNavItem': 'csc191CM'
+        },
         templateUrl: 'views/manage-csc191-course-materials.html',
         controller: 'ManageCsc191CourseMaterialsCtrl',
         controllerAs: 'manageCsc191CourseMaterials'
       })
       .state('dashboard.content-management.manage-190-content.manage-csc190-templates', {
+        data: {
+          'currentNavItem': 'csc190TM'
+        },
         templateUrl: 'views/manage-csc190-templates.html',
         controller: 'ManageCsc190TemplatesCtrl',
         controllerAs: 'manageCsc190Templates'
       })
       .state('dashboard.content-management.manage-191-content.manage-csc191-templates', {
+        data: {
+          'currentNavItem': 'csc191TM'
+        },
         templateUrl: 'views/manage-csc191-templates.html',
         controller: 'ManageCsc191TemplatesCtrl',
         controllerAs: 'manageCsc191Templates'
       })
       .state('dashboard.content-management.manage-190-content.manage-csc190-forms', {
+        data: {
+          'currentNavItem': 'csc190FM'
+        },
         templateUrl: 'views/manage-csc190-forms.html',
         controller: 'ManageCsc190FormsCtrl',
         controllerAs: 'manageCsc190Forms'
       })
       .state('dashboard.content-management.manage-191-content.manage-csc191-forms', {
+        data: {
+          'currentNavItem': 'csc191FM'
+        },
         templateUrl: 'views/manage-csc191-forms.html',
         controller: 'ManageCsc191FormsCtrl',
         controllerAs: 'manageCsc191Forms'

@@ -13,6 +13,7 @@ angular.module('clientApp')
 
       $scope.initFirst = function() {
 
+        $scope.currentNavItem = 'csc190CM'
         $scope.customFullscreen = false;
         $scope.allContent = null;
         $scope.category = null;
