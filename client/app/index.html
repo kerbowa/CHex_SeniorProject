@@ -19,30 +19,54 @@
     <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <!-- Import Angular Material icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- endbuild -->
  	  <base href="/" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-      <script>
-      function init() {
-          window.addEventListener('scroll', function(e){
-              var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-                  shrinkOn = 1,
-                  header = document.querySelector("header");
-              if (distanceY > shrinkOn) {
-                  classie.add(header,"smaller");
-              } else {
-                  if (classie.has(header,"smaller")) {
-                      classie.remove(header,"smaller");
-                  }
-              }
-          });
-      }
-      window.onload = init();
-  </script>
   </head>
   <body ng-app="clientApp">
+    <div ng-controller="IndexCtrl">
+    <top-banner>
+      <div class="navbar navbar-default navbar-static-top" role="navigation">
+       <div class="container">
+       <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+       </div>
+       <div class="navbar-collapse collapse" id="nav_bar">
+         <ul class="nav navbar-nav navbar-right" style="font-size: 17px;">
+            <li ng-class="{active: $state.includes('public.main')}"><a ui-sref="public.main">Home</a></li>
+            <li ng-class="{active: $state.includes('public.190')}">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">CSC 190<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li style="font-size: 17px;"><a ui-sref="public.190.csc190-course-materials">Course Materials</a></li>
+              <li class="divider"></li>
+              <li style="font-size: 17px;"><a ui-sref="public.190.csc190-forms">Forms</a></li>
+              <li class="divider"></li>
+              <li style="font-size: 17px;"><a ui-sref="public.190.csc190-templates">Templates</a></li>
+              </ul>
+            </li>
+            <li ng-class="{active: $state.includes('public.191')}">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">CSC 191<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li style="font-size: 17px;"><a ui-sref="public.191.csc191-course-materials">Course Materials</a></li>
+              <li class="divider"></li>
+              <li style="font-size: 17px;"><a ui-sref="public.191.csc191-forms">Forms</a></li>
+              <li class="divider"></li>
+              <li style="font-size: 17px;"><a ui-sref="public.191.csc191-templates">Templates</a></li>
+              </ul>
+            </li>
+            <li ng-class="{active: $state.includes('dashboard')}"><a ui-sref="dashboard.team-management">Dashboard</a></li>
+             <li ng-class="{active: $state.includes('login')}"><a ui-sref="login">Login</a></li>
+         </ul>
+       </div>
+      </div>
+        </div>
+      </top-banner>
+  </div>
   <div ui-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -79,11 +103,8 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/course-materials.js"></script>
         <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/templates.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
-        <script src="scripts/controllers/forms.js"></script>
         <script src="scripts/controllers/students.js"></script>
         <script src="scripts/controllers/clients.js"></script>
         <script src="scripts/controllers/email.js"></script>
@@ -92,6 +113,20 @@
 	<script src="scripts/controllers/team-management.js"></script>
         <script src="scripts/controllers/content-management.js"></script>
         <script src="scripts/controllers/template-management.js"></script>
+        <script src="scripts/controllers/manage-csc190-course-materials.js"></script>
+        <script src="scripts/controllers/manage-csc191-course-materials.js"></script>
+        <script src="scripts/controllers/manage-csc190-templates.js"></script>
+        <script src="scripts/controllers/manage-csc191-templates.js"></script>
+        <script src="scripts/controllers/manage-csc190-forms.js"></script>
+        <script src="scripts/controllers/manage-csc191-forms.js"></script>
+        <script src="scripts/controllers/190-content.js"></script>
+        <script src="scripts/controllers/191-content.js"></script>
+        <script src="scripts/controllers/csc190-course-materials.js"></script>
+        <script src="scripts/controllers/csc190-forms.js"></script>
+        <script src="scripts/controllers/csc190-templates.js"></script>
+        <script src="scripts/controllers/csc191-course-materials.js"></script>
+        <script src="scripts/controllers/csc191-forms.js"></script>
+        <script src="scripts/controllers/csc191-templates.js"></script>
         <!-- endbuild -->
 </body>
 </html>

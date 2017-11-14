@@ -8,6 +8,47 @@
 @import './team-management';
 @import './email';
 
+* {
+   font-size: 20px;
+}
+
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v31/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+text-decoration: underline;
+color: Blue;
+}
+
+a:visited {
+    color: DarkBlue;
+}
+
+a:active {
+    color: DarkBlue;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -65,9 +106,8 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .callout, .calloutbox {
-  float: right;
   width: 250px;
-  background: #ECECEC;
+  background: rgba(255, 255, 255, 0.6);
   padding: 20px;
   margin-right: 20px;
   margin-top: 20px;
@@ -88,7 +128,7 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .main-container {
-  padding-top: 140px;
+  padding-top: 0px;
 }
 
 .intro-header {
@@ -169,6 +209,7 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .navbar {
   background-color: white;
+  margin-bottom: 0px;
 }
 
 .nav.navbar-nav li a {
@@ -176,34 +217,17 @@ body, h1, h2, h3, h4, h5, h6 {
   font-family: 'PT Sans', sans-serif;
 }
 
-a {
-text-decoration: none;
-color: #3cb5f9; }
-
-a:hover {
-  color: #0793e2; }
-
 .nav.navbar-nav li a:hover {
-  background-color: grey;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-  }
+.nav.navbar-nav li a:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+md-nav-bar md-nav-ink-bar {
+  background: DarkGreen;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #043927;
 }

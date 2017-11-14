@@ -8,10 +8,5 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('PublicCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('PublicCtrl', ['$transitions', '$scope', function ($transitions, $scope) {
+  }]);

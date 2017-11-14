@@ -183,7 +183,7 @@ angular.module('clientApp')
       .primaryPalette('green', {
         'default': '900'
       })
-      .accentPalette('pink');
+      .accentPalette('grey');
     $mdThemingProvider.theme('docs-dark')
       .primaryPalette('yellow')
       .dark();

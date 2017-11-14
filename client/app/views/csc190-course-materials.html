@@ -1,0 +1,29 @@
+  <div class="md-padding">
+    <div ng-repeat="category in allContent">
+      <h3>{{category.name}}</h3>
+      <div class="container-fluid" style="margin-top:20px">
+        <div class="row">
+          <div class="col col-12 col-md-auto">
+            <div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="tr">
+                  <div class="td">Title</div>
+                  <div class="td">Description</div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div ng-repeat="item in category.content" class="tr">
+                  <div class="td">
+                    {{item.title}} (<a href="{{item.href}}">{{item.extension}}</a>)
+                  </div>
+                  <div class="td">
+                    {{item.description}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+    </div>
+  </div>
+</div>

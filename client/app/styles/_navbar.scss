@@ -80,8 +80,9 @@ top-banner {
   /* =Template
   -------------------------------------------------------------- */
   #wrapper {
+
     width: 100%;
-    margin: 0 auto; }
+    margin : 0px auto 5px auto; }
 
   #main {
     background-color: #fff;
@@ -136,7 +137,6 @@ top-banner {
     width: 100%;
     height: 205px;
     overflow: hidden;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
@@ -199,20 +199,7 @@ top-banner {
         header nav a:focus {
           color: #a88b4d;
         }
-      header.smaller {
-        height: 57px; }
-      header.smaller h1#logo {
-        text-indent: -9999px;
-        height: 0px;
-      }
-      header.smaller h2#logo {
-        text-indent: -9999px;
-        height: 0px;
-      }
-  
-      header.smaller nav a {
-        line-height: 0px; 
-      }
+     
 }
 
   /* =Footer
