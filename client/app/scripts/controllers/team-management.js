@@ -38,7 +38,16 @@ angular.module('clientApp')
       $scope.customFullscreen = false;
 
       $scope.showMigrateConfirm = function(ev) {
-        var confirm = $mdDialog.confirm()
+        var confirm = $mdDialog.confirm({
+          onComplete: function afterShowAnimation() {
+            var $dialog = angular.element(document.querySelector('md-dialog'));
+            var $actionsSection = $dialog.find('md-dialog-actions');
+            var $cancelButton = $actionsSection.children()[0];
+            var $confirmButton = $actionsSection.children()[1];
+            angular.element($confirmButton).addClass('md-primary md-raised');
+            angular.element($cancelButton).addClass('');
+          }
+        })
           .title('Are you sure you would like to migrate teams?')
           .textContent('')
           .ariaLabel('Migrate teams')
