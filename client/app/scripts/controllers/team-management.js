@@ -28,13 +28,34 @@ angular.module('clientApp')
 
       $scope.courseList = [
         { name: "190"},
-        { name: "191"}
+        { name: "191"},
+        { name: "Retired"}
       ]
 
       $scope.selected = [];
 
       $scope.status = '';
       $scope.customFullscreen = false;
+
+      $scope.showMigrateConfirm = function(ev) {
+        var confirm = $mdDialog.confirm()
+          .title('Are you sure you would like to migrate teams?')
+          .textContent('')
+          .ariaLabel('Migrate teams')
+          .targetEvent(ev)
+          .ok('Yes')
+          .cancel('No');
+      
+        $mdDialog.show(confirm).then(function() {
+          $scope.status = 'You migrated the teams.';
+          $http({
+            url: '/api/migrateteams',
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}
+          })
+          $scope.initFirst();
+        });
+      };
 
       $scope.showConfirm = function(ev) {
         var confirm = $mdDialog.confirm()

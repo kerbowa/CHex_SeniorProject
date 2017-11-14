@@ -232,7 +232,51 @@
 
     <md-subheader class="md-primary">Retired Teams</md-subheader>
     <md-divider></md-divider>
+
+    <md-list flex="">
+      <md-list-item ng-repeat="team in teamList" ng-if="team.course === 'Retired'">
+        <v-accordion class="vAccordian--default" multiple>
+          <v-pane expanded="pane.toggle">
+            <v-pane-header md-ink-ripple="#C4B581">
+              <h5>{{team.name}}</h5>
+            </v-pane-header>
+            <v-pane-content>
+              <md-list flex="">
+                <md-list-item class="md-3-line" ng-repeat="advisor in advisorList"
+                ng-if="advisor.advisor_id === team.advisor" ng-click="null">
+                  <div class="md-list-item-text" layout="column">
+                    <h3>Faculty Advisor</h3>
+                    <h4>{{ advisor.name }}</h4>
+                    <p>{{ advisor.email }}</p>
+                  </div>
+                </md-list-item>
+                <md-list-item class="md-3-line" ng-repeat="client in clientList"
+                ng-if="client.client_id === team.client" ng-click="null">
+                  <div class="md-list-item-text" layout="column">
+                    <h3>Client</h3>
+                    <h4>{{ client.name }}</h4>
+                    <p>{{ client.email }}</p>
+                  </div>
+                </md-list-item>
+              <md-subheader>Team Members</md-subheader>
+              <md-list-item class="md-2-line" ng-repeat="student in studentList"
+              ng-if="student.team === team.team_id" ng-click="null">
+                <div class="md-list-item-text" layout="column">
+                  <h4>{{ student.name }}</h4>
+                  <p>{{ student.email }}</p>
+                </div>
+              </md-list-item>
+            </md-list>
+            <md-divider></md-divider>
+            </v-pane-content>
+          </v-pane>
+        </v-accordion>
+      </md-list-item ng-if="!$last">
+    </md-list>
+
   </div>
+
+
 
 <md-toolbar class="md-table-toolbar md-default">
   <div class="md-toolbar-tools">
@@ -279,6 +323,11 @@
     </tbody>
   </table>
 </md-table-container>
+
+<md-button class="md-primary md-raised" aria-label="Migrate Teams" ng-click="showMigrateConfirm($event)">
+  Migrate Teams
+</md-button>
+
 
 <div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
 
@@ -464,7 +513,7 @@
                       </md-select>
                     </md-input-container>
                   </div>
-                  
+
                 </md-list-item>
 
               </md-content>
