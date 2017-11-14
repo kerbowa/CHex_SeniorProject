@@ -3,326 +3,143 @@
     <div class="md-toolbar-tools">
       <h2 class="md-flex">Team Management</h2>
       <span flex=""></span>
-      <md-button class="md-primary md-raised" aria-label="Create Team" ng-click="showCreate($event)">
-        Create Team
-      </md-button>
     </div>
   </md-toolbar>
 
   <div class="md-padding">
     <md-subheader class="md-primary md-no-sticky">CSc 190 Teams</md-subheader>
     <md-divider></md-divider>
-    <!-- add `multiple` attribute to allow multiple sections to open at once -->
 
-      <md-list flex="">
-        <md-list-item ng-repeat="team in teamList" ng-if="team.course === '190'">
-          <v-accordion class="vAccordian--default" multiple>
-            <v-pane expanded="pane.toggle">
-              <v-pane-header md-ink-ripple="#C4B581">
-                <h5>{{team.name}}</h5>
-              </v-pane-header>
-              <v-pane-content>
-                <md-list flex="">
-                  <md-list-item class="md-3-line" ng-repeat="advisor in advisorList"
-                  ng-if="advisor.advisor_id === team.advisor" ng-click="null">
-                    <div class="md-list-item-text" layout="column">
-                      <h3>Faculty Advisor</h3>
-                      <h4>{{ advisor.name }}</h4>
-                      <p>{{ advisor.email }}</p>
-                    </div>
-                  </md-list-item>
-                  <md-list-item class="md-3-line" ng-repeat="client in clientList"
-                  ng-if="client.client_id === team.client" ng-click="null">
-                    <div class="md-list-item-text" layout="column">
-                      <h3>Client</h3>
-                      <h4>{{ client.name }}</h4>
-                      <p>{{ client.email }}</p>
-                    </div>
-                  </md-list-item>
-                <md-subheader>Team Members</md-subheader>
-                <md-list-item class="md-2-line" ng-repeat="student in studentList"
-                ng-if="student.team === team.team_id" ng-click="null">
-                  <div class="md-list-item-text" layout="column">
-                    <h4>{{ student.name }}</h4>
-                    <p>{{ student.email }}</p>
-                  </div>
-                </md-list-item>
-              </md-list>
-              <md-divider></md-divider>
-              </v-pane-content>
-            </v-pane>
-          </v-accordion>
-        </md-list-item ng-if="!$last">
-      </md-list>
+    <!--- Table ---->
+    <md-table-container>
+      <table md-table multiple ng-model="selected" md-promise="promise">
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Team Name</th>
+            <th md-column>Course</th>
+            <th md-column>Faculty Advisor</th>
+            <th md-column>Client</th>
+            <th md-column>Team Members</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="team in teamList" ng-if="team.course === '190'">
+            <td md-cell>{{team.name}}</td>
+            <td ng-repeat="course in courseList" ng-if="course.name === team.course" md-cell>
+              {{ course.name }}
+            </td>
+            <td ng-repeat="advisor in advisorList" ng-if="advisor.advisor_id === team.advisor" md-cell>
+              {{ advisor.name }}
+            </td>
+            <td ng-repeat="client in clientList" ng-if="client.client_id === team.client" md-cell>
+              {{ client.name }}
+            </td>
+            <td ng-repeat="student in studentList" ng-if="student.team === team.team_id" md-cell>{{student.name}}</td>
+            <td sm-cell>
+              <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, student)">
+                <i class="material-icons" aria-label="Edit Team">edit</i>
+              </md-button>
+            </td>
+            <td sm-cell>
+              <md-button class="md-icon-button" ng-click="showDelete($event, team)">
+                <i class="material-icons" aria-label="Delete Team">delete</i>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
 
-<!------------------------------------------------------------------>
 
     <md-subheader class="md-primary">CSc 191 Teams</md-subheader>
     <md-divider></md-divider>
-    <md-list flex="">
-      <md-list-item ng-repeat="team in teamList" ng-if="team.course === '191'">
-        <v-accordion class="vAccordian--default" multiple>
-          <v-pane expanded="pane.toggle">
-            <form>
-            <div layout="row">
-              <v-pane-header md-ink-ripple="#C4B581">
-                <h5 ng-show="!toggle">{{team.name}}</h5>
-
-                <div ng-show="toggle">
-                  <md-input-container>
-                    <label>Team Name</label>
-                    <input placeholder="Team Name" ng-model="team.name" style="min-width:200px" required>
-                  </md-input-container>
-                </div>
-
-              </v-pane-header>
-              <md-button ng-click="toggle=!toggle">Edit</md-button>
-            </div>
-            <v-pane-content>
-
-              <md-list flex="">
-
-                <md-subheader>Faculty Advisor</md-subheader>
-                <md-list-item class="md-2-line" ng-repeat="advisor in advisorList"
-                ng-if="advisor.advisor_id === team.advisor" ng-click="null">
-                  <div class="md-list-item-text" ng-show="!toggle" layout="column">
-                    <h4>{{ advisor.name }}</h4>
-                    <p>{{ advisor.email }}</p>
-                  </div>
-                  <div ng-show="toggle">
-                    <md-input-container>
-                      <label>Faculty Advisor</label>
-                      <md-select placeholder="Faculty Advisor" ng-model="advisor" style="min-width: 200px">
-                        <md-option value="">-- Select an option --</md-option>
-                        <md-option ng-value="advisor" ng-repeat="advisor in advisorList">{{advisor.name}}</md-option>
-                      </md-select>
-                    </md-input-container>
-                  </div>
-                </md-list-item>
-
-                <md-subheader>Client</md-subheader>
-                <md-list-item class="md-2-line" ng-repeat="client in clientList"
-                ng-if="client.client_id === team.client" ng-click="null">
-                  <div class="md-list-item-text" ng-show="!toggle" layout="column">
-                    <h4>{{ client.name }}</h4>
-                    <p>{{ client.email }}</p>
-                  </div>
-                  <div ng-show="toggle">
-                    <md-input-container>
-                      <label>Client</label>
-                      <md-select placeholder="Client" ng-model="client" style="min-width: 200px">
-                        <md-option value="">-- Select an option --</md-option>
-                        <md-option ng-value="client" ng-repeat="client in clientList">{{client.name}}</md-option>
-                      </md-select>
-                    </md-input-container>
-                  </div>
-                </md-list-item>
-
-              <md-subheader>Team Members</md-subheader>
-              <md-list-item class="md-2-line" ng-repeat="student in studentList"
-              ng-if="student.team === team.team_id" ng-click="">
-                <div class="md-list-item-text" layout="column" ng-show="!toggle" style="padding:4px 0px">
-                  <h4>{{ student.name }}</h4>
-                  <p>{{ student.email }}</p>
-                </div>
-                <div ng-show="toggle">
-                  <md-input-container>
-                    <md-select placeholder="Student" ng-model="student" style="min-width: 200px">
-
-                      <md-option value="">-- Select an option --</md-option>
-                      <md-option ng-value="student" ng-repeat="student in studentList">{{student.name}}</md-option>
-
-                    </md-select>
-                  </md-input-container>
-                </div>
-              </md-list-item>
-            </md-list>
-
-
-
-            <md-divider></md-divider>
-<!--------------
-            <md-form ng-show="toggle">
-
-              <md-input-container>
-                <label>Team Name</label>
-                <input placeholder="Team Name" ng-model="team.name" style="min-width:200px" required>
-              </md-input-container>
-
-              <md-input-container>
-                <label>Course</label>
-                <md-select placeholder="Course" ng-model="course" style="min-width:200px">
-                  <md-option ng-selected = "course.name === team.course"
-                  ng-value="course" ng-repeat="course in courseList">{{course.name}}</md-option>
-                </md-select>
-              </md-input-container>
-
-              <md-input-container>
-                <label>Faculty Advisor</label>
-                <md-select placeholder="Advisor" ng-model="advisor" style="min-width: 200px">
-                  <md-option ng-selected = "advisor.advisor_id === team.advisor"
-                  ng-value="advisor" ng-repeat="advisor in advisorList">{{advisor.name}}</md-option>
-                </md-select>
-              </md-input-container>
-
-              <md-input-container>
-                <label>Client</label>
-                <md-select placeholder="Client" ng-model="client" style="min-width: 200px">
-                  <md-option ng-selected = "client.client_id === team.client"
-                  ng-value="client" ng-repeat="client in clientList">{{client.name}}</md-option>
-                </md-select>
-              </md-input-container>
-
-              <md-subheader>Team Members</md-subheader>
-
-                <md-select placeholder="Student One" ng-model="studentOne" style="min-width: 200px">
-
-                  <md-option value="">-- Select an option --</md-option>
-                  <md-option ng-selected = "(studentOne.team === team.team_id) && ($index === 0)"
-                  ng-value="studentOne" ng-repeat="studentOne in studentList">{{studentOne.name}}</md-option>
-
-                </md-select>
-
-                <md-select placeholder="Student Two" ng-model="studentTwo" style="min-width: 200px">
-                  <md-option value="">-- Select an option --</md-option>
-                  <md-option ng-selected = "(studentTwo.team === team.team_id) && ($index === 1)"
-                  ng-value="studentTwo" ng-repeat="studentTwo in studentList">{{studentTwo.name}}</md-option>
-                </md-select>
-
-                <md-select placeholder="Student Three" ng-model="studentThree" style="min-width: 200px">
-                  <md-option value="">-- Select an option --</md-option>
-                  <md-option ng-selected="(studentThree.team === team.team_id) && ($index === 2)"
-                  ng-value="studentThree" ng-repeat="studentThree in studentList">{{studentThree.name}}</md-option>
-                </md-select>
-
-                <md-select placeholder="Student Four" ng-model="studentFour" style="min-width: 200px">
-                  <md-option value="">-- Select an option --</md-option>
-                  <md-option ng-selected="(studentFour.team === team.team_id) && ($index === 3)"
-                  ng-value="studentFour" ng-repeat="studentFour in studentList">{{studentFour.name}}</md-option>
-                </md-select>
-
-                <md-select placeholder="Student Five" ng-model="studentFive" style="min-width: 200px">
-                  <md-option value="">-- Select an option --</md-option>
-                  <md-option ng-selected="(studentFive.team === team.team_id) && ($index === 4)"
-                  ng-value="studentFive" ng-repeat="studentFive in studentList">{{studentFive.name}}</md-option>
-                </md-select>
-
-                <md-select placeholder="Student Six" ng-model="studentSix" style="min-width: 200px">
-                  <md-option value="">-- Select an option --</md-option>
-                  <md-option ng-selected="(studentSix.team === team.team_id) && ($index === 5)"
-                  ng-value="studentSix" ng-repeat="studentSix in studentList">{{studentSix.name}}</md-option>
-                </md-select>
-
-
-
-
------>
-          </v-pane-content>
-
-        </form>
-        <md-button class="md-primary md-raised" ng-show="toggle" ng-click="editTeam()">
-          Confirm
-        </md-button>
-          </v-pane>
-
-        </v-accordion>
-      </md-list-item ng-if="!$last">
-
-    </md-list>
+    <!--- Table ---->
+    <md-table-container>
+      <table md-table multiple ng-model="selected" md-promise="promise">
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Team Name</th>
+            <th md-column>Course</th>
+            <th md-column>Faculty Advisor</th>
+            <th md-column>Client</th>
+            <th md-column>Team Members</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="team in teamList" ng-if="team.course === '191'">
+            <td md-cell>{{team.name}}</td>
+            <td ng-repeat="course in courseList" ng-if="course.name === team.course" md-cell>
+              {{ course.name }}
+            </td>
+            <td ng-repeat="advisor in advisorList" ng-if="advisor.advisor_id === team.advisor" md-cell>
+              {{ advisor.name }}
+            </td>
+            <td ng-repeat="client in clientList" ng-if="client.client_id === team.client" md-cell>
+              {{ client.name }}
+            </td>
+            <td ng-repeat="student in studentList" ng-if="student.team === team.team_id" md-cell>{{student.name}}</td>
+            <td sm-cell>
+              <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, student)">
+                <i class="material-icons" aria-label="Edit Team">edit</i>
+              </md-button>
+            </td>
+            <td sm-cell>
+              <md-button class="md-icon-button" ng-click="showDelete($event, team)">
+                <i class="material-icons" aria-label="Delete Team">delete</i>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
 
     <md-subheader class="md-primary">Retired Teams</md-subheader>
     <md-divider></md-divider>
 
-    <md-list flex="">
-      <md-list-item ng-repeat="team in teamList" ng-if="team.course === 'Retired'">
-        <v-accordion class="vAccordian--default" multiple>
-          <v-pane expanded="pane.toggle">
-            <v-pane-header md-ink-ripple="#C4B581">
-              <h5>{{team.name}}</h5>
-            </v-pane-header>
-            <v-pane-content>
-              <md-list flex="">
-                <md-list-item class="md-3-line" ng-repeat="advisor in advisorList"
-                ng-if="advisor.advisor_id === team.advisor" ng-click="null">
-                  <div class="md-list-item-text" layout="column">
-                    <h3>Faculty Advisor</h3>
-                    <h4>{{ advisor.name }}</h4>
-                    <p>{{ advisor.email }}</p>
-                  </div>
-                </md-list-item>
-                <md-list-item class="md-3-line" ng-repeat="client in clientList"
-                ng-if="client.client_id === team.client" ng-click="null">
-                  <div class="md-list-item-text" layout="column">
-                    <h3>Client</h3>
-                    <h4>{{ client.name }}</h4>
-                    <p>{{ client.email }}</p>
-                  </div>
-                </md-list-item>
-              <md-subheader>Team Members</md-subheader>
-              <md-list-item class="md-2-line" ng-repeat="student in studentList"
-              ng-if="student.team === team.team_id" ng-click="null">
-                <div class="md-list-item-text" layout="column">
-                  <h4>{{ student.name }}</h4>
-                  <p>{{ student.email }}</p>
-                </div>
-              </md-list-item>
-            </md-list>
-            <md-divider></md-divider>
-            </v-pane-content>
-          </v-pane>
-        </v-accordion>
-      </md-list-item ng-if="!$last">
-    </md-list>
+    <md-table-container>
+      <table md-table multiple ng-model="selected" md-promise="promise">
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Team Name</th>
+            <th md-column>Course</th>
+            <th md-column>Faculty Advisor</th>
+            <th md-column>Client</th>
+            <th md-column>Team Members</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="team in teamList" ng-if="team.course === 'Retired'">
+            <td md-cell>{{team.name}}</td>
+            <td ng-repeat="course in courseList" ng-if="course.name === team.course" md-cell>
+              {{ course.name }}
+            </td>
+            <td ng-repeat="advisor in advisorList" ng-if="advisor.advisor_id === team.advisor" md-cell>
+              {{ advisor.name }}
+            </td>
+            <td ng-repeat="client in clientList" ng-if="client.client_id === team.client" md-cell>
+              {{ client.name }}
+            </td>
+            <td ng-repeat="student in studentList" ng-if="student.team === team.team_id" md-cell>{{student.name}}</td>
+            <td sm-cell>
+              <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, student)">
+                <i class="material-icons" aria-label="Edit Team">edit</i>
+              </md-button>
+            </td>
+            <td sm-cell>
+              <md-button class="md-icon-button" ng-click="showDelete($event, team)">
+                <i class="material-icons" aria-label="Delete Team">delete</i>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
 
   </div>
 
-
-
-<md-toolbar class="md-table-toolbar md-default">
-  <div class="md-toolbar-tools">
-    <span>Team Management</span>
-  </div>
-</md-toolbar>
-
-<!--- Table ---->
-<md-table-container>
-  <table md-table md-row-select multiple ng-model="selected" md-promise="promise">
-    <thead md-head>
-      <tr md-row>
-        <th md-column>Team Name</th>
-        <th md-column>Course</th>
-        <th md-column>Faculty Advisor</th>
-        <th md-column>Client</th>
-        <th md-column>Team Members</th>
-      </tr>
-    </thead>
-    <tbody md-body>
-      <tr md-row ng-repeat="team in teamList">
-        <td md-cell>{{team.name}}</td>
-        <td ng-repeat="course in courseList" ng-if="course.name === team.course" md-cell>
-          {{ course.name }}
-        </td>
-        <td ng-repeat="advisor in advisorList" ng-if="advisor.advisor_id === team.advisor" md-cell>
-          {{ advisor.name }}
-        </td>
-        <td ng-repeat="client in clientList" ng-if="client.client_id === team.client" md-cell>
-          {{ client.name }}
-        </td>
-        <td ng-repeat="student in studentList" ng-if="student.team === team.team_id" md-cell>{{student.name}}</td>
-        <td sm-cell>
-          <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, student)">
-            <i class="material-icons" aria-label="Edit Team">edit</i>
-          </md-button>
-        </td>
-        <td sm-cell>
-          <md-button class="md-icon-button" ng-click="showDelete($event, team)">
-            <i class="material-icons" aria-label="Delete Team">delete</i>
-          </md-button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</md-table-container>
+<md-button class="md-primary md-raised" aria-label="Create Team" ng-click="showCreate($event)">
+  Create Team
+</md-button>
 
 <md-button class="md-primary md-raised" aria-label="Migrate Teams" ng-click="showMigrateConfirm($event)">
   Migrate Teams
