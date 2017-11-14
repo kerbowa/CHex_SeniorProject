@@ -6,11 +6,12 @@
  * @description
  * # ContentManagementCtrl
  * Controller of the clientApp
+ * TODO allow navigation by URL!
  */
 angular.module('clientApp')
   .controller('ContentManagementCtrl', ['$scope', '$http', '$mdDialog',
     function ($scope, $http, $mdDialog) {
-      $scope.currentNavItem = 'csc190CM';
+      $scope.currentNavItem = 'csc190';
   }]).directive('apsUploadFile', apsUploadFile);
 
 function apsUploadFile() {
