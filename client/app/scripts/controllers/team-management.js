@@ -28,15 +28,47 @@ angular.module('clientApp')
 
       $scope.courseList = [
         { name: "190"},
-        { name: "191"}
+        { name: "191"},
+        { name: "Retired"}
       ]
+
+      $scope.selected = [];
 
       $scope.status = '';
       $scope.customFullscreen = false;
 
-      $scope.showAdvanced = function(ev) {
+      $scope.showMigrateConfirm = function(ev) {
+        var confirm = $mdDialog.confirm({
+          onComplete: function afterShowAnimation() {
+            var $dialog = angular.element(document.querySelector('md-dialog'));
+            var $actionsSection = $dialog.find('md-dialog-actions');
+            var $cancelButton = $actionsSection.children()[0];
+            var $confirmButton = $actionsSection.children()[1];
+            angular.element($confirmButton).addClass('md-primary md-raised');
+            angular.element($cancelButton).addClass('');
+          }
+        })
+          .title('Are you sure you would like to migrate teams?')
+          .textContent('')
+          .ariaLabel('Migrate teams')
+          .targetEvent(ev)
+          .ok('Yes')
+          .cancel('No');
+
+        $mdDialog.show(confirm).then(function() {
+          $scope.status = 'You migrated the teams.';
+          $http({
+            url: '/api/migrateteams',
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}
+          })
+          $scope.initFirst();
+        });
+      };
+
+      $scope.showCreate = function(ev) {
         $mdDialog.show({
-          controller: DialogController,
+          controller: CreateController,
           templateUrl: 'dialog1.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: ev,
@@ -50,7 +82,7 @@ angular.module('clientApp')
         });
       };
 
-     function DialogController($scope, $mdDialog) {
+     function CreateController($scope, $mdDialog) {
        $scope.hide = function() {
          $mdDialog.hide();
        };
@@ -74,20 +106,96 @@ angular.module('clientApp')
        };
      }
 
-      $scope.editTeam = function() {
-        $scope.statusMsg = 'Sending data to server...';
-        var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
-            'param4': $scope.client, 'param5': $scope.studentOne, 'param6': $scope.studentTwo,
-            'param7': $scope.studentThree, 'param8': $scope.studentFour, 'param9': $scope.studentFive,
-            'param10': $scope.studentSix};
-        $http({
-          url: '/api/editteam',
-          method: 'POST',
-          data: Indata,
-          headers: {'Content-Type': 'application/json'}
-        })
-        $scope.initFirst();
-      };
+     $scope.showDelete = function(ev, team) {
+       $mdDialog.show({
+         controller: DeleteController,
+         templateUrl: 'dialog3.tmpl.html',
+         parent: angular.element(document.body),
+         targetEvent: ev,
+         scope: $scope.$new(), // Uses prototypal inheritance to gain access to parent scope
+         clickOutsideToClose:false,
+         locals: {
+           selectedTeam: team
+         },
+         fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+       })
+       .then(function() {
+       }, function() {
+         $scope.status = 'You cancelled the dialog.';
+       });
+     };
+
+      function DeleteController($scope, $mdDialog, selectedTeam) {
+       $scope.team = selectedTeam;
+       $scope.hide = function() {
+         $mdDialog.hide();
+       };
+       $scope.cancel = function() {
+         $mdDialog.cancel();
+       };
+       $scope.deleteteam = function() {
+         $scope.statusMsg = 'Sending data to server...';
+          $http({
+            url: '/api/deleteteam',
+            method: 'POST',
+            data: $scope.team,
+            headers: {'Content-Type': 'application/json'}
+          })
+          $scope.initFirst();
+          $mdDialog.hide();
+        };
+      }
+
+     $scope.showEdit = function(ev, team, course, advisor, client, student) {
+       $mdDialog.show({
+         controller: EditController,
+         templateUrl: 'dialog2.tmpl.html',
+         parent: angular.element(document.body),
+         targetEvent: ev,
+         scope: $scope.$new(), // Uses prototypal inheritance to gain access to parent scope
+         clickOutsideToClose:false,
+         locals: {
+           selectedTeam: team,
+           selectedCourse: course,
+           selectedAdvisor: advisor,
+           selectedClient: client,
+           selectedStudent: student
+         },
+         fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+       })
+       .then(function() {
+       }, function() {
+         $scope.status = 'You cancelled the dialog.';
+       });
+     };
+
+      function EditController($scope, $mdDialog, selectedTeam, selectedCourse, selectedAdvisor, selectedClient, selectedStudent) {
+       $scope.team = selectedTeam;
+       $scope.course = selectedCourse;
+       $scope.advisor = selectedAdvisor;
+       $scope.client = selectedClient;
+       $scope.student = selectedStudent;
+       console.log(selectedStudent);
+       $scope.hide = function() {
+         $mdDialog.hide();
+       };
+       $scope.cancel = function() {
+         $mdDialog.cancel();
+       };
+       $scope.editteam = function() {
+         $scope.statusMsg = 'Sending data to server...';
+         var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
+            'param4': $scope.client, 'param5': $scope.student};
+          $http({
+            url: '/api/editteam',
+            method: 'POST',
+            data: Indata,
+            headers: {'Content-Type': 'application/json'}
+          })
+          $scope.initFirst();
+          $mdDialog.hide();
+        };
+      }
 
       var req = $http.get('/api/getstudents');
       var scope = this;
@@ -128,7 +236,6 @@ angular.module('clientApp')
       req.catch(function(err) {
         console.log(err);
       });
-
 
       this.awesomeThings = [
         'HTML5 Boilerplate',

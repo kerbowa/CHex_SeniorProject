@@ -18,18 +18,7 @@ router.post('/', function(req, res) {
   // client
   var clientId = req.body.param4.client_id;
   // studentOne
-  var studentOne = req.body.param5.name;
-  // studentTwo
-  var studentTwo = req.body.param6.name;
-  // studentThree
-  var studentThree = req.body.param7.name;
-  // studentFour
-  var studentFour = req.body.param8.name;
-  // studentFive
-  var studentFive = req.body.param9.name;
-  // studentSix
-  var studentSix = req.body.param10.name;
-
+  var student = req.body.param5;
   // update team faculty advisor and client
 
 
@@ -40,12 +29,7 @@ router.post('/', function(req, res) {
   console.log(course);
   console.log(advisorId);
   console.log(clientId);
-  console.log(studentOne);
-  console.log(studentTwo);
-  console.log(studentThree);
-  console.log(studentFour);
-  console.log(studentFive);
-  console.log(studentSix);
+  console.log(student);
   db.close();
 });
 

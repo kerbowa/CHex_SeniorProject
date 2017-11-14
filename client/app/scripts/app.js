@@ -22,7 +22,8 @@ angular
     'ngStorage',
     'ngTouch',
     'vAccordion',
-    'ngMaterial'
+    'ngMaterial',
+    'md.data.table'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
