@@ -31,12 +31,28 @@ angular.module('clientApp')
         { name: "191"}
       ]
 
+      $scope.selected = [];
+
       $scope.status = '';
       $scope.customFullscreen = false;
 
-      $scope.showAdvanced = function(ev) {
+      $scope.showConfirm = function(ev) {
+        var confirm = $mdDialog.confirm()
+          .title('Are you sure you would like to delete team?')
+          .textContent('')
+          .ariaLabel('Delete team')
+          .targetEvent(ev)
+          .ok('Yes')
+          .cancel('No');
+
+        $mdDialog.show(confirm).then(function() {
+          $scope.status = 'You deleted the team.';
+        });
+      };
+
+      $scope.showCreate = function(ev) {
         $mdDialog.show({
-          controller: DialogController,
+          controller: CreateController,
           templateUrl: 'dialog1.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: ev,
@@ -50,7 +66,7 @@ angular.module('clientApp')
         });
       };
 
-     function DialogController($scope, $mdDialog) {
+     function CreateController($scope, $mdDialog) {
        $scope.hide = function() {
          $mdDialog.hide();
        };
@@ -74,14 +90,21 @@ angular.module('clientApp')
        };
      }
 
-     $scope.editTeam = function(ev) {
+     $scope.showEdit = function(ev, team, course, advisor, client, student) {
        $mdDialog.show({
-         controller: DialogController,
+         controller: EditController,
          templateUrl: 'dialog2.tmpl.html',
          parent: angular.element(document.body),
          targetEvent: ev,
          scope: $scope.$new(), // Uses prototypal inheritance to gain access to parent scope
          clickOutsideToClose:false,
+         locals: {
+           selectedTeam: team,
+           selectedCourse: course,
+           selectedAdvisor: advisor,
+           selectedClient: client,
+           selectedStudent: student
+         },
          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
        })
        .then(function() {
@@ -90,44 +113,33 @@ angular.module('clientApp')
        });
      };
 
-    function DialogController($scope, $mdDialog) {
-      $scope.hide = function() {
-        $mdDialog.hide();
-      };
-      $scope.cancel = function() {
-        $mdDialog.cancel();
-      };
-      $scope.createteam = function() {
-        $scope.statusMsg = 'Sending data to server...';
-        var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
-            'param4': $scope.client, 'param5': $scope.studentOne, 'param6': $scope.studentTwo,
-            'param7': $scope.studentThree, 'param8': $scope.studentFour, 'param9': $scope.studentFive,
-            'param10': $scope.studentSix};
-        $http({
-          url: '/api/editteam',
-          method: 'POST',
-          data: Indata,
-          headers: {'Content-Type': 'application/json'}
-        })
-        $scope.initFirst();
-        $mdDialog.hide();
-      };
-    }
-
-      $scope.editTeam = function() {
-        $scope.statusMsg = 'Sending data to server...';
-        var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
-            'param4': $scope.client, 'param5': $scope.studentOne, 'param6': $scope.studentTwo,
-            'param7': $scope.studentThree, 'param8': $scope.studentFour, 'param9': $scope.studentFive,
-            'param10': $scope.studentSix};
-        $http({
-          url: '/api/editteam',
-          method: 'POST',
-          data: Indata,
-          headers: {'Content-Type': 'application/json'}
-        })
-        $scope.initFirst();
-      };
+      function EditController($scope, $mdDialog, selectedTeam, selectedCourse, selectedAdvisor, selectedClient, selectedStudent) {
+       $scope.team = selectedTeam;
+       $scope.course = selectedCourse;
+       $scope.advisor = selectedAdvisor;
+       $scope.client = selectedClient;
+       $scope.student = selectedStudent;
+       console.log(selectedStudent);
+       $scope.hide = function() {
+         $mdDialog.hide();
+       };
+       $scope.cancel = function() {
+         $mdDialog.cancel();
+       };
+       $scope.editteam = function() {
+         $scope.statusMsg = 'Sending data to server...';
+         var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
+            'param4': $scope.client, 'param5': $scope.student};
+          $http({
+            url: '/api/editteam',
+            method: 'POST',
+            data: Indata,
+            headers: {'Content-Type': 'application/json'}
+          })
+          $scope.initFirst();
+          $mdDialog.hide();
+        };
+      }
 
       var req = $http.get('/api/getstudents');
       var scope = this;
