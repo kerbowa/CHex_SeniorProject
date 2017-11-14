@@ -2,9 +2,19 @@
   <md-toolbar class="md-theme-light">
     <div class="md-toolbar-tools">
       <h2 class="md-flex">Team Management</h2>
-      <span flex=""></span>
     </div>
   </md-toolbar>
+
+  <div layout="row">
+    <span flex=""></span>
+    <md-button class="md-primary md-raised" aria-label="Create Team" ng-click="showCreate($event)">
+      Create Team
+    </md-button>
+
+    <md-button class="md-primary md-raised" aria-label="Migrate Teams" ng-click="showMigrateConfirm($event)">
+      Migrate Teams
+    </md-button>
+  </div>
 
   <div class="md-padding">
     <md-subheader class="md-primary md-no-sticky">CSc 190 Teams</md-subheader>
@@ -136,15 +146,6 @@
     </md-table-container>
 
   </div>
-
-<md-button class="md-primary md-raised" aria-label="Create Team" ng-click="showCreate($event)">
-  Create Team
-</md-button>
-
-<md-button class="md-primary md-raised" aria-label="Migrate Teams" ng-click="showMigrateConfirm($event)">
-  Migrate Teams
-</md-button>
-
 
 <!-- CREATE TEAM -->
 
