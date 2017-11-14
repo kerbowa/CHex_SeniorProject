@@ -118,7 +118,6 @@ angular.module('clientApp')
 
       function DeleteController($scope, $mdDialog, selectedTeam) {
        $scope.team = selectedTeam;
-       console.log($scope.team);
        $scope.hide = function() {
          $mdDialog.hide();
        };
@@ -228,7 +227,6 @@ angular.module('clientApp')
       req.catch(function(err) {
         console.log(err);
       });
-
 
       this.awesomeThings = [
         'HTML5 Boilerplate',

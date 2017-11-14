@@ -10,11 +10,16 @@ router.post('/', function(req, res) {
 
   var id = req.body.team_id;
 
-  db.run('DELETE FROM TEAM WHERE ID = ?', [id], function(err, result) {
-    if (err) throw err;
-  });
+  db.serialize(function() {
+    db.run('PRAGMA foreign_keys = ON', function(err, result) {
+      if (err) throw err;
+    });
 
-  console.log(id);
+    db.run('DELETE FROM TEAM WHERE ID = ?', [id], function(err, result) {
+      if (err) throw err;
+    });
+
+  })
 
   res.sendStatus(200);
   db.close();
