@@ -8,14 +8,16 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('MainCtrl', ['$scope', '$http', '$location', 'authentication', function ($scope, $http, $location, authentication) {
+  .controller('MainCtrl', ['$scope', '$http', '$state', 'authentication', function ($scope, $http, $state, authentication) {
+    $scope.$state = $state;
+    $scope.test = 'test2';
   }]);
 /*!
  * classie v1.0.0
  * class helper functions
  * from bonzo https://github.com/ded/bonzo
  * MIT license
- * 
+ *
  * classie.has( elem, 'my-class' ) -> true/false
  * classie.add( elem, 'my-new-class' )
  * classie.remove( elem, 'my-unwanted-class' )

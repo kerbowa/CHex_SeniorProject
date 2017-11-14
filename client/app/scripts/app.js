@@ -49,36 +49,54 @@ angular
       })
       .state('public.190.csc190-course-materials', {
         url: '/190-course-materials',
+        data: {
+          'currentNavItem': 'csc190CM'
+        },
         templateUrl: 'views/csc190-course-materials.html',
         controller: 'Csc190CourseMaterialsCtrl',
         controllerAs: 'csc190CourseMaterials'
       })
       .state('public.190.csc190-forms', {
         url: '/190-forms',
+        data: {
+          'currentNavItem': 'csc190FM'
+        },
         templateUrl: 'views/csc190-forms.html',
         controller: 'Csc190FormsCtrl',
         controllerAs: 'csc190Forms'
       })
       .state('public.190.csc190-templates', {
         url: '/190-templates',
+        data: {
+          'currentNavItem': 'csc190TM'
+        },
         templateUrl: 'views/csc190-templates.html',
         controller: 'Csc190TemplatesCtrl',
         controllerAs: 'csc190Templates'
       })
       .state('public.191.csc191-course-materials', {
         url: '/191-course-materials',
+        data: {
+          'currentNavItem': 'csc191CM'
+        },
         templateUrl: 'views/csc191-course-materials.html',
         controller: 'Csc191CourseMaterialsCtrl',
         controllerAs: 'csc191CourseMaterials'
       })
       .state('public.191.csc191-forms', {
         url: '/191-forms',
+        data: {
+          'currentNavItem': 'csc191FM'
+        },
         templateUrl: 'views/csc191-forms.html',
         controller: 'Csc191FormsCtrl',
         controllerAs: 'csc191Forms'
       })
       .state('public.191.csc191-templates', {
         url: '/191-templates',
+        data: {
+          'currentNavItem': 'csc191TM'
+        },
         templateUrl: 'views/csc191-templates.html',
         controller: 'Csc191TemplatesCtrl',
         controllerAs: 'csc191Templates'
@@ -168,6 +186,9 @@ angular
 
     $urlRouterProvider.otherwise('/');
   })
+  .controller('IndexCtrl', ['$scope', '$state', function($scope, $state) {
+    $scope.$state = $state;
+  }])
   .run(['$transitions', '$state', 'authentication', function($transitions, $state, authentication) {
     $transitions.onBefore({
       to: 'dashboard.**'

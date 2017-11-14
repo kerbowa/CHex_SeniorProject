@@ -8,6 +8,11 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('190ContentCtrl', ['$scope', function ($scope) {
-    $scope.currentNavItem = 'csc190CM';
+  .controller('190ContentCtrl', ['$scope', '$transitions', '$state', function($scope, $transitions, $state) {
+    $scope.currentNavItem = $state.current.data.currentNavItem;
+    $transitions.onSuccess({
+      to: 'public.190.**'
+    }, function(trans) {
+      $scope.currentNavItem = trans.to().data.currentNavItem;
+    });
   }]);

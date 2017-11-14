@@ -24,25 +24,9 @@
     <!-- endbuild -->
  	  <base href="/" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-      <script>
-      function init() {
-          window.addEventListener('scroll', function(e){
-              var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-                  shrinkOn = 1,
-                  header = document.querySelector("header");
-              if (distanceY > shrinkOn) {
-                  classie.add(header,"smaller");
-              } else {
-                  if (classie.has(header,"smaller")) {
-                      classie.remove(header,"smaller");
-                  }
-              }
-          });
-      }
-      window.onload = init();
-  </script>
   </head>
   <body ng-app="clientApp">
+    <div ng-controller="IndexCtrl">
     <top-banner>
       <div class="navbar navbar-default navbar-static-top" role="navigation">
        <div class="container">
@@ -56,8 +40,8 @@
        </div>
        <div class="navbar-collapse collapse" id="nav_bar">
          <ul class="nav navbar-nav navbar-right" style="font-size: 17px;">
-            <li><a ui-sref="public.main" class="active-page">Home</a></li>
-            <li class="dropdown">
+            <li ng-class="{active: $state.includes('public.main')}"><a ui-sref="public.main">Home</a></li>
+            <li ng-class="{active: $state.includes('public.190')}">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">CSC 190<b class="caret"></b></a>
               <ul class="dropdown-menu">
               <li style="font-size: 17px;"><a ui-sref="public.190.csc190-course-materials">Course Materials</a></li>
@@ -67,10 +51,9 @@
               <li style="font-size: 17px;"><a ui-sref="public.190.csc190-templates">Templates</a></li>
               </ul>
             </li>
-            <li class="dropdown">
+            <li ng-class="{active: $state.includes('public.191')}">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">CSC 191<b class="caret"></b></a>
               <ul class="dropdown-menu">
-
               <li style="font-size: 17px;"><a ui-sref="public.191.csc191-course-materials">Course Materials</a></li>
               <li class="divider"></li>
               <li style="font-size: 17px;"><a ui-sref="public.191.csc191-forms">Forms</a></li>
@@ -78,13 +61,14 @@
               <li style="font-size: 17px;"><a ui-sref="public.191.csc191-templates">Templates</a></li>
               </ul>
             </li>
-            <li><a ui-sref="dashboard.team-management">Dashboard</a></li>
-             <li><a ui-sref="login">Login</a></li>
+            <li ng-class="{active: $state.includes('dashboard')}"><a ui-sref="dashboard.team-management">Dashboard</a></li>
+             <li ng-class="{active: $state.includes('login')}"><a ui-sref="login">Login</a></li>
          </ul>
        </div>
       </div>
         </div>
       </top-banner>
+  </div>
   <div ui-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
