@@ -29,6 +29,7 @@ var createcontent = require('./routes/createcontent');
 var deletecategory = require('./routes/deletecategory');
 var deletecontent = require('./routes/deletecontent');
 var migrateteams = require('./routes/migrateteams');
+var deleteteam = require('./routes/deleteteam');
 
 var app = express();
 
@@ -74,6 +75,7 @@ app.use('/api/createcontent', createcontent);
 app.use('/api/deletecategory', deletecategory);
 app.use('/api/deletecontent', deletecontent);
 app.use('/api/migrateteams', migrateteams);
+app.use('/api/deleteteam', deleteteam);
 
 if (app.get('env') === 'production') {
 

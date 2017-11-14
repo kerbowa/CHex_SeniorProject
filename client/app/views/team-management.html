@@ -315,7 +315,7 @@
           </md-button>
         </td>
         <td sm-cell>
-          <md-button class="md-icon-button" ng-click="showConfirm($event)">
+          <md-button class="md-icon-button" ng-click="showDelete($event, team)">
             <i class="material-icons" aria-label="Delete Team">delete</i>
           </md-button>
         </td>
@@ -526,6 +526,42 @@
       <md-dialog-actions layout="row">
         <md-button class="md-primary md-raised" ng-click="editteam()">
           Edit
+        </md-button>
+      </md-dialog-actions>
+
+    </form>
+   </md-dialog>
+  </script>
+</div>
+
+<!-- EDIT TEAM -->
+
+<div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
+
+  <script type="text/ng-template" id="dialog3.tmpl.html"><md-dialog aria-label="Delete Team">
+    <form ng-cloak>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Delete Team</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()">
+            <i class="material-icons" aria-label="Close Dialog">&#xE5CD;</i>
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <md-dialog-content>
+        <div class="md-dialog-content">
+          <p class="md-body-1">Are you sure you would like to delete the team?</p>
+        </div>
+      </md-dialog-content>
+
+      <md-dialog-actions layout="row">
+        <md-button class="md-raised" ng-click="cancel()">
+          No
+        </md-button>
+        <md-button class="md-primary md-raised" ng-click="deleteteam()">
+          Yes
         </md-button>
       </md-dialog-actions>
 

@@ -45,29 +45,9 @@ angular.module('clientApp')
           .targetEvent(ev)
           .ok('Yes')
           .cancel('No');
-      
+
         $mdDialog.show(confirm).then(function() {
           $scope.status = 'You migrated the teams.';
-          $http({
-            url: '/api/migrateteams',
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'}
-          })
-          $scope.initFirst();
-        });
-      };
-
-      $scope.showConfirm = function(ev) {
-        var confirm = $mdDialog.confirm()
-          .title('Are you sure you would like to delete team?')
-          .textContent('')
-          .ariaLabel('Delete team')
-          .targetEvent(ev)
-          .ok('Yes')
-          .cancel('No');
-
-        $mdDialog.show(confirm).then(function() {
-          $scope.status = 'You deleted the team.';
           $http({
             url: '/api/migrateteams',
             method: 'POST',
@@ -116,6 +96,47 @@ angular.module('clientApp')
          $mdDialog.hide();
        };
      }
+
+     $scope.showDelete = function(ev, team) {
+       $mdDialog.show({
+         controller: DeleteController,
+         templateUrl: 'dialog3.tmpl.html',
+         parent: angular.element(document.body),
+         targetEvent: ev,
+         scope: $scope.$new(), // Uses prototypal inheritance to gain access to parent scope
+         clickOutsideToClose:false,
+         locals: {
+           selectedTeam: team
+         },
+         fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+       })
+       .then(function() {
+       }, function() {
+         $scope.status = 'You cancelled the dialog.';
+       });
+     };
+
+      function DeleteController($scope, $mdDialog, selectedTeam) {
+       $scope.team = selectedTeam;
+       console.log($scope.team);
+       $scope.hide = function() {
+         $mdDialog.hide();
+       };
+       $scope.cancel = function() {
+         $mdDialog.cancel();
+       };
+       $scope.deleteteam = function() {
+         $scope.statusMsg = 'Sending data to server...';
+          $http({
+            url: '/api/deleteteam',
+            method: 'POST',
+            data: $scope.team,
+            headers: {'Content-Type': 'application/json'}
+          })
+          $scope.initFirst();
+          $mdDialog.hide();
+        };
+      }
 
      $scope.showEdit = function(ev, team, course, advisor, client, student) {
        $mdDialog.show({
