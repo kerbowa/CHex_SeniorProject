@@ -225,6 +225,21 @@ body, h1, h2, h3, h4, h5, h6 {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #043927;
+}
+
+.nav.nav-pills li a {
+  color: #043927;
+  font-family: 'PT Sans', sans-serif;
+  text-decoration: none;
+}
+
+.nav.nav-pills li a:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 md-nav-bar md-nav-ink-bar {
   background: DarkGreen;
 }
