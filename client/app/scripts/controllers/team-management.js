@@ -47,6 +47,12 @@ angular.module('clientApp')
 
         $mdDialog.show(confirm).then(function() {
           $scope.status = 'You deleted the team.';
+          $http({
+            url: '/api/migrateteams',
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'}
+          })
+          $scope.initFirst();
         });
       };
 
