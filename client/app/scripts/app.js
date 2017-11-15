@@ -136,38 +136,43 @@ angular
         controller: 'ContentManagementCtrl',
         controllerAs: 'contentManagement'
       })
-      .state('dashboard.content-management.manage-csc190-course-materials', {
-        url: '/dashboard/content-management/manage-csc190-course-materials',
+      .state('dashboard.content-management.manage-190-content', {
+        url: '/dashboard/manage-content',
+        templateUrl: 'views/manage-190-content.html',
+        controller: 'Manage190ContentCtrl',
+        controllerAs: 'manage190Content'
+      })
+      .state('dashboard.content-management.manage-191-content', {
+        templateUrl: 'views/manage-191-content.html',
+        controller: 'Manage191ContentCtrl',
+        controllerAs: 'manage191Content'
+      })
+      .state('dashboard.content-management.manage-190-content.manage-csc190-course-materials', {
         templateUrl: 'views/manage-csc190-course-materials.html',
         controller: 'ManageCsc190CourseMaterialsCtrl',
         controllerAs: 'manageCsc190CourseMaterials'
       })
-      .state('dashboard.content-management.manage-csc191-course-materials', {
-        url: '/dashboard/content-management/manage-csc191-course-materials',
+      .state('dashboard.content-management.manage-191-content.manage-csc191-course-materials', {
         templateUrl: 'views/manage-csc191-course-materials.html',
         controller: 'ManageCsc191CourseMaterialsCtrl',
         controllerAs: 'manageCsc191CourseMaterials'
       })
-      .state('dashboard.content-management.manage-csc190-templates', {
-        url: '/dashboard/content-management/manage-csc190-templates',
+      .state('dashboard.content-management.manage-190-content.manage-csc190-templates', {
         templateUrl: 'views/manage-csc190-templates.html',
         controller: 'ManageCsc190TemplatesCtrl',
         controllerAs: 'manageCsc190Templates'
       })
-      .state('dashboard.content-management.manage-csc191-templates', {
-        url: '/dashboard/content-management/manage-csc191-templates',
+      .state('dashboard.content-management.manage-191-content.manage-csc191-templates', {
         templateUrl: 'views/manage-csc191-templates.html',
         controller: 'ManageCsc191TemplatesCtrl',
         controllerAs: 'manageCsc191Templates'
       })
-      .state('dashboard.content-management.manage-csc190-forms', {
-        url: '/dashboard/content-management/manage-csc190-forms',
+      .state('dashboard.content-management.manage-190-content.manage-csc190-forms', {
         templateUrl: 'views/manage-csc190-forms.html',
         controller: 'ManageCsc190FormsCtrl',
         controllerAs: 'manageCsc190Forms'
       })
-      .state('dashboard.content-management.manage-csc191-forms', {
-        url: '/dashboard/content-management/manage-csc190-forms',
+      .state('dashboard.content-management.manage-191-content.manage-csc191-forms', {
         templateUrl: 'views/manage-csc191-forms.html',
         controller: 'ManageCsc191FormsCtrl',
         controllerAs: 'manageCsc191Forms'
