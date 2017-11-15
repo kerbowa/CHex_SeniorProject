@@ -13,6 +13,7 @@
 
        $scope.initFirst = function() {
 
+         $scope.currentNavItem = 'csc190FM'
          $scope.customFullscreen = false;
          $scope.allContent = null;
          $scope.category = null;
@@ -29,7 +30,7 @@
 
          var data = {
            course: $scope.course,
-           page: $scope.page 
+           page: $scope.page
          };
          var req = $http.post('/api/getcontent', data);
          req.then(function(data) {

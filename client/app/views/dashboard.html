@@ -1,6 +1,5 @@
 <div class="wrapper-dashboard">
 <div class="col-md-2 sidebar">
-	<div class="navbar navbar-default static-top" role="navigation">
 		<ul class="nav nav-pills nav-stacked">
 			<li ng-class="{active: $state.includes('dashboard.team-management')}"><a ui-sref="dashboard.team-management">Manage Teams</a></li>
 			<li ng-class="{active: $state.includes('dashboard.students')}"><a ui-sref="dashboard.students">Manage Students</a></li>
@@ -10,7 +9,6 @@
 			<li ng-class="{active: $state.includes('dashboard.email')}"><a ui-sref="dashboard.email">Email</a></li>
 			<li><a ui-sref="public.main" ng-click="logout()">Logout</a></li>
 		</ul>
-	</div>
 </div>
 
 <div class="main-container-dashboard">

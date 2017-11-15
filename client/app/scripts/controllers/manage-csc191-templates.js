@@ -13,6 +13,7 @@
 
        $scope.initFirst = function() {
 
+         $scope.currentNavItem = 'csc191TM'
          $scope.customFullscreen = false;
          $scope.allContent = null;
          $scope.category = null;
