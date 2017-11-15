@@ -3,9 +3,9 @@ New Student:
 <br>
 <div>
   <form novalidate class="simple-form">
-    <label>Name: <input type="text" ng-model="new_student.name" /></label><br />
-    <label>E-mail: <input type="email" ng-model="new_student.email" /></label><br />
-    <input type="submit" ng-click="addstudent(new_student)" value="Save" />
+	<label>Name: <input type="text" ng-model="new_student.name" /></label><br />
+	<label>E-mail: <input type="email" ng-model="new_student.email" /></label><br />
+	<input type="submit" ng-click="addstudent(new_student)" value="Save" />
   </form>
   <!--<pre>new_student = {{new_student | json}}</pre>-->
 </div>
@@ -27,14 +27,27 @@ Filter:
 				</div>
 				<div class="panel-body">
 					<div class="tr" ng-repeat="s in students.studentNames | filter:filter">
-						<div class="td">{{ s.name }}</div>
-						<div class="td">{{ s.email}}</div>
-						<div class="td">{{ s.team }}</div>
-						<div class="td">Edit</div>
 						<div class="td">
-							<a ng-click="deletestudent(s._id)" href="">
+							<span ng-hide="editMode">{{ s.name }}</span>
+							<input type="text" ng-show="editMode" ng-model="s.name" ng-required />
+						</div>
+						<div class="td">
+							<span ng-hide="editMode">{{ s.email }}</span>
+							<input type="text" ng-show="editMode" ng-model="s.email" ng-required />
+						</div>
+						<div class="td">
+							<span ng-hide="editMode">{{ s.team }}</span>
+							<input type="text" ng-show="editMode" ng-model="s.team" />
+						</div>
+						<div class="td">
+							<button type="submit" ng-hide="editMode" ng-click="editMode = true; editAppKey(entry)" class="btn btn-default">Edit</button>
+							<button type="submit" ng-show="editMode" ng-click="editMode = false" class="btn btn-default">Save</button>
+							<button type="submit" ng-show="editMode" ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
+						</div>
+						<div class="td">
+							<button ng-click="deletestudent(s._id)" class="btn btn-default">
 								Delete
-							</a>
+							</button>
 						</div>
 					</div>
 				</div>
