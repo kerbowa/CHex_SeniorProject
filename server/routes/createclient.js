@@ -9,17 +9,16 @@ router.post('/', function(req, res) {
   var db = new sqlite3.Database('database/chex.db');
 
   
-// client ID
-  var client_id = req.body.param1.client_id;
+
   // client name
-  var clientname = req.body.param2.clientname;
+  var clientname = req.body.clientname;
   // client email
-  var clientemail = req.body.param3.clientemail;
+  var clientemail = req.body.clientemail;
   // client status
-  var clientstatus = req.body.param4.clientstatus;
+  var clientstatus = req.body.clientstatus;
   
 
-  db.all('INSERT INTO CLIENT(ID, NAME, EMAIL, STATUS) VALUES (?, ?, ?, ?)', [client_id, clientname, clientemail, clientstatus], function(err, result) {
+  db.run('INSERT INTO CLIENT(NAME, EMAIL, STATUS) VALUES (?, ?, ?)', [clientname, clientemail, clientstatus], function(err, result) {
     if (err) throw err;
   });
 

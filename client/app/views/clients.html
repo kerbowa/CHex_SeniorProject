@@ -50,30 +50,25 @@
       <div class="modal-body">
         <form name="clientForm" ng-app="clientApp" ng-controller="ClientsCtrl">
           <div class="form-group">
-            <label for="client_id" class="control-label">Client ID:</label>
-            <input type="number" class="form-control" id="client_id" ng-model="client_id" >
-            <span ng-show="form.size.$error.required">The ID is required!</span>
-          </div>
-          <div class="form-group">
             <label for="clientname" class="control-label">Name:</label>
-            <input type="text" class="form-control" id="clientname" ng-model="clientname">
+            <input type="text" class="form-control" ng-model="client.name">
             <span ng-show="form.size.$error.required">The name is required!</span>
           </div>
           <div class="form-group">
             <label for="clientemail" class="control-label">Email:</label>
-            <input type="email" class="form-control" id="clientemail" ng-model="clientemail">
+            <input type="email" class="form-control"  ng-model="client.email">
             <span ng-show="form.size.$error.required">The email is required!</span>
           </div>
           <div class="form-group">
             <label for="clientstatus" class="control-label">Status:</label>
-            <input type="text" class="form-control" id="clientstatus" ng-model="clientstatus">
+            <input type="text" class="form-control"  ng-model="client.status">
             <span ng-show="form.size.$error.required">The status is required!</span>                      
           </div>
         </form>
       </div>
     <div class="modal-footer" ng-controller="ClientsCtrl">
         <md-button type="button" class="btn btn-default" data-dismiss="modal">Close</md-button>
-        <md-button type="button" class="btn btn-default" ng-click="addClient()" value="Submit">Submit</md-button>
+        <md-button type="button" class="btn btn-default" ng-click="addClient()" >Submit</md-button>
       </div>
   </div>
 </div>

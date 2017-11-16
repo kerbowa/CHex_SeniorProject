@@ -10,10 +10,10 @@
 angular.module('clientApp')
   .controller('ClientsCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
         
-        $scope.client_id =null;
-        $scope.clientname =null;
-        $scope.clientemail =null;
-        $scope.clientstatus =null;
+        // $scope.client_id =null;
+        // $scope.clientname =null;
+        // $scope.clientemail =null;
+        // $scope.clientstatus =null;
 
         $scope.reverseOrder = true;
         $scope.sortField = 'client_id';
@@ -36,9 +36,9 @@ angular.module('clientApp')
 
     
     $scope.addClient = function() {
-
-        var Indata = {'param1': $scope.client_id, 'param2': $scope.clientname, 'param3': $scope.clientemail, 'param4': $scope.clientstatus};
-
+      $scope = $scope.$new();
+        var Indata = ({'clientname': $scope.client.name, 'clientemail': $scope.client.email, 'clientstatus': $scope.client.status});
+          console.log(Indata);
    
        $http({
           url: '/api/createclient',
