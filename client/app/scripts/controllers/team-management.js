@@ -146,7 +146,8 @@ angular.module('clientApp')
         };
       }
 
-     $scope.showEdit = function(ev, team, course, advisor, client, student) {
+     $scope.showEdit = function(ev, team, course, advisor, client, studentList) {
+
        $mdDialog.show({
          controller: EditController,
          templateUrl: 'dialog2.tmpl.html',
@@ -159,7 +160,7 @@ angular.module('clientApp')
            selectedCourse: course,
            selectedAdvisor: advisor,
            selectedClient: client,
-           selectedStudent: student
+           selectedStudentList: studentList
          },
          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
        })
@@ -170,13 +171,28 @@ angular.module('clientApp')
        });
      };
 
-      function EditController($scope, $mdDialog, selectedTeam, selectedCourse, selectedAdvisor, selectedClient, selectedStudent) {
+      function EditController($scope, $mdDialog, selectedTeam, selectedCourse, selectedAdvisor, selectedClient,
+        selectedStudentList) {
        $scope.team = selectedTeam;
        $scope.course = selectedCourse;
        $scope.advisor = selectedAdvisor;
        $scope.client = selectedClient;
-       $scope.student = selectedStudent;
-       console.log(selectedStudent);
+       $scope.studentList = selectedStudentList;
+
+       $scope.teamMembers = [];
+       for (var i = 0; i < $scope.studentList.length; i++) {
+         if ($scope.studentList[i].team === $scope.team.team_id) {
+           $scope.teamMembers.push($scope.studentList[i]);
+         }
+       };
+
+       $scope.studentOne = $scope.teamMembers[0];
+       $scope.studentTwo = $scope.teamMembers[1];
+       $scope.studentThree = $scope.teamMembers[2];
+       $scope.studentFour = $scope.teamMembers[3];
+       $scope.studentFive = $scope.teamMembers[4];
+       $scope.studentSix = $scope.teamMembers[5];
+
        $scope.hide = function() {
          $mdDialog.hide();
        };
@@ -186,7 +202,9 @@ angular.module('clientApp')
        $scope.editteam = function() {
          $scope.statusMsg = 'Sending data to server...';
          var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
-            'param4': $scope.client, 'param5': $scope.student};
+             'param4': $scope.client, 'param5': $scope.studentOne, 'param6': $scope.studentTwo,
+             'param7': $scope.studentThree, 'param8': $scope.studentFour, 'param9': $scope.studentFive,
+             'param10': $scope.studentSix};
           $http({
             url: '/api/editteam',
             method: 'POST',
