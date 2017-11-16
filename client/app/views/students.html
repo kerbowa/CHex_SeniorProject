@@ -1,4 +1,15 @@
 <h3>Students</h3>
+New Student:
+<br>
+<div>
+  <form novalidate class="simple-form">
+    <label>Name: <input type="text" ng-model="new_student.name" /></label><br />
+    <label>E-mail: <input type="email" ng-model="new_student.email" /></label><br />
+    <input type="submit" ng-click="addstudent(new_student)" value="Save" />
+  </form>
+  <!--<pre>new_student = {{new_student | json}}</pre>-->
+</div>
+<br>
 Filter: 
 <input type="text" ng-model="filter" />
 <div class="container-fluid" style="margin-top:20px">

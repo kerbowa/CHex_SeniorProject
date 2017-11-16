@@ -56,7 +56,7 @@
 
          function AddContentDialogController($scope, $mdDialog) {
            $scope.submitCreateContent = false;
-           $scope.category = null;
+           $scope.category = "";
            $scope.contentTitle = null;
            $scope.linkText = null;
            $scope.contentDescription = null;
@@ -69,8 +69,7 @@
            };
            $scope.createContent = function() {
              $scope.submitCreateContent = true;
-             if ($scope.category != null &&
-               $scope.contentTitle != null &&
+               if ($scope.contentTitle != null &&
                $scope.linkText != null &&
                $scope.contentUrl != null) {
                // If no description is entered add an empty string.
