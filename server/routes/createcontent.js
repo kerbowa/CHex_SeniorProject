@@ -17,12 +17,23 @@ router.post('/', function(req, res) {
   var description = req.body.description;
   var url = req.body.url;
 
-  db.run('INSERT INTO CONTENT(TITLE, DESCRIPTION, EXTENSION, IS_TEMPLATE, IS_INTERNAL, HREF, CATEGORY_ID) VALUES (?, ?, ?, ?, ?, ?, ?)',
-  [title, description, linkText, 0, 0, url, categoryID], function(err, result) {
-    if (err) throw err;
-    db.close();
-    res.sendStatus(200);
-  });
+  // Get empty category for this page.
+  if (categoryID == null) {
+    db.get('SELECT ID FROM CONTENT_CATEGORY WHERE NAME="" AND PAGE=? AND COURSE=?', [page, course], function(err, row) {
+      if (err) throw err;
+      db.run('INSERT INTO CONTENT(TITLE, DESCRIPTION, EXTENSION, IS_TEMPLATE, IS_INTERNAL, HREF, CATEGORY_ID) VALUES (?, ?, ?, ?, ?, ?, ?)', [title, description, linkText, 0, 0, url, row.ID], function(err, result) {
+        if (err) throw err;
+        db.close();
+        res.sendStatus(200);
+      });
+    });
+  } else {
+    db.run('INSERT INTO CONTENT(TITLE, DESCRIPTION, EXTENSION, IS_TEMPLATE, IS_INTERNAL, HREF, CATEGORY_ID) VALUES (?, ?, ?, ?, ?, ?, ?)', [title, description, linkText, 0, 0, url, categoryID], function(err, result) {
+      if (err) throw err;
+      db.close();
+      res.sendStatus(200);
+    });
+  }
 });
 
 module.exports = router;

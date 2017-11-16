@@ -16,7 +16,7 @@
       <br>
       <div ng-repeat="category in allContent">
         <div layout="row" layout-align="start center">
-          <md-button class="md-icon-button" ng-click="showDeleteCategory($event, category)">
+          <md-button ng-show="{{category.name != ''}}" class="md-icon-button" ng-click="showDeleteCategory($event, category)">
             <i class="material-icons" aria-label="Delete Content">clear</i>
           </md-button>
           <h3>{{category.name}}</h3>
@@ -221,9 +221,9 @@
                     </div>
 
                     <div>
-                      <md-input-container md-is-error="submitCreateContent == true && category == null">
+                      <md-input-container>
                         <label>Category</label>
-                        <md-select placeholder="Category" ng-model="category" style="min-width: 500px" required>
+                        <md-select placeholder="Category" ng-model="category" style="min-width: 500px">
                           <md-option ng-value="category" ng-repeat="category in allContent">{{category.name}}</md-option>
                         </md-select>
                       </md-input-container>
