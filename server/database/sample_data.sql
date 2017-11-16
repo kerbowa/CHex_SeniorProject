@@ -108,13 +108,19 @@ INSERT INTO ADMIN(USERNAME, HASH, SALT)
 VALUES ("admin", "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f", "5678");
 
 INSERT INTO CONTENT_CATEGORY(NAME, COURSE, PAGE)
-VALUES ("Ethics", "190", "Course Materials");
+VALUES ("", "190", "Course Materials");
 
-INSERT INTO CONTENT(TITLE, DESCRIPTION, EXTENSION, IS_TEMPLATE, IS_INTERNAL, HREF, CATEGORY_ID)
-VALUES ("A Code of Ethics for Software",
-        "Recommended by the ACM/IEEE-CS Joint Task Force on Software Engineering Ethics and Professional Practices and jointly approved by the ACM and the IEEE-CS as the standard for teaching and practicing software engineering.",
-        "pdf",
-        0,
-        0,
-        "http://athena.ecs.csus.edu/~buckley/CSc190/A%20Code%20of%20Ethics%20for%20Software.pdf",
-        1);
+INSERT INTO CONTENT_CATEGORY(NAME, COURSE, PAGE)
+VALUES ("", "190", "Forms");
+
+INSERT INTO CONTENT_CATEGORY(NAME, COURSE, PAGE)
+VALUES ("", "190", "Templates");
+
+INSERT INTO CONTENT_CATEGORY(NAME, COURSE, PAGE)
+VALUES ("", "191", "Course Materials");
+
+INSERT INTO CONTENT_CATEGORY(NAME, COURSE, PAGE)
+VALUES ("", "191", "Forms");
+
+INSERT INTO CONTENT_CATEGORY(NAME, COURSE, PAGE)
+VALUES ("", "191", "Templates");

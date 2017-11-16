@@ -20,8 +20,18 @@ angular.module('clientApp')
     console.log(err);
   });
 
+  $scope.addstudent = function(new_student) {
+    console.log('Add student ' + new_student.name + ' ' + new_student.email);
+    var req = $http.post('/api/addstudent/', new_student);
+    req.then(function (res) {
+    });
+    req.catch(function (err) {
+      console.log(err);
+    });
+  }
+
   $scope.deletestudent = function(student_id) {
-    console.log('Delete student cntrl - id = ' + student_id);
+    //console.log('Delete student cntrl - id = ' + student_id);
     var data = { id: student_id };
     var req = $http.post('/api/deletestudent/', data);
     req.then(function (res) {
