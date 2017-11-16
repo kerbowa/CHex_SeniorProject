@@ -47,7 +47,9 @@ router.post('/', function(req, res) {
     var studentSix = req.body.param10.student_id;
   }
 
-  db.all('UPDATE STUDENT SET TEAM_ID = null WHERE STUDENT_ID = ?', team.team_id, function(err, result) {
+db.serialize(function() {
+
+  db.all('UPDATE STUDENT SET TEAM_ID = null WHERE TEAM_ID = ?', team.team_id, function(err, result) {
     if (err) throw err;
   });
 
@@ -99,17 +101,19 @@ router.post('/', function(req, res) {
       if (err) throw err;
     });
 
-    db.run(
-      'UPDATE TEAM SET CLIENT_ID = ? WHERE ID = ?',
-      clientId, team.team_id, function(err, result) {
-        if (err) throw err;
-      });
+  db.run(
+    'UPDATE TEAM SET CLIENT_ID = ? WHERE ID = ?',
+    clientId, team.team_id, function(err, result) {
+      if (err) throw err;
+  });
 
-      db.run(
-        'UPDATE TEAM SET COURSE = ? WHERE ID = ?',
-        course, team.team_id, function(err, result) {
-          if (err) throw err;
-        });
+  db.run(
+    'UPDATE TEAM SET COURSE = ? WHERE ID = ?',
+    course, team.team_id, function(err, result) {
+      if (err) throw err;
+  });
+
+})
 
   db.close();
   res.sendStatus(200);
