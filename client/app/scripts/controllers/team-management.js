@@ -142,8 +142,8 @@ angular.module('clientApp')
             headers: {'Content-Type': 'application/json'}
           })
           $mdDialog.hide();
+          $scope.initFirst();
         };
-        $scope.initFirst();
       }
 
      $scope.showEdit = function(ev, team, course, advisor, client, student) {
