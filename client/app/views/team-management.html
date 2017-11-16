@@ -154,7 +154,7 @@
 <div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
 
   <script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Create Team">
-    <form ng-cloak>
+    <form name="createForm" ng-cloak>
       <md-toolbar>
         <div class="md-toolbar-tools">
           <h2>Create Team</h2>
@@ -179,19 +179,21 @@
               <div layout-padding="" layout-gt-xs="row">
                 <md-input-container>
                     <label>Course</label>
-                    <md-select placeholder="Course" ng-model="course" style="min-width:200px">
+                    <md-select placeholder="Course" ng-model="course" style="min-width:200px" required>
                       <md-option ng-value="course" ng-repeat="course in courseList">{{course.name}}</md-option>
                     </md-select>
                   </md-input-container>
                   <md-input-container>
                     <label>Faculty Advisor</label>
                     <md-select placeholder="Advisor" ng-model="advisor" style="min-width: 200px">
+                      <md-option value="">None</md-option>
                       <md-option ng-value="advisor" ng-repeat="advisor in advisorList">{{advisor.name}}</md-option>
                     </md-select>
                   </md-input-container>
                   <md-input-container>
                     <label>Client</label>
                     <md-select placeholder="Client" ng-model="client" style="min-width: 200px">
+                      <md-option value="">None</md-option>
                       <md-option ng-value="client" ng-repeat="client in clientList">{{client.name}}</md-option>
                     </md-select>
                   </md-input-container>
@@ -200,21 +202,27 @@
                 <div layout-padding="">
                   <h5 class="md-title">Team Members</h4>
                   <md-select placeholder="Student" ng-model="studentOne" style="min-width: 200px">
+                    <md-option value="">None</md-option>
                     <md-option ng-value="studentOne" ng-repeat="studentOne in studentList">{{studentOne.name}}</md-option>
                   </md-select>
                   <md-select placeholder="Student" ng-model="studentTwo" style="min-width: 200px">
+                    <md-option value="">None</md-option>
                     <md-option ng-value="studentTwo" ng-repeat="studentTwo in studentList">{{studentTwo.name}}</md-option>
                   </md-select>
                   <md-select placeholder="Student" ng-model="studentThree" style="min-width: 200px">
+                    <md-option value="">None</md-option>
                     <md-option ng-value="studentThree" ng-repeat="studentThree in studentList">{{studentThree.name}}</md-option>
                   </md-select>
                   <md-select placeholder="Student" ng-model="studentFour" style="min-width: 200px">
+                    <md-option value="">None</md-option>
                     <md-option ng-value="studentFour" ng-repeat="studentFour in studentList">{{studentFour.name}}</md-option>
                   </md-select>
                   <md-select placeholder="Student" ng-model="studentFive" style="min-width: 200px">
+                    <md-option value="">None</md-option>
                     <md-option ng-value="studentFive" ng-repeat="studentFive in studentList">{{studentFive.name}}</md-option>
                   </md-select>
                   <md-select placeholder="Student" ng-model="studentSix" style="min-width: 200px">
+                    <md-option value="">None</md-option>
                     <md-option ng-value="studentSix" ng-repeat="studentSix in studentList">{{studentSix.name}}</md-option>
                   </md-select>
                 </div>
@@ -223,7 +231,7 @@
         </div>
       </md-dialog-content>
       <md-dialog-actions layout="row">
-        <md-button class="md-primary md-raised" ng-click="createteam()">
+        <md-button class="md-primary md-raised" ng-disabled="createForm.$invalid" ng-click="createteam()">
           Create
         </md-button>
       </md-dialog-actions>
@@ -237,7 +245,7 @@
 <div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
 
   <script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Team">
-    <form ng-cloak>
+    <form name="editForm" ng-cloak>
       <md-toolbar>
         <div class="md-toolbar-tools">
           <h2>Edit Team</h2>
@@ -267,8 +275,7 @@
 
                   <md-input-container>
                     <label>Course</label>
-                    <md-select placeholder="Course" ng-model="course" style="min-width:200px">
-                      <md-option value="">None</md-option>
+                    <md-select placeholder="Course" ng-model="course" style="min-width:200px" required>
                       <md-option ng-selected = "course.name === team.course"
                       ng-value="course" ng-repeat="course in courseList">{{course.name}}</md-option>
                     </md-select>
@@ -322,8 +329,8 @@
       </md-dialog-content>
 
       <md-dialog-actions layout="row">
-        <md-button class="md-primary md-raised" ng-click="editteam()">
-          Edit
+        <md-button class="md-primary md-raised" ng-disabled="editForm.$invalid" ng-click="editteam()">
+          Save
         </md-button>
       </md-dialog-actions>
 

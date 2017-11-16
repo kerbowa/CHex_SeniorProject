@@ -141,9 +141,9 @@ angular.module('clientApp')
             data: $scope.team,
             headers: {'Content-Type': 'application/json'}
           })
-          $scope.initFirst();
           $mdDialog.hide();
         };
+        $scope.initFirst();
       }
 
      $scope.showEdit = function(ev, team, course, advisor, client, student) {
@@ -166,6 +166,7 @@ angular.module('clientApp')
        .then(function() {
        }, function() {
          $scope.status = 'You cancelled the dialog.';
+         $scope.initFirst();
        });
      };
 
