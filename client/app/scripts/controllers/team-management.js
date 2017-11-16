@@ -247,9 +247,45 @@ angular.module('clientApp')
 }])
 
   .config(function($mdThemingProvider) {
+    $mdThemingProvider.definePalette('mcgpalette0', {
+      '50': 'e1e7e5',
+      '100': 'b4c4be',
+      '200': '829c93',
+      '300': '4f7468',
+      '400': '2a5747',
+      '500': '043927',
+      '600': '033323',
+      '700': '032c1d',
+      '800': '022417',
+      '900': '01170e',
+      'A100': '57ff9d',
+      'A200': '24ff7f',
+      'A400': '00f064',
+      'A700': '00d659',
+      'contrastDefaultColor': 'light',
+      'contrastDarkColors': [
+        '50',
+        '100',
+        '200',
+        'A100',
+        'A200',
+        'A400',
+        'A700'
+      ],
+      'contrastLightColors': [
+        '300',
+        '400',
+        '500',
+        '600',
+        '700',
+        '800',
+        '900'
+      ]
+    });
+
     $mdThemingProvider.theme('default')
-      .primaryPalette('green', {
-        'default': '900'
+      .primaryPalette('mcgpalette0', {
+        'default': '500'
       })
       .accentPalette('grey');
     $mdThemingProvider.theme('docs-dark')

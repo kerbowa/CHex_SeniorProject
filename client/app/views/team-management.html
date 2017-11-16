@@ -317,6 +317,16 @@
 
                       </md-select>
                     </md-input-container>
+
+                    <md-input-container>
+                      <md-select placeholder="Student" ng-model="student" style="min-width: 500px">
+
+                        <md-option value="">None</md-option>
+                        <md-option ng-value="student" ng-repeat="student in studentList">{{student.name}}</md-option>
+
+                      </md-select>
+                    </md-input-container>
+                    
                   </div>
 
                 </md-list-item>
