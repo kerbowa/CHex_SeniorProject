@@ -37,7 +37,7 @@
         <tbody md-body>
           <tr md-row ng-repeat="team in teamList" ng-if="team.course === '190'">
             <td md-cell width="">
-              <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, student)">
+              <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, studentList)">
                 <i class="material-icons" aria-label="Edit Team">edit</i>
               </md-button>
             </td>
@@ -82,7 +82,7 @@
         <tbody md-body>
           <tr md-row ng-repeat="team in teamList" ng-if="team.course === '191'">
             <td md-cell width="">
-              <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, student)">
+              <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, studentList)">
                 <i class="material-icons" aria-label="Edit Team">edit</i>
               </md-button>
             </td>
@@ -126,7 +126,7 @@
         <tbody md-body>
           <tr md-row ng-repeat="team in teamList" ng-if="team.course === 'Retired'">
             <td md-cell width="">
-              <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, student)">
+              <md-button class="md-icon-button" ng-click="showEdit($event, team, course, advisor, client, studentList)">
                 <i class="material-icons" aria-label="Edit Team">edit</i>
               </md-button>
             </td>
