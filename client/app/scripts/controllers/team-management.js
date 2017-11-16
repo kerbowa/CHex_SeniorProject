@@ -146,7 +146,9 @@ angular.module('clientApp')
         };
       }
 
-     $scope.showEdit = function(ev, team, course, advisor, client, student) {
+     $scope.showEdit = function(ev, team, course, advisor, client, studentOne, studentTwo,
+       studentThree, studentFour, studentFive, studentSix) {
+
        $mdDialog.show({
          controller: EditController,
          templateUrl: 'dialog2.tmpl.html',
@@ -159,7 +161,12 @@ angular.module('clientApp')
            selectedCourse: course,
            selectedAdvisor: advisor,
            selectedClient: client,
-           selectedStudent: student
+           selectedStudentOne: studentOne,
+           selectedStudentTwo: studentTwo,
+           selectedStudentThree: studentThree,
+           selectedStudentFour: studentFour,
+           selectedStudentFive: studentFive,
+           selectedStudentSix: studentSix
          },
          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
        })
@@ -170,13 +177,20 @@ angular.module('clientApp')
        });
      };
 
-      function EditController($scope, $mdDialog, selectedTeam, selectedCourse, selectedAdvisor, selectedClient, selectedStudent) {
+      function EditController($scope, $mdDialog, selectedTeam, selectedCourse, selectedAdvisor, selectedClient,
+        selectedStudentOne, selectedStudentTwo, selectedStudentThree, selectedStudentFour, selectedStudentFive,
+        selectedStudentSix) {
        $scope.team = selectedTeam;
        $scope.course = selectedCourse;
        $scope.advisor = selectedAdvisor;
        $scope.client = selectedClient;
-       $scope.student = selectedStudent;
-       console.log(selectedStudent);
+       $scope.studentOne = selectedStudentOne;
+       $scope.studentTwo = selectedStudentTwo;
+       $scope.studentThree = selectedStudentThree;
+       $scope.studentFour = selectedStudentFour;
+       $scope.studentFive = selectedStudentFive;
+       $scope.studentSix = selectedStudentSix;
+
        $scope.hide = function() {
          $mdDialog.hide();
        };
@@ -186,7 +200,9 @@ angular.module('clientApp')
        $scope.editteam = function() {
          $scope.statusMsg = 'Sending data to server...';
          var Indata = {'param1': $scope.team, 'param2': $scope.course, 'param3': $scope.advisor,
-            'param4': $scope.client, 'param5': $scope.student};
+             'param4': $scope.client, 'param5': $scope.studentOne, 'param6': $scope.studentTwo,
+             'param7': $scope.studentThree, 'param8': $scope.studentFour, 'param9': $scope.studentFive,
+             'param10': $scope.studentSix};
           $http({
             url: '/api/editteam',
             method: 'POST',
