@@ -9,7 +9,7 @@ router.post('/', function(req, res) {
   var db = new sqlite3.Database('database/chex.db');
 
   // team name
-  var teamName = req.body.param1.name;
+  var team = req.body.param1;
   // course
   var course = req.body.param2.name;
   // tb generated
@@ -46,59 +46,71 @@ router.post('/', function(req, res) {
   if (req.body.param10 != null) {
     var studentSix = req.body.param10.student_id;
   }
-  // update team faculty advisor and client
-db.serialize(function() {  db.run('DELETE FROM TEAM WHERE ID = ?', [req.body.param1.team_id], function(err, result) {
+
+  db.all('UPDATE STUDENT SET TEAM_ID = null WHERE STUDENT_ID = ?', team.team_id, function(err, result) {
     if (err) throw err;
   });
 
   db.run(
-    'INSERT INTO TEAM (NAME, COURSE, TB_GENERATED, ADVISOR_ID, CLIENT_ID) VALUES (?, ?, ?, ?, ?)',
-    [teamName, course, 0, advisorId, clientId], function(err, result) {
-      if (err) {
-        throw err;
-      } else {
-        // get record of newly created team
-        db.all(
-          'SELECT * FROM TEAM WHERE ID = (SELECT MAX(ID) FROM TEAM)',
-           function(err, rows) {
-              if (err) {
-                throw err;
-              } else {
-                db.run(
-                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
-                   rows[0].ID, studentOne, function(err, result) {
-                     if (err) throw err;
-                });
-                db.run(
-                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
-                   rows[0].ID, studentTwo, function(err, result) {
-                     if (err) throw err;
-                });
-                db.run(
-                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
-                   rows[0].ID, studentThree, function(err, result) {
-                     if (err) throw err;
-                });
-                db.run(
-                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
-                   rows[0].ID, studentFour, function(err, result) {
-                     if (err) throw err;
-                });
-                db.run(
-                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
-                   rows[0].ID, studentFive, function(err, result) {
-                     if (err) throw err;
-                });
-                db.run(
-                  'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
-                   rows[0].ID, studentSix, function(err, result) {
-                     if (err) throw err;
-                });
-              }
-        });
-      }
+    'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+     team.team_id, studentOne, function(err, result) {
+       if (err) throw err;
   });
-})
+
+  db.run(
+    'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+     team.team_id, studentTwo, function(err, result) {
+       if (err) throw err;
+  });
+
+  db.run(
+    'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+     team.team_id, studentThree, function(err, result) {
+       if (err) throw err;
+  });
+
+  db.run(
+    'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+     team.team_id, studentFour, function(err, result) {
+       if (err) throw err;
+  });
+
+  db.run(
+    'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+     team.team_id, studentFive, function(err, result) {
+       if (err) throw err;
+  });
+
+  db.run(
+    'UPDATE STUDENT SET TEAM_ID = ? WHERE STUDENT_ID = ?',
+     team.team_id, studentSix, function(err, result) {
+       if (err) throw err;
+  });
+
+  db.run(
+    'UPDATE TEAM SET NAME = ? WHERE ID = ?',
+    team.name, team.team_id, function(err, result) {
+      if (err) throw err;
+    });
+
+  db.run(
+    'UPDATE TEAM SET ADVISOR_ID = ? WHERE ID = ?',
+    advisorId, team.team_id, function(err, result) {
+      if (err) throw err;
+    });
+
+    db.run(
+      'UPDATE TEAM SET CLIENT_ID = ? WHERE ID = ?',
+      clientId, team.team_id, function(err, result) {
+        if (err) throw err;
+      });
+
+      db.run(
+        'UPDATE TEAM SET COURSE = ? WHERE ID = ?',
+        course, team.team_id, function(err, result) {
+          if (err) throw err;
+        });
+
   db.close();
   res.sendStatus(200);
 });
