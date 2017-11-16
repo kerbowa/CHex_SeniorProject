@@ -146,8 +146,7 @@ angular.module('clientApp')
         };
       }
 
-     $scope.showEdit = function(ev, team, course, advisor, client, studentOne, studentTwo,
-       studentThree, studentFour, studentFive, studentSix) {
+     $scope.showEdit = function(ev, team, course, advisor, client, studentList) {
 
        $mdDialog.show({
          controller: EditController,
@@ -161,12 +160,7 @@ angular.module('clientApp')
            selectedCourse: course,
            selectedAdvisor: advisor,
            selectedClient: client,
-           selectedStudentOne: studentOne,
-           selectedStudentTwo: studentTwo,
-           selectedStudentThree: studentThree,
-           selectedStudentFour: studentFour,
-           selectedStudentFive: studentFive,
-           selectedStudentSix: studentSix
+           selectedStudentList: studentList
          },
          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
        })
@@ -178,18 +172,26 @@ angular.module('clientApp')
      };
 
       function EditController($scope, $mdDialog, selectedTeam, selectedCourse, selectedAdvisor, selectedClient,
-        selectedStudentOne, selectedStudentTwo, selectedStudentThree, selectedStudentFour, selectedStudentFive,
-        selectedStudentSix) {
+        selectedStudentList) {
        $scope.team = selectedTeam;
        $scope.course = selectedCourse;
        $scope.advisor = selectedAdvisor;
        $scope.client = selectedClient;
-       $scope.studentOne = selectedStudentOne;
-       $scope.studentTwo = selectedStudentTwo;
-       $scope.studentThree = selectedStudentThree;
-       $scope.studentFour = selectedStudentFour;
-       $scope.studentFive = selectedStudentFive;
-       $scope.studentSix = selectedStudentSix;
+       $scope.studentList = selectedStudentList;
+
+       $scope.teamMembers = [];
+       for (var i = 0; i < $scope.studentList.length; i++) {
+         if ($scope.studentList[i].team === $scope.team.team_id) {
+           $scope.teamMembers.push($scope.studentList[i]);
+         }
+       };
+
+       $scope.studentOne = $scope.teamMembers[0];
+       $scope.studentTwo = $scope.teamMembers[1];
+       $scope.studentThree = $scope.teamMembers[2];
+       $scope.studentFour = $scope.teamMembers[3];
+       $scope.studentFive = $scope.teamMembers[4];
+       $scope.studentSix = $scope.teamMembers[5];
 
        $scope.hide = function() {
          $mdDialog.hide();
