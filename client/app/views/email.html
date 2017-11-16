@@ -1,4 +1,15 @@
-<form name="emailForm" ng-app="clientApp" ng-controller="EmailCtrl" ng-submit="email()" method="post">
+<form name="emailForm" ng-app="clientApp" ng-controller="EmailCtrl" ng-init="init()" ng-submit="sendMail()" method="post">
+
+	<!-- SHOW YOUR FORMDATA OBJECT -->
+	<!--
+	<h2>Form Object being sent to Angular and Node</h2>
+	<pre>
+		Recipient List: {{emailList}}
+		
+		Email Info: {{emailFormData}}
+	</pre>
+	-->
+
 	<!-- Email Recipients -->
 	<span>Email Recipient:</span><br>
 	
@@ -25,9 +36,14 @@
 								<div class="panel panel-default panel-table">
 									<div class="panel-body">
 										<div class="tr">
-											<div class="td allChkbx"><input type="checkbox" ng-model="all" value="AllMembers"><span class="chkbxLabel">All Members</span></div>
+											<div class="td allChkbx">
+												<input type="checkbox" ng-model="checkall" ng-click="checkUncheckAll()">
+												<span class="chkbxLabel">All Members</span>
+											</div>
 											<div class="td" ng-repeat="student in studentList" ng-if="student.team === team.team_id">
-												<input type="checkbox" ng-checked="all" value="{{student.email}}"><span class="chkbxLabel">{{student.name}}</span>
+												<input type="checkbox" ng-model="student.checked" ng-checked="selection.indexOf(student) > -1" ng-click="toggleSelection(student)">
+												<span class="chkbxLabel">{{student.name}}</span>
+												<footer style="text-align: center;"><span class="email">{{student.email}}</span></footer>
 											</div>
 										</div>
 									</div>
@@ -53,9 +69,14 @@
 					<div class="panel panel-default panel-table">
 						<div class="panel-body">
 							<div class="tr">
-								<div class="td allChkbx"><input type="checkbox" ng-model="all" value="AllClients"><span class="chkbxLabel">All Clients</span></div>
+								<div class="td allChkbx">
+									<input type="checkbox" ng-model="checkall" ng-click="checkUncheckAll()">
+									<span class="chkbxLabel">All Clients</span>
+									</div>
 								<div class="td" ng-repeat="client in clientList">
-									<input type="checkbox" ng-checked="all" value="{{client.email}}"><span class="chkbxLabel">{{client.name}}</span>
+									<input type="checkbox" ng-model="client.checked" ng-checked="selection.indexOf(client) > -1" ng-click="toggleSelection(client)">
+									<span class="chkbxLabel">{{client.name}}</span><br>
+									<footer style="text-align: center;"><span class="email">{{client.email}}</span></footer>
 								</div>
 							</div>
 						</div>
@@ -78,9 +99,14 @@
 					<div class="panel panel-default panel-table">
 						<div class="panel-body">
 							<div class="tr">
-								<div class="td allChkbx"><input type="checkbox" ng-model="all" value="AllAdvisors"><span class="chkbxLabel">All Advisors</span></div>
+								<div class="td allChkbx">
+									<input type="checkbox" ng-model="checkall" ng-click="checkUncheckAll()">
+									<span class="chkbxLabel">All Advisors</span>
+								</div>
 								<div class="td" ng-repeat="advisor in advisorList">
-									<input type="checkbox" ng-checked="all" value="{{advisor.email}}"><span class="chkbxLabel">{{advisor.name}}</span>
+									<input type="checkbox" ng-model="advisor.checked" ng-checked="advisor.indexOf(student) > -1" ng-click="toggleSelection(advisor)">
+									<span class="chkbxLabel">{{advisor.name}}</span><br>
+									<footer style="text-align: center;"><span class="email">{{advisor.email}}</span></footer>
 								</div>
 							</div>
 						</div>
@@ -92,12 +118,11 @@
 
 	<!-- Subject Line -->
 	<span>Subject:</span><br>
-	<input name="subject" id="subject" ng-model="EmailCtrl.subject" type="text" size="70" maxlength="256"><p>
+	<input name="subject" id="subject" ng-model="emailFormData.subject" type="text" size="70" maxlength="256"><p>
 
 	<!-- Message -->
 	<span>Message:</span><br>
-	<textarea name="textbody" id="textbody" ng-model="EmailCtrl.textbody" rows="10" cols="70"></textarea><p>
+	<textarea name="textbody" id="textbody" ng-model="emailFormData.textbody" rows="10" cols="70"></textarea><p>
 
-	<md-button type="submit" value="Submit" class="md-raised md-default">Submit</md-button>
-	<md-button type="reset" value="Reset" class="md-raised md-default">Reset</md-button>
+	<md-button type="submit" value="Submit" class="md-raised md-default">Submit</md-button><span>{{emailStatus}}</span>
 </form>
