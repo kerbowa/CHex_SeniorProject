@@ -5,14 +5,14 @@
 	<h2>Form Object being sent to Angular and Node</h2>
 	<pre>
 		Recipient List: {{emailList}}
-		
+
 		Email Info: {{emailFormData}}
 	</pre>
 	-->
 
 	<!-- Email Recipients -->
 	<span>Email Recipient:</span><br>
-	
+
 	<!-- Teams/Students -->
 	<div class="panel panel-default panel-table">
 		<!-- add 'multiple' attribute to allow multiple sections to open at once -->
@@ -37,11 +37,11 @@
 									<div class="panel-body">
 										<div class="tr">
 											<div class="td allChkbx">
-												<input type="checkbox" ng-model="checkall" ng-click="checkUncheckAll()">
+												<input type="checkbox" select-all="{{team.name}}{{team.team_id}}">
 												<span class="chkbxLabel">All Members</span>
 											</div>
 											<div class="td" ng-repeat="student in studentList" ng-if="student.team === team.team_id">
-												<input type="checkbox" ng-model="student.checked" ng-checked="selection.indexOf(student) > -1" ng-click="toggleSelection(student)">
+												<input type="checkbox" ng-model="student.checked" rel="{{team.name}}{{team.team_id}}">
 												<span class="chkbxLabel">{{student.name}}</span>
 												<footer style="text-align: center;"><span class="email">{{student.email}}</span></footer>
 											</div>
@@ -55,7 +55,7 @@
 			</v-pane>
 		</v-accordion>
 	</div>
-	
+
 	<!-- Clients -->
 	<div class="panel panel-default panel-table">
 		<!-- add 'multiple' attribute to allow multiple sections to open at once -->
@@ -85,7 +85,7 @@
 			</v-pane>
 		</v-accordion>
 	</div>
-	
+
 	<!-- Faculty Advisors -->
 	<div class="panel panel-default panel-table">
 		<!-- add 'multiple' attribute to allow multiple sections to open at once -->
