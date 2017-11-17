@@ -53,8 +53,14 @@
             <td ng-repeat="advisor in advisorList" ng-if="advisor.advisor_id === team.advisor" md-cell>
               {{ advisor.name }}
             </td>
+            <td ng-if="team.advisor === null" md-cell>
+              None
+            </td>
             <td ng-repeat="client in clientList" ng-if="client.client_id === team.client" md-cell>
               {{ client.name }}
+            </td>
+            <td ng-if="team.client === null" md-cell>
+              None
             </td>
             <td ng-repeat="student in studentList" ng-if="student.team === team.team_id" md-cell>{{student.name}}</td>
           </tr>
@@ -98,8 +104,14 @@
             <td ng-repeat="advisor in advisorList" ng-if="advisor.advisor_id === team.advisor" md-cell>
               {{ advisor.name }}
             </td>
+            <td ng-if="team.advisor === null" md-cell>
+              None
+            </td>
             <td ng-repeat="client in clientList" ng-if="client.client_id === team.client" md-cell>
               {{ client.name }}
+            </td>
+            <td ng-if="team.client === null" md-cell>
+              None
             </td>
             <td ng-repeat="student in studentList" ng-if="student.team === team.team_id" md-cell>{{student.name}}</td>
           </tr>
@@ -142,8 +154,14 @@
             <td ng-repeat="advisor in advisorList" ng-if="advisor.advisor_id === team.advisor" md-cell>
               {{ advisor.name }}
             </td>
+            <td ng-if="team.advisor === null" md-cell>
+              None
+            </td>
             <td ng-repeat="client in clientList" ng-if="client.client_id === team.client" md-cell>
               {{ client.name }}
+            </td>
+            <td ng-if="team.client === null" md-cell>
+              None
             </td>
             <td ng-repeat="student in studentList" ng-if="student.team === team.team_id" md-cell>{{student.name}}</td>
           </tr>
