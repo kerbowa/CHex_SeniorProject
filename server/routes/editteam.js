@@ -47,8 +47,6 @@ router.post('/', function(req, res) {
     var studentSix = req.body.param10.student_id;
   }
 
-db.serialize(function() {
-
   db.each('UPDATE STUDENT SET TEAM_ID = null WHERE TEAM_ID = ?', team.team_id, function(err, result) {
     if (err) throw err;
   });
@@ -112,8 +110,6 @@ db.serialize(function() {
     course, team.team_id, function(err, result) {
       if (err) throw err;
   });
-
-})
 
   db.close();
   res.sendStatus(200);
