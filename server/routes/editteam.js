@@ -49,7 +49,7 @@ router.post('/', function(req, res) {
 
 db.serialize(function() {
 
-  db.all('UPDATE STUDENT SET TEAM_ID = null WHERE TEAM_ID = ?', team.team_id, function(err, result) {
+  db.each('UPDATE STUDENT SET TEAM_ID = null WHERE TEAM_ID = ?', team.team_id, function(err, result) {
     if (err) throw err;
   });
 
@@ -93,13 +93,13 @@ db.serialize(function() {
     'UPDATE TEAM SET NAME = ? WHERE ID = ?',
     team.name, team.team_id, function(err, result) {
       if (err) throw err;
-    });
+  });
 
   db.run(
     'UPDATE TEAM SET ADVISOR_ID = ? WHERE ID = ?',
     advisorId, team.team_id, function(err, result) {
       if (err) throw err;
-    });
+  });
 
   db.run(
     'UPDATE TEAM SET CLIENT_ID = ? WHERE ID = ?',
