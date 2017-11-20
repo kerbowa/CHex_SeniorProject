@@ -36,12 +36,11 @@ Filter:
 							<input type="text" ng-show="editMode" ng-model="s.email" ng-required />
 						</div>
 						<div class="td">
-							<span ng-hide="editMode">{{ s.team }}</span>
-							<input type="text" ng-show="editMode" ng-model="s.team" />
+							{{ s.team }}
 						</div>
 						<div class="td">
-							<button type="submit" ng-hide="editMode" ng-click="editMode = true; editAppKey(entry)" class="btn btn-default">Edit</button>
-							<button type="submit" ng-show="editMode" ng-click="editMode = false" class="btn btn-default">Save</button>
+							<button type="submit" ng-hide="editMode" ng-click="editMode = true; edit(s)" class="btn btn-default">Edit</button>
+							<button type="submit" ng-show="editMode" ng-click="editMode = false; editstudent(s)" class="btn btn-default">Save</button>
 							<button type="submit" ng-show="editMode" ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
 						</div>
 						<div class="td">
