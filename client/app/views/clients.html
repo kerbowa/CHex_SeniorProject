@@ -26,29 +26,32 @@
             </div>
           </div>
           <div class="panel-body">
-            <div class="tr" ng-repeat="c in clients.clientNames | orderBy:sortField:reverseOrder | filter:filter">
+            <div class="tr" ng-repeat="c in clients.clientNames | filter:filter" ng-init="initFirst()">
               <div class="td">{{ c.client_id }}</div>
               <div class="td" >{{ c.name}}</div>
               <div class="td" >{{ c.email }}</div>
               <div class="td" >{{ c.status }}</div>
-              <div class="td" align="center"><md-button ng-click="editClient()">Edit</md-button></div>
-              <div class="td" align="center"><md-button ng-click="deleteClient()">Delete</md-button></div>
+              <div class="td" align="center"> <md-button class="md-icon-button" ng-click="showEdit($event, c.client_id, c.name, c.email, c.status)"><i class="material-icons" aria-label="Edit Client">edit</i>
+              </md-button></div>
+              <div class="td" align="center"><md-button class="md-icon-button" ng-click="showDeleteConfirm($event, c.client_id)"><i class="material-icons" aria-label="Delete Client">delete</i>
+              </md-button></div>
             </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  
 
-<!-- Create Client Pop-up -->
+<!-- Create Client -->
     
 <div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
 
-  <script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Create Team">
+  <script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Create Client">
     <form name="createForm" ng-cloak>
       <md-toolbar>
         <div class="md-toolbar-tools">
-          <h2>Create Team</h2>
+          <h2>Create Client</h2>
           <span flex></span>
           <md-button class="md-icon-button" ng-click="cancel()">
             <i class="material-icons" aria-label="Close dialog">clear</i>
@@ -63,17 +66,22 @@
 
             <div layout-padding="">
                 <md-input-container>
-                  <input placeholder="Client Name" ng-model="client.name" style="min-width: 500px" required>
+                  <input placeholder="Name" ng-model="client.name" style="min-width: 500px" required>
                 </md-input-container>
               </div>
               <div layout-padding="">
                 <md-input-container>
-                  <input placeholder="Client Email" ng-model="client.email" style="min-width: 500px" required>
+                  <input placeholder="Email" ng-model="client.email" style="min-width: 500px" required>
                 </md-input-container>
               </div>
               <div layout-padding="">
                 <md-input-container>
-                  <input placeholder="Client Status" ng-model="client.status" style="min-width: 500px" required>
+                
+                    <md-select placeholder="Status" ng-model="client.status" style="min-width: 250px" required>
+                      <md-option value="Available">Available</md-option>
+                      <md-option value="Active">Active</md-option>
+                      <md-option value="In-active">In-active</md-option>
+                    </md-select>
                 </md-input-container>
               </div>
             </div>
@@ -89,3 +97,73 @@
    </md-dialog>
   </script>
 </div>
+
+
+<!-- Edit Client -->
+
+<div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="" ng-controller="ClientsCtrl">
+
+  <script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Client">
+    <form name="editForm" ng-cloak>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Edit Client</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()">
+            <i class="material-icons" aria-label="Close Dialog">&#xE5CD;</i>
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <md-dialog-content>
+        <div class="md-dialog-content" >
+          <md-form>
+            <div layout-align="center center">
+
+              <md-content layout-padding="">
+                <div>
+                  <md-input-container>
+                    <label>Name</label>
+                    <input ng-model="cname" style="min-width:500px" required>
+                  </md-input-container>
+                </div>
+              </md-content>
+
+              <md-content layout-padding="">
+                <div>
+                  <md-input-container>
+                    <label>Email</label>
+                    <input ng-model="cemail" style="min-width:500px" required>
+                  </md-input-container>
+                </div>
+              </md-content>
+
+              <md-content layout-padding="">
+                <div>
+                  <md-input-container>
+                    <label>Status</label>
+                      <md-select placeholder="Client Status" ng-model="cstatus" style="min-width: 250px" required>
+                      <md-option value="Available" >Available</md-option>
+                      <md-option value="Active">Active</md-option>
+                      <md-option value="In-active">In-active</md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+              </md-content>
+             
+          </md-form>
+        </div>
+      </md-dialog-content>
+
+      <md-dialog-actions layout="row">
+        <md-button class="md-primary md-raised" ng-disabled="editForm.$invalid" ng-click="editclient()">
+          Save
+        </md-button>
+      </md-dialog-actions>
+
+    </form>
+   </md-dialog>
+  </script>
+</div>
+
+
