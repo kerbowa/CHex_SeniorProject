@@ -2,19 +2,24 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var path = require('path');
-var hostname = "localhost:3000";
+var hostname = "localhost:9000";
 
 router.post('/', function(req, res) {
   var sqlite3 = require('sqlite3').verbose();
   var db = new sqlite3.Database('database/chex.db');
 
-  var ID = req.body.id;
 
-  db.run('DELETE FROM ADVISOR WHERE rowid=?', ID, function(err, result) {
+  // advisor name
+  var advisorname = req.body.advisorname;
+  // advisor email
+  var advisoremail = req.body.advisoremail;
+
+  db.run('INSERT INTO ADVISOR(NAME, EMAIL) VALUES (?, ?)', [advisorname, advisoremail], function(err, result) {
     if (err) throw err;
-    db.close();
-    res.sendStatus(200);
   });
+
+  console.log();
+  db.close();
 });
 
 module.exports = router;

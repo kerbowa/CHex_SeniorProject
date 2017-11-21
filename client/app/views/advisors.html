@@ -1,17 +1,17 @@
 <div class="navBardemoBasicUsage" ng-init="initFirst()">
 <md-toolbar class="md-theme-light">
     <div class="md-toolbar-tools">
-      <h2 class="md-flex">Clients</h2>
+      <h2 class="md-flex">Advisors</h2>
       <span flex=""></span>
     </div>
   </md-toolbar>
-   <md-button style="float: right;" class="md-primary md-raised" aria-label="Create Client" ng-click="showCreate($event)">
-      Create Client
+   <md-button style="float: right;" class="md-primary md-raised" aria-label="Create Advisor" ng-click="showCreate($event)">
+      Create Advisor
     </md-button>
   <h3 ></h3>
   Filter: 
   <input type="text" ng-model="filter" /> 
-  <div class="container-fluid" style="margin-top:20px" ng-controller="ClientsCtrl">
+  <div class="container-fluid" style="margin-top:20px" ng-controller="AdvisorCtrl">
     <div class="row">
       <div class="col col-12 col-md-auto">
         <div class="panel panel-default panel-table">
@@ -20,20 +20,19 @@
               <div class="td" >ID</div>
               <div class="td" align="center">Name</div>
               <div class="td" align="center">Email</div>
-              <div class="td" align="center">Status</div>
               <div class="td" align="center">Edit</div>
               <div class="td" align="center">Delete</div>
             </div>
           </div>
           <div class="panel-body">
-            <div class="tr" ng-repeat="c in clients.clientNames | filter:filter" ng-init="initFirst()">
-              <div class="td">{{ c.client_id }}</div>
-              <div class="td" >{{ c.name}}</div>
-              <div class="td" >{{ c.email }}</div>
-              <div class="td" >{{ c.status }}</div>
-              <div class="td" align="center"> <md-button class="md-icon-button" ng-click="showEdit($event, c.client_id, c.name, c.email, c.status)"><i class="material-icons" aria-label="Edit Client">edit</i>
+            <div class="tr" ng-repeat="a in advisors.advisorNames | filter:filter" ng-init="initFirst()">
+              <div class="td">{{ a.advisor_id }}</div>
+              <div class="td" >{{ a.name}}</div>
+              <div class="td" >{{ a.email }}</div>
+             
+              <div class="td" align="center"> <md-button class="md-icon-button" ng-click="showEdit($event, a.advisor_id, a.name, a.email)"><i class="material-icons" aria-label="Edit Advisor">edit</i>
               </md-button></div>
-              <div class="td" align="center"><md-button class="md-icon-button" ng-click="showDeleteConfirm($event, c.client_id)"><i class="material-icons" aria-label="Delete Client">delete</i>
+              <div class="td" align="center"><md-button class="md-icon-button" ng-click="showDeleteConfirm($event, a.advisor_id)"><i class="material-icons" aria-label="Delete Advisor">delete</i>
               </md-button></div>
             </div>
             </div>
@@ -43,15 +42,15 @@
     </div>
   
 
-<!-- Create Client -->
+<!-- Create Advisor -->
     
 <div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
 
-  <script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Create Client">
+  <script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Create Advisor">
     <form name="createForm" ng-cloak>
       <md-toolbar>
         <div class="md-toolbar-tools">
-          <h2>Create Client</h2>
+          <h2>Create Advisor</h2>
           <span flex></span>
           <md-button class="md-icon-button" ng-click="cancel()">
             <i class="material-icons" aria-label="Close dialog">clear</i>
@@ -63,25 +62,14 @@
         <div class="md-dialog-content">
           <md-form>
             <div layout-align="center center">
-
             <div layout-padding="">
                 <md-input-container>
-                  <input placeholder="Name" ng-model="client.name" style="min-width: 500px" required>
+                  <input placeholder="Name" ng-model="advisor.name" style="min-width: 500px" required>
                 </md-input-container>
               </div>
               <div layout-padding="">
                 <md-input-container>
-                  <input placeholder="Email" ng-model="client.email" style="min-width: 500px" required>
-                </md-input-container>
-              </div>
-              <div layout-padding="">
-                <md-input-container>
-                
-                    <md-select placeholder="Status" ng-model="client.status" style="min-width: 250px" required>
-                      <md-option value="Available">Available</md-option>
-                      <md-option value="Active">Active</md-option>
-                      <md-option value="In-active">In-active</md-option>
-                    </md-select>
+                  <input placeholder="Email" ng-model="advisor.email" style="min-width: 500px" required>
                 </md-input-container>
               </div>
             </div>
@@ -89,7 +77,7 @@
         </div>
       </md-dialog-content>
       <md-dialog-actions layout="row">
-        <md-button class="md-primary md-raised" ng-disabled="createForm.$invalid" ng-click="createclient()">
+        <md-button class="md-primary md-raised" ng-disabled="createForm.$invalid" ng-click="createadvisor()">
           Create
         </md-button>
       </md-dialog-actions>
@@ -98,16 +86,15 @@
   </script>
 </div>
 
+<!-- Edit Advisor -->
 
-<!-- Edit Client -->
+<div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="" ng-controller="AdvisorCtrl">
 
-<div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="" ng-controller="ClientsCtrl">
-
-  <script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Client">
+  <script type="text/ng-template" id="dialog2.tmpl.html"><md-dialog aria-label="Edit Advisor">
     <form name="editForm" ng-cloak>
       <md-toolbar>
         <div class="md-toolbar-tools">
-          <h2>Edit Client</h2>
+          <h2>Edit Advisor</h2>
           <span flex></span>
           <md-button class="md-icon-button" ng-click="cancel()">
             <i class="material-icons" aria-label="Close Dialog">&#xE5CD;</i>
@@ -124,7 +111,7 @@
                 <div>
                   <md-input-container>
                     <label>Name</label>
-                    <input ng-model="cname" style="min-width:500px" required>
+                    <input ng-model="aname" style="min-width:500px" required>
                   </md-input-container>
                 </div>
               </md-content>
@@ -133,20 +120,7 @@
                 <div>
                   <md-input-container>
                     <label>Email</label>
-                    <input ng-model="cemail" style="min-width:500px" required>
-                  </md-input-container>
-                </div>
-              </md-content>
-
-              <md-content layout-padding="">
-                <div>
-                  <md-input-container>
-                    <label>Status</label>
-                      <md-select placeholder="Client Status" ng-model="cstatus" style="min-width: 250px" required>
-                      <md-option value="Available" >Available</md-option>
-                      <md-option value="Active">Active</md-option>
-                      <md-option value="In-active">In-active</md-option>
-                    </md-select>
+                    <input ng-model="aemail" style="min-width:500px" required>
                   </md-input-container>
                 </div>
               </md-content>
@@ -154,9 +128,8 @@
           </md-form>
         </div>
       </md-dialog-content>
-
       <md-dialog-actions layout="row">
-        <md-button class="md-primary md-raised" ng-disabled="editForm.$invalid" ng-click="editclient()">
+        <md-button class="md-primary md-raised" ng-disabled="editForm.$invalid" ng-click="editadvisor()">
           Save
         </md-button>
       </md-dialog-actions>

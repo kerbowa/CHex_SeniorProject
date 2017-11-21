@@ -119,6 +119,12 @@ angular
         controller: 'StudentsCtrl',
         controllerAs: 'students'
       })
+       .state('dashboard.advisors', {
+        url: '/dashboard/advisors',
+        templateUrl: 'views/advisors.html',
+        controller: 'AdvisorCtrl',
+        controllerAs: 'advisors'
+      })
       .state('dashboard.clients', {
         url: '/dashboard/clients',
         templateUrl: 'views/clients.html',
