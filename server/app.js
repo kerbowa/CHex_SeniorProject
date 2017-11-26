@@ -83,6 +83,19 @@ app.use('/api/deletecontent', deletecontent);
 app.use('/api/migrateteams', migrateteams);
 app.use('/api/deleteteam', deleteteam);
 
+// File upload for bulk add students
+var multer  = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './server/media/uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname+ '-' + Date.now()+'.jpg')
+    }
+});
+var upload = multer({ storage: storage });
+app.post('/multer', upload.single('file'));
+
 if (app.get('env') === 'production') {
 
   // production error handler

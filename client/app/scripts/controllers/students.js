@@ -7,7 +7,7 @@
  * # StudentsCtrl
  * Controller of the clientApp
  */
-angular.module('clientApp')
+angular.module('clientApp', [])
   .controller('StudentsCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
 
   var req = $http.get('/api/getstudents');
@@ -58,6 +58,24 @@ angular.module('clientApp')
     });
     req.catch(function (err) {
       console.log(err);
+    });
+  }
+
+  $scope.upload = function() {
+    var file = $scope.myFile;
+    var uploadUrl = "/multer";
+    var fd = new FormData();
+    fd.append('file', file);
+
+    $http.post(uploadUrl,fd, {
+        transformRequest: angular.identity,
+        headers: {'Content-Type': undefined}
+    })
+    .success(function(){
+      console.log("success!!");
+    })
+    .error(function(){
+      console.log("error!!");
     });
   }
 }]);

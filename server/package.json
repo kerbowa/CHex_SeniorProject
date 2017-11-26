@@ -21,6 +21,7 @@
     "jszip": "^2.6.1",
     "lodash": "^4.17.4",
     "morgan": "~1.8.1",
+    "ng-file-upload": "^12.2.13",
     "nodemailer": "^4.3.1",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.0",
