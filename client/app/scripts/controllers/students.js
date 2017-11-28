@@ -7,7 +7,7 @@
  * # StudentsCtrl
  * Controller of the clientApp
  */
-angular.module('clientApp', [])
+angular.module('clientApp')
   .controller('StudentsCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
 
   var req = $http.get('/api/getstudents');
