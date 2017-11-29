@@ -63,7 +63,7 @@ angular.module('clientApp')
 
   $scope.upload = function() {
     var file = $scope.myFile;
-    var uploadUrl = "/multer";
+    var uploadUrl = "/api/uploadstudents";
     var fd = new FormData();
     fd.append('file', file);
 
@@ -71,11 +71,11 @@ angular.module('clientApp')
         transformRequest: angular.identity,
         headers: {'Content-Type': undefined}
     })
-    .success(function(){
+    .then(function(res) {
       console.log("success!!");
     })
-    .error(function(){
-      console.log("error!!");
+    .catch(function(err){
+      console.log(err);
     });
   }
 }]);

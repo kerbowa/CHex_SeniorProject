@@ -33,6 +33,7 @@ var deletecategory = require('./routes/deletecategory');
 var deletecontent = require('./routes/deletecontent');
 var migrateteams = require('./routes/migrateteams');
 var deleteteam = require('./routes/deleteteam');
+var uploadstudents = require('./routes/uploadstudents');
 
 var app = express();
 
@@ -82,19 +83,7 @@ app.use('/api/deletecategory', deletecategory);
 app.use('/api/deletecontent', deletecontent);
 app.use('/api/migrateteams', migrateteams);
 app.use('/api/deleteteam', deleteteam);
-
-// File upload for bulk add students
-var multer  = require('multer');
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './server/media/uploads')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname+ '-' + Date.now()+'.jpg')
-    }
-});
-var upload = multer({ storage: storage });
-app.post('/multer', upload.single('file'));
+app.use('/api/uploadstudents', uploadstudents);
 
 if (app.get('env') === 'production') {
 
