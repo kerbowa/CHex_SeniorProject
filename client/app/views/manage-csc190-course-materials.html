@@ -17,7 +17,7 @@
     <div ng-repeat="category in allContent">
       <div layout="row" layout-align="start center">
         <md-button ng-show="{{category.name != ''}}" class="md-icon-button" ng-click="showDeleteCategory($event, category)">
-          <i class="material-icons" aria-label="Delete Content">clear</i>
+          <i class="material-icons" style="padding-top: 5px" aria-label="Delete Team">delete</i>
         </md-button>
         <h3>{{category.name}}</h3>
       </div>
@@ -36,7 +36,7 @@
                 <div ng-repeat="item in category.content" class="tr">
                   <div class="td">
                     <md-button class="md-icon-button" ng-click="showDeleteContent($event, item)">
-                      <i class="material-icons" aria-label="Delete Content">clear</i>
+                      <i class="material-icons" aria-label="Delete Content">delete</i>
                     </md-button>
                   </div>
                   <div class="td" style="min-width:300px">

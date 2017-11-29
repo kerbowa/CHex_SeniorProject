@@ -59,8 +59,10 @@
            $scope.category = "";
            $scope.contentTitle = null;
            $scope.linkText = null;
-           $scope.contentDescription = null;
+           $scope.contentDescription = "";
            $scope.contentUrl = null;
+           $scope.isUpload = false;
+
            $scope.hide = function() {
              $mdDialog.hide();
            };
@@ -69,35 +71,64 @@
            };
            $scope.createContent = function() {
              $scope.submitCreateContent = true;
-               if ($scope.contentTitle != null &&
+             if ($scope.contentTitle != null &&
                $scope.linkText != null &&
-               $scope.contentUrl != null) {
-               // If no description is entered add an empty string.
-               if ($scope.contentDescription == null) {
-                 $scope.contentDescription = "";
+               $scope.contentUrl != null || $scope.uploadedFile != null) {
+
+               // Add content that is uploaded to the site.
+               if ($scope.uploadedFile != null) {
+
+                 // If this is a file upload, setup the FD.
+                 var file = $scope.uploadedFile;
+                 var fd = new FormData();
+                 fd.append('file', file);
+
+                 $http.post('/api/uploadcontent', fd, {
+                     transformRequest: angular.identity,
+                     headers: {
+                       'Content-Type': undefined
+                     }
+                   })
+                   .then(function(data) {
+                     // Set url as the name of the file.
+                     $scope.contentUrl = 'media/Download/' + file.name;
+                     finalizeAddContent($scope, $mdDialog);
+                   }).catch(function(err) {
+                     console.log(err);
+                   });
+
+                 // There is no file to upload in this case.
+               } else {
+                 finalizeAddContent($scope, $mdDialog);
                }
-               var data = {
-                 course: $scope.course,
-                 page: $scope.page,
-                 title: $scope.contentTitle,
-                 category: $scope.category.ID,
-                 linkText: $scope.linkText,
-                 description: $scope.contentDescription,
-                 url: $scope.contentUrl
-               };
-               var req = $http.post('/api/createcontent', data);
-               req.then(function(data) {
-                 $scope.initFirst();
-                 $mdDialog.hide();
-               }).catch(function() {
-                 console.log("Could not add content");
-                 $mdDialog.hide();
-               });
+
              } else {
                console.log('You must complete all fields.')
              }
            };
          }
+
+         // Inform the backend about the newly added content.
+         var finalizeAddContent = function(scope, mdDialog) {
+           var data = {
+             course: scope.course,
+             page: scope.page,
+             title: scope.contentTitle,
+             category: scope.category.ID,
+             linkText: scope.linkText,
+             description: scope.contentDescription,
+             url: scope.contentUrl,
+             isUpload: scope.isUpload
+           };
+
+           $http.post('/api/createcontent', data)
+             .then(function(data) {
+               scope.initFirst();
+               mdDialog.hide();
+             }).catch(function() {
+               mdDialog.hide();
+             });
+         };
 
          $scope.showAddCategory = function(ev) {
            $mdDialog.show({
@@ -124,7 +155,7 @@
              $mdDialog.cancel();
            };
            $scope.createCategory = function() {
-           $scope.submitCreateCategory = true;
+             $scope.submitCreateCategory = true;
              if ($scope.categoryName != null) {
                var data = {
                  course: $scope.course,
