@@ -21,7 +21,7 @@ angular.module('clientApp')
   });
 
   $scope.addstudent = function(new_student) {
-    console.log('Add student ' + new_student.name + ' ' + new_student.email);
+    //console.log('Add student ' + new_student.name + ' ' + new_student.email);
     var req = $http.post('/api/addstudent/', new_student);
     req.then(function (res) {
     });
@@ -40,4 +40,42 @@ angular.module('clientApp')
       console.log(err);
     });
   };
+
+  $scope.edit = function(field) {
+    $scope.newField = {};
+    $scope.newField = angular.copy(field);
+  }
+
+  $scope.editstudent = function(student) {
+    console.log('Edit student =' + student.name);
+    var data = {
+      id: student._id,
+      name: student.name,
+      email: student.email,
+    };
+    var req = $http.post('/api/editstudent/', data);
+    req.then(function (res) {
+    });
+    req.catch(function (err) {
+      console.log(err);
+    });
+  }
+
+  $scope.upload = function() {
+    var file = $scope.myFile;
+    var uploadUrl = "/api/uploadstudents";
+    var fd = new FormData();
+    fd.append('file', file);
+
+    $http.post(uploadUrl,fd, {
+        transformRequest: angular.identity,
+        headers: {'Content-Type': undefined}
+    })
+    .then(function(res) {
+      console.log("success!!");
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+  }
 }]);

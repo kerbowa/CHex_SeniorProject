@@ -17,6 +17,7 @@ var tbdel = require('./routes/tbdel');
 var getstudents = require('./routes/getstudents');
 var deletestudent = require('./routes/deletestudent');
 var addstudent = require('./routes/addstudent');
+var editstudent = require('./routes/editstudent');
 var getteams = require('./routes/getteams');
 var getclients = require('./routes/getclients');
 var createclient = require('./routes/createclient');
@@ -36,6 +37,7 @@ var deletecategory = require('./routes/deletecategory');
 var deletecontent = require('./routes/deletecontent');
 var migrateteams = require('./routes/migrateteams');
 var deleteteam = require('./routes/deleteteam');
+var uploadstudents = require('./routes/uploadstudents');
 
 var app = express();
 
@@ -69,6 +71,7 @@ app.use('/api/tbdel', tbdel);
 app.use('/api/getstudents', getstudents);
 app.use('/api/deletestudent', deletestudent);
 app.use('/api/addstudent', addstudent);
+app.use('/api/editstudent', editstudent);
 app.use('/api/getteams', getteams);
 app.use('/api/getclients', getclients);
 app.use('/api/createclient', createclient);
@@ -88,6 +91,7 @@ app.use('/api/deletecategory', deletecategory);
 app.use('/api/deletecontent', deletecontent);
 app.use('/api/migrateteams', migrateteams);
 app.use('/api/deleteteam', deleteteam);
+app.use('/api/uploadstudents', uploadstudents);
 
 if (app.get('env') === 'production') {
 

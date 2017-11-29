@@ -23,8 +23,12 @@ angular
     'ngTouch',
     'vAccordion',
     'ngMaterial',
-    'md.data.table'
+    'md.data.table',
+    'app.directives.fileModel'
   ])
+  .config(function ($mdThemingProvider) {
+    $mdThemingProvider.theme("default");
+  })
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('public', {
