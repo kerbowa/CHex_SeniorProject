@@ -38,16 +38,19 @@ var deletecontent = require('./routes/deletecontent');
 var migrateteams = require('./routes/migrateteams');
 var deleteteam = require('./routes/deleteteam');
 var uploadstudents = require('./routes/uploadstudents');
+var uploadcontent = require('./routes/uploadcontent');
 
 var app = express();
 
 app.use(cors());
 
 // Add basic logging.
-app.use(function (req, res, next) {
-    var ipInfo = getIP(req);
-    console.log(ipInfo);
-    next();
+app.use(function(err, req, res, next) {
+  if (err)
+    console.log(err);
+  var ipInfo = getIP(req);
+  console.log(ipInfo);
+  next();
 });
 
 // view engine setup
@@ -59,7 +62,9 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(cookieParser());
 app.use(passport.initialize());
 
@@ -91,6 +96,7 @@ app.use('/api/deletecategory', deletecategory);
 app.use('/api/deletecontent', deletecontent);
 app.use('/api/migrateteams', migrateteams);
 app.use('/api/deleteteam', deleteteam);
+app.use('/api/uploadcontent', uploadcontent);
 app.use('/api/uploadstudents', uploadstudents);
 
 if (app.get('env') === 'production') {
@@ -120,6 +126,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
+  console.log(err);
   res.status(err.status || 500);
   res.render('error');
 });
