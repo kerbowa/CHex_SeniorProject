@@ -64,11 +64,6 @@ angular.module('clientApp')
     $scope.emailList = [];
 
     $scope.sendMail = function() {
-      for (const student in $scope.studentList) {
-        if (student.checked) {
-          emailList.push_back(student.email);
-        }
-      }
 
       var emailInfo = ({
         Recipient: $scope.emailList,
