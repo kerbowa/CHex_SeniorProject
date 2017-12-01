@@ -63,6 +63,8 @@ angular.module('clientApp')
           $scope.contentDescription = "";
           $scope.contentUrl = null;
           $scope.isUpload = false;
+          $scope.isTemplate = false;
+          $scope.isInternal = false;
 
           $scope.hide = function() {
             $mdDialog.hide();
@@ -76,8 +78,11 @@ angular.module('clientApp')
               $scope.linkText != null &&
               $scope.contentUrl != null || $scope.uploadedFile != null) {
 
+              $scope.isTemplate = ($scope.selectedContentType == 'uploadTemplate');
+
               // Add content that is uploaded to the site.
               if ($scope.uploadedFile != null) {
+                $scope.isInternal = true;
 
                 // If this is a file upload, setup the FD.
                 var file = $scope.uploadedFile;
@@ -111,6 +116,8 @@ angular.module('clientApp')
 
         // Inform the backend about the newly added content.
         var finalizeAddContent = function(scope, mdDialog) {
+          var uploadedFileName = (scope.uploadedFile == null) ? "" : scope.uploadedFile.name;
+
           var data = {
             course: scope.course,
             page: scope.page,
@@ -119,7 +126,10 @@ angular.module('clientApp')
             linkText: scope.linkText,
             description: scope.contentDescription,
             url: scope.contentUrl,
-            isUpload: scope.isUpload
+            isUpload: scope.isUpload,
+            isTemplate: scope.isTemplate,
+            isInternal: scope.isInternal,
+            fileName: uploadedFileName
           };
 
           $http.post('/api/createcontent', data)
