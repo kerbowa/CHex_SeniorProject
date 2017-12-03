@@ -1,59 +1,112 @@
-<h3>Students</h3>
-New Student:
-<br>
-<div>
-  <form novalidate class="simple-form">
-	<label>Name: <input type="text" ng-model="new_student.name" /></label><br />
-	<label>E-mail: <input type="email" ng-model="new_student.email" /></label><br />
-	<input type="submit" ng-click="addstudent(new_student)" value="Save" />
-  </form>
-  <!--<pre>new_student = {{new_student | json}}</pre>-->
+<div class="navBardemoBasicUsage">
+<md-toolbar class="md-theme-light">
+  <div class="md-toolbar-tools">
+    <h2 class="md-flex">Students</h2>
+    <span flex=""></span>
+  </div>
+</md-toolbar>
+  <md-button style="float: right;" class="md-primary md-raised" aria-label="Create Team" ng-click="showCreate($event)">
+    Create Student
+  </md-button>
+  <!--New Student:
+  <br>
+  <div>
+    <form novalidate class="simple-form">
+    <label>Name: <input type="text" ng-model="new_student.name" /></label><br />
+    <label>E-mail: <input type="email" ng-model="new_student.email" /></label><br />
+    <input type="submit" ng-click="addstudent(new_student)" value="Save" />
+    </form>
+  </div>
+  <br><br>-->
+  Bulk Student Upload
+  <!--<a ng-href="{{downloadLink}}" target="_blank">Template</a>-->
+  <input type="file" file-model="myFile"/>
+  <button ng-click="upload()">Upload</button>
+  <br><br>
+  Filter:
+  <input type="text" ng-model="filter" />
+  <div class="container-fluid" style="margin-top:20px">
+    <div class="row">
+      <div class="col col-12 col-md-auto">
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <div class="tr">
+              <div class="td">Name</div>
+              <div class="td">Email</div>
+              <div class="td">Team</div>
+              <div class="td"></div>
+              <div class="td"></div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="tr" ng-repeat="s in students.studentNames | filter:filter">
+              <div class="td">
+                <span ng-hide="editMode">{{ s.name }}</span>
+                <input type="text" ng-show="editMode" ng-model="s.name" ng-required />
+              </div>
+              <div class="td">
+                <span ng-hide="editMode">{{ s.email }}</span>
+                <input type="text" ng-show="editMode" ng-model="s.email" ng-required />
+              </div>
+              <div class="td">
+                {{ s.team }}
+              </div>
+              <div class="td">
+                <button type="submit" ng-hide="editMode" ng-click="editMode = true; edit(s)" class="btn btn-default">Edit</button>
+                <button type="submit" ng-show="editMode" ng-click="editMode = false; editstudent(s)" class="btn btn-default">Save</button>
+                <button type="submit" ng-show="editMode" ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
+              </div>
+              <div class="td">
+                <button ng-click="deletestudent(s._id)" class="btn btn-default">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<br><br>
-<input type="file" file-model="myFile"/>
-<button ng-click="upload()">Upload</button>
-<br><br>
-Filter:
-<input type="text" ng-model="filter" />
-<div class="container-fluid" style="margin-top:20px">
-	<div class="row">
-		<div class="col col-12 col-md-auto">
-			<div class="panel panel-default panel-table">
-				<div class="panel-heading">
-					<div class="tr">
-						<div class="td">Name</div>
-						<div class="td">Email</div>
-						<div class="td">Team</div>
-						<div class="td"></div>
-						<div class="td"></div>
-					</div>
-				</div>
-				<div class="panel-body">
-					<div class="tr" ng-repeat="s in students.studentNames | filter:filter">
-						<div class="td">
-							<span ng-hide="editMode">{{ s.name }}</span>
-							<input type="text" ng-show="editMode" ng-model="s.name" ng-required />
-						</div>
-						<div class="td">
-							<span ng-hide="editMode">{{ s.email }}</span>
-							<input type="text" ng-show="editMode" ng-model="s.email" ng-required />
-						</div>
-						<div class="td">
-							{{ s.team }}
-						</div>
-						<div class="td">
-							<button type="submit" ng-hide="editMode" ng-click="editMode = true; edit(s)" class="btn btn-default">Edit</button>
-							<button type="submit" ng-show="editMode" ng-click="editMode = false; editstudent(s)" class="btn btn-default">Save</button>
-							<button type="submit" ng-show="editMode" ng-click="editMode = false; cancel()" class="btn btn-default">Cancel</button>
-						</div>
-						<div class="td">
-							<button ng-click="deletestudent(s._id)" class="btn btn-default">
-								Delete
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak="">
+
+  <script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Create Team">
+    <form name="createForm" ng-cloak>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Create Team</h2>
+          <span flex></span>
+          <md-button class="md-icon-button" ng-click="cancel()">
+            <i class="material-icons" aria-label="Close dialog">clear</i>
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <md-dialog-content>
+        <div class="md-dialog-content">
+          <md-form>
+            <div layout-align="center center">
+
+            <div layout-padding="">
+                <md-input-container>
+                  <input placeholder="Student Name" ng-model="new_student.name" style="min-width: 500px" required>
+                </md-input-container>
+              </div>
+              <div layout-padding="">
+                <md-input-container>
+                  <input placeholder="Student Email" ng-model="new_student.email" style="min-width: 500px" required>
+                </md-input-container>
+              </div>
+            </div>
+          </md-form>
+        </div>
+      </md-dialog-content>
+      <md-dialog-actions layout="row">
+        <md-button class="md-primary md-raised" ng-disabled="createForm.$invalid" ng-click="addstudent(new_student)">
+          Create
+        </md-button>
+      </md-dialog-actions>
+    </form>
+   </md-dialog>
+  </script>
 </div>

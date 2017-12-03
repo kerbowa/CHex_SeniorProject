@@ -8,8 +8,9 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('StudentsCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+  .controller('StudentsCtrl', ['$scope', '$http', '$mdDialog', '$state', function ($scope, $http, $mdDialog, $state) {
 
+  //$scope.downloadlink = 
   var req = $http.get('/api/getstudents');
   var scope = this;
   req.then(function (res) {
@@ -20,15 +21,53 @@ angular.module('clientApp')
     console.log(err);
   });
 
-  $scope.addstudent = function(new_student) {
-    //console.log('Add student ' + new_student.name + ' ' + new_student.email);
-    var req = $http.post('/api/addstudent/', new_student);
-    req.then(function (res) {
+  $scope.showCreate = function(ev) {
+    $mdDialog.show({
+      controller: CreateController,
+      templateUrl: 'dialog1.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      scope: $scope.$new(), // Uses prototypal inheritance to gain access to parent scope
+      clickOutsideToClose:false,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function() {
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
     });
-    req.catch(function (err) {
-      console.log(err);
-    });
+  };
+
+  function CreateController($scope, $mdDialog) {
+    $scope.hide = function() {
+    $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+    $mdDialog.cancel();
+    };
+    $scope.addstudent = function(new_student) {
+      //console.log('Add student ' + new_student.name + ' ' + new_student.email);
+      var req = $http.post('/api/addstudent/', new_student);
+      req.then(function (res) {
+      });
+      req.catch(function (err) {
+        console.log(err);
+      });
+      //$scope.initFirst();
+      $mdDialog.hide();
+      $state.reload();
+    }
   }
+
+  // $scope.addstudent = function(new_student) {
+  //   //console.log('Add student ' + new_student.name + ' ' + new_student.email);
+  //   var req = $http.post('/api/addstudent/', new_student);
+  //   req.then(function (res) {
+  //   });
+  //   req.catch(function (err) {
+  //     console.log(err);
+  //   });
+  //   $state.reload();
+  // }
 
   $scope.deletestudent = function(student_id) {
     //console.log('Delete student cntrl - id = ' + student_id);
@@ -39,6 +78,7 @@ angular.module('clientApp')
     req.catch(function (err) {
       console.log(err);
     });
+    $state.reload();
   };
 
   $scope.edit = function(field) {
@@ -59,6 +99,7 @@ angular.module('clientApp')
     req.catch(function (err) {
       console.log(err);
     });
+    $state.reload();
   }
 
   $scope.upload = function() {
@@ -77,5 +118,7 @@ angular.module('clientApp')
     .catch(function(err){
       console.log(err);
     });
+
+    $state.reload();
   }
 }]);
