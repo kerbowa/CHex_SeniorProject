@@ -16,9 +16,15 @@ router.post('/', function(req, res) {
   var clientemail = req.body.clientemail;
   // client status
   var clientstatus = req.body.clientstatus;
+    // client organization
+  var clientorganization = req.body.clientorganization;
+    // client description
+  var clientdescription = req.body.clientdescription;
+    // client href
+  var clienthref = req.body.clienthref;
   
 
-  db.run('INSERT INTO CLIENT(NAME, EMAIL, STATUS) VALUES (?, ?, ?)', [clientname, clientemail, clientstatus], function(err, result) {
+  db.run('INSERT INTO CLIENT(NAME, EMAIL, STATUS, ORGANIZATION, DESCRIPTION, HREF) VALUES (?, ?, ?, ?, ?, ?)', [clientname, clientemail, clientstatus, clientorganization, clientdescription, clienthref], function(err, result) {
     if (err) throw err;
   });
 

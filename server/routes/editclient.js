@@ -22,10 +22,26 @@ router.post('/', function(req, res) {
     var clientstatus = req.body.param3;
   }
 
-    // client status
+    // client id
   if (req.body.param4 != null) {
     var client_id = req.body.param4;
   }
+
+  // client organization
+  if (req.body.param5 != null) {
+    var corganization = req.body.param5;
+  }
+
+  // client description
+  if (req.body.param6 != null) {
+    var cdescription = req.body.param6;
+  }
+
+  // client href
+  if (req.body.param7 != null) {
+    var chref = req.body.param7;
+  }
+
 
     db.each('UPDATE CLIENT SET NAME = ? WHERE ID = ?', clientname, client_id, function(err, result) {
     if (err) throw err;
@@ -36,6 +52,18 @@ router.post('/', function(req, res) {
     });
 
       db.each('UPDATE CLIENT SET STATUS = ? WHERE ID = ?', clientstatus, client_id, function(err, result) {
+    if (err) throw err;
+     });
+
+       db.each('UPDATE CLIENT SET ORGANIZATION = ? WHERE ID = ?', corganization, client_id, function(err, result) {
+    if (err) throw err;
+     });
+
+        db.each('UPDATE CLIENT SET DESCRIPTION = ? WHERE ID = ?', cdescription, client_id, function(err, result) {
+    if (err) throw err;
+     });
+
+         db.each('UPDATE CLIENT SET HREF = ? WHERE ID = ?', chref, client_id, function(err, result) {
     if (err) throw err;
      });
 

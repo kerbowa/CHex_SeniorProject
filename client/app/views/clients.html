@@ -6,7 +6,7 @@
     </div>
   </md-toolbar>
    <md-button style="float: right;" class="md-primary md-raised" aria-label="Create Client" ng-click="showCreate($event)">
-      Create Client
+      New Client
     </md-button>
   <h3 ></h3>
   Filter: 
@@ -31,7 +31,7 @@
               <div class="td" >{{ c.name}}</div>
               <div class="td" >{{ c.email }}</div>
               <div class="td" >{{ c.status }}</div>
-              <div class="td" align="center"> <md-button class="md-icon-button" ng-click="showEdit($event, c.client_id, c.name, c.email, c.status)"><i class="material-icons" aria-label="Edit Client">edit</i>
+              <div class="td" align="center"> <md-button class="md-icon-button" ng-click="showEdit($event, c.client_id, c.name, c.email, c.status, c.organization, c.description, c.href)"><i class="material-icons" aria-label="Edit Client">edit</i>
               </md-button></div>
               <div class="td" align="center"><md-button class="md-icon-button" ng-click="showDeleteConfirm($event, c.client_id)"><i class="material-icons" aria-label="Delete Client">delete</i>
               </md-button></div>
@@ -51,7 +51,7 @@
     <form name="createForm" ng-cloak>
       <md-toolbar>
         <div class="md-toolbar-tools">
-          <h2>Create Client</h2>
+          <h2>New Client</h2>
           <span flex></span>
           <md-button class="md-icon-button" ng-click="cancel()">
             <i class="material-icons" aria-label="Close dialog">clear</i>
@@ -66,22 +66,36 @@
 
             <div layout-padding="">
                 <md-input-container>
-                  <input placeholder="Name" ng-model="client.name" style="min-width: 500px" required>
+                  <input placeholder="Name" ng-model="client.name" style="min-width: 450px" required>
                 </md-input-container>
               </div>
               <div layout-padding="">
                 <md-input-container>
-                  <input placeholder="Email" ng-model="client.email" style="min-width: 500px" required>
+                  <input placeholder="Email" ng-model="client.email" style="min-width: 450px" required>
                 </md-input-container>
               </div>
               <div layout-padding="">
                 <md-input-container>
-                
                     <md-select placeholder="Status" ng-model="client.status" style="min-width: 250px" required>
                       <md-option value="Available">Available</md-option>
                       <md-option value="Active">Active</md-option>
                       <md-option value="In-active">In-active</md-option>
-                    </md-select>
+                    </md-select>   
+                </md-input-container>
+              </div>
+               <div layout-padding="" ng-show="client.status == 'Available'">
+                <md-input-container>
+                  <input placeholder="Organization" ng-model="client.organization" style="min-width: 450px" ng-required="client.status == 'Available'">
+                </md-input-container>
+              </div>
+               <div layout-padding="" ng-show="client.status == 'Available'">
+                <md-input-container>
+                  <textarea placeholder="Description" ng-model="client.description" md-maxlength="500" style="min-width: 450px" rows="3" md-select-on-focus ng-required="client.status == 'Available'"></textarea>
+                </md-input-container>
+              </div>
+              <div layout-padding="" ng-show="client.status == 'Available'">
+                <md-input-container>
+                  <input placeholder="URL" ng-model="client.href" style="min-width: 500px" ng-required="client.status == 'Available'">
                 </md-input-container>
               </div>
             </div>
@@ -89,7 +103,7 @@
         </div>
       </md-dialog-content>
       <md-dialog-actions layout="row">
-        <md-button class="md-primary md-raised" ng-disabled="createForm.$invalid" ng-click="createclient()">
+        <md-button class="md-primary md-raised" ng-disabled="createForm.$invalid" ng-click="reloadPage();createclient()">
           Create
         </md-button>
       </md-dialog-actions>
@@ -124,7 +138,7 @@
                 <div>
                   <md-input-container>
                     <label>Name</label>
-                    <input ng-model="cname" style="min-width:500px" required>
+                    <input ng-model="cname" style="min-width:450px" required>
                   </md-input-container>
                 </div>
               </md-content>
@@ -133,7 +147,7 @@
                 <div>
                   <md-input-container>
                     <label>Email</label>
-                    <input ng-model="cemail" style="min-width:500px" required>
+                    <input ng-model="cemail" style="min-width:450px" required>
                   </md-input-container>
                 </div>
               </md-content>
@@ -148,16 +162,41 @@
                       <md-option value="In-active">In-active</md-option>
                     </md-select>
                   </md-input-container>
+
                 </div>
               </md-content>
+
+                <md-content layout-padding="" ng-show="cstatus == 'Available'">
+                 <div>
+                  <md-input-container>  
+                  <input placeholder="Organization" ng-model="corganization" style="min-width: 450px" ng-required="client.status == 'Available'">
+                  </md-input-container>   
+                </div>
+               </md-content>
+
+                <md-content layout-padding="" ng-show="cstatus == 'Available'">
+                 <div>
+                  <md-input-container>  
+                   <textarea placeholder="Description" ng-model="cdescription" md-maxlength="500" style="min-width: 450px" rows="3" md-select-on-focus ng-required="cstatus == 'Available'"></textarea>
+                  </md-input-container>   
+                </div>
+               </md-content>
+
+                <md-content layout-padding="" ng-show="cstatus == 'Available'">
+                 <div>
+                  <md-input-container>  
+                  <input placeholder="URL" ng-model="chref" style="min-width: 500px" ng-required="cstatus == 'Available'">
+                  </md-input-container>   
+                </div>
+               </md-content>
              
           </md-form>
         </div>
       </md-dialog-content>
 
       <md-dialog-actions layout="row">
-        <md-button class="md-primary md-raised" ng-disabled="editForm.$invalid" ng-click="editclient()">
-          Save
+        <md-button class="md-primary md-raised" ng-disabled="editForm.$invalid" ng-click="reloadPage();editclient()">
+          Save Changes
         </md-button>
       </md-dialog-actions>
 

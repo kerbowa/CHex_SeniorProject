@@ -8,14 +8,14 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('ClientsCtrl', ['$scope', '$http', '$mdDialog', function ($scope, $http, $mdDialog) {
+  .controller('ClientsCtrl', ['$scope', '$http', '$mdDialog', '$route', function ($scope, $http, $mdDialog) {
         
-        $scope.client_id =null;
-        $scope.clientname =null;
-        $scope.clientemail =null;
-        $scope.clientstatus =null;
         $scope.customFullscreen = false;
         $scope.selected = [];
+        
+        $scope.reloadPage = function() {
+          window.location.reload();
+        };
 
     $scope.initFirst = function() {
         var req = $http.get('/api/getclients');
@@ -28,7 +28,7 @@ angular.module('clientApp')
           console.log(err);
         });
     }
-
+   
 
       $scope.showCreate = function(ev) {
         $mdDialog.show({
@@ -53,22 +53,26 @@ angular.module('clientApp')
        $scope.cancel = function() {
          $mdDialog.cancel();
        };
+        $scope.reloadPage = function() {
+          window.location.reload();
+        };
+
        $scope.createclient = function() {
          $scope.statusMsg = 'Sending data to server...';
-         var Indata = {'clientname': $scope.client.name, 'clientemail': $scope.client.email, 'clientstatus': $scope.client.status};
+         var Indata = {'clientname': $scope.client.name, 'clientemail': $scope.client.email, 'clientstatus': $scope.client.status, 'clientorganization': $scope.client.organization, 'clientdescription': $scope.client.description, 'clienthref': $scope.client.href};
          $http({
            url: '/api/createclient',
            method: 'POST',
            data: Indata,
            headers: {'Content-Type': 'application/json'}
          })
-         $scope.initFirst();
          $mdDialog.hide();
+         $scope.initFirst();
        };
      }
 
 
-     $scope.showEdit = function(ev, id, name, email, status) {
+     $scope.showEdit = function(ev, id, name, email, status, organization, description, href) {
 
        $mdDialog.show({
          controller: EditController,
@@ -82,6 +86,9 @@ angular.module('clientApp')
            selectedName: name,
            selectedEmail: email,
            selectedStatus: status,
+           selectedOrganization: organization,
+           selectedDescription: description,
+           selectedHref: href
          },
          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
        })
@@ -92,11 +99,14 @@ angular.module('clientApp')
        });
      };
 
-      function EditController($scope, $mdDialog, selectedId, selectedName, selectedEmail, selectedStatus) {
+      function EditController($scope, $mdDialog, selectedId, selectedName, selectedEmail, selectedStatus, selectedOrganization, selectedDescription, selectedHref) {
        $scope.cid = selectedId;
        $scope.cname = selectedName;
        $scope.cemail = selectedEmail;
        $scope.cstatus = selectedStatus;
+       $scope.corganization = selectedOrganization;
+       $scope.cdescription = selectedDescription;
+       $scope.chref = selectedHref;
 
        $scope.hide = function() {
          $mdDialog.hide();
@@ -104,24 +114,28 @@ angular.module('clientApp')
        $scope.cancel = function() {
          $mdDialog.cancel();
        };
+
+        $scope.reloadPage = function() {
+          window.location.reload();
+        };
+    
        $scope.editclient = function() {
          $scope.statusMsg = 'Sending data to server...';
-         var Indata = {'param1': $scope.cname, 'param2': $scope.cemail, 'param3': $scope.cstatus, 'param4': $scope.cid};
+         var Indata = {'param1': $scope.cname, 'param2': $scope.cemail, 'param3': $scope.cstatus, 'param4': $scope.cid, 'param5': $scope.corganization, 'param6': $scope.cdescription, 'param7': $scope.chref};
           $http({
             url: '/api/editclient',
             method: 'POST',
             data: Indata,
             headers: {'Content-Type': 'application/json'}
           })
-  
             $scope.initFirst();
-
             $mdDialog.hide();
         };
       }
 
 
           $scope.showDeleteConfirm = function(ev, client_id) {
+           
            var confirm = $mdDialog.confirm({
            onComplete: function afterShowAnimation() {
             var $dialog = angular.element(document.querySelector('md-dialog'));
@@ -148,6 +162,7 @@ angular.module('clientApp')
             data: Indata,
             headers: {'Content-Type': 'application/json'}
           })
+          $scope.reloadPage();
           $scope.initFirst();
         });
       };

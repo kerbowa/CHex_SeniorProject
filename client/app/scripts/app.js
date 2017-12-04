@@ -52,6 +52,11 @@ angular
         controller: '191ContentCtrl',
         controllerAs: '191Content'
       })
+      .state('public.csc190-clients', {
+        templateUrl: 'views/csc190-clients.html',
+        controller: 'Clients190Ctrl',
+        controllerAs: 'clients'
+      })
       .state('public.190.csc190-course-materials', {
         url: '/190-course-materials',
         data: {

@@ -56,6 +56,7 @@
               <li style="font-size: 17px;"><a ui-sref="public.191.csc191-templates">Templates</a></li>
               </ul>
             </li>
+            <li ng-class="{active: $state.includes('public.csc190-clients')}"><a ui-sref="public.csc190-clients">Clients</a></li>
             <li ng-class="{active: $state.includes('dashboard')}"><a ui-sref="dashboard.team-management">Dashboard</a></li>
              <li ng-class="{active: $state.includes('login')}"><a ui-sref="login">Login</a></li>
          </ul>
@@ -120,6 +121,7 @@
         <script src="scripts/controllers/manage-csc191-forms.js"></script>
         <script src="scripts/controllers/190-content.js"></script>
         <script src="scripts/controllers/191-content.js"></script>
+        <script src="scripts/controllers/csc190-clients.js"></script>
         <script src="scripts/controllers/csc190-course-materials.js"></script>
         <script src="scripts/controllers/csc190-forms.js"></script>
         <script src="scripts/controllers/csc190-templates.js"></script>

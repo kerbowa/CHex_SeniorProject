@@ -10,9 +10,6 @@
 angular.module('clientApp')
   .controller('AdvisorCtrl', ['$scope', '$http', '$mdDialog', function ($scope, $http, $mdDialog) {
         
-        $scope.advisor_id =null;
-        $scope.advisorname =null;
-        $scope.advisoremail =null;
         $scope.customFullscreen = false;
         $scope.selected = [];
 
@@ -27,7 +24,6 @@ angular.module('clientApp')
           console.log(err);
         });
     }
-
 
       $scope.showCreate = function(ev) {
         $mdDialog.show({
@@ -52,6 +48,9 @@ angular.module('clientApp')
        $scope.cancel = function() {
          $mdDialog.cancel();
        };
+       $scope.reloadPage = function() {
+          window.location.reload();
+        };
        $scope.createadvisor = function() {
          $scope.statusMsg = 'Sending data to server...';
          var Indata = {'advisorname': $scope.advisor.name, 'advisoremail': $scope.advisor.email};
@@ -101,6 +100,9 @@ angular.module('clientApp')
        $scope.cancel = function() {
          $mdDialog.cancel();
        };
+       $scope.reloadPage = function() {
+          window.location.reload();
+        };
        $scope.editadvisor = function() {
          $scope.statusMsg = 'Sending data to server...';
          var Indata = {'param1': $scope.aname, 'param2': $scope.aemail, 'param3':  $scope.aid};
@@ -110,9 +112,7 @@ angular.module('clientApp')
             data: Indata,
             headers: {'Content-Type': 'application/json'}
           })
-  
             $scope.initFirst();
-
             $mdDialog.hide();
         };
       }
@@ -145,10 +145,10 @@ angular.module('clientApp')
             data: Indata,
             headers: {'Content-Type': 'application/json'}
           })
+          $scope.reloadPage();  
           $scope.initFirst();
         });
       };
-
 
         var req = $http.get('/api/getadvisors');
         var scope = this;
@@ -160,5 +160,8 @@ angular.module('clientApp')
           console.log(err);
         });
 
+        $scope.reloadPage = function() {
+          window.location.reload();
+        };
 
 }] ) ;
