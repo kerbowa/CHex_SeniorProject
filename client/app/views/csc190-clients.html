@@ -1,0 +1,44 @@
+<div class="navBardemoBasicUsage" >
+  <md-content class="md-padding" style="padding-bottom: 16%;">
+    <u><h1 align="center">CSC-190 : Potential Clients</h1></u>
+    <div class="md-padding">
+  <div ng-controller="Clients190Ctrl">
+    <div class="container-fluid" align="center" style="margin-top:20px;">
+      <div class="row">
+        <div class="col col-12 col-md-auto">
+          <div class="panel panel-default panel-table" >
+            <div class="panel-heading">
+              <div class="tr">
+                <div class="td" style=" text-align: left;">Description</div>
+                <div class="td" style=" text-align: left;">Organization</div>
+                <div class="td" style=" text-align: left;">Contact Info</div>
+              </div>
+            </div>
+            <div class="panel-body" >
+              <div ng-repeat="c in clients.clientNames" class="tr" ng-show="c.status == 'Available'">
+
+                <div class="td" style="text-align: left;">
+                  {{c.description}}, (<a href="{{c.href}}">{{c.href}}</a>)
+                </div>
+                <div class="td" style=" text-align: left;">
+                  {{c.organization}}
+                </div>
+                 <div class="td" style="text-align: left;">
+                  {{c.name}}, {{c.email}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <br>
+      <div class="calloutbox" align="center" style="margin:auto; min-width: 550px;">
+        <p style="text-align: center;"><u>Note</u>: Teams that have identified a potential client will still need to provide the client with this proposal document and have the client prepare and submit a “Project Proposal” for approval.</p>
+      </div>
+<br>
+</div>
+<br>
+    <div ui-view=""></div>
+  </md-content>
+</div>
+       
