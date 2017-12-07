@@ -10,10 +10,7 @@ var getIP = require('ipware')().get_ip;
 var stamp = require('console-stamp')(console);
 
 var index = require('./routes/index');
-var tbgen = require('./routes/tbgen');
 var login = require('./routes/login');
-var gettb = require('./routes/gettb');
-var tbdel = require('./routes/tbdel');
 var getstudents = require('./routes/getstudents');
 var deletestudent = require('./routes/deletestudent');
 var addstudent = require('./routes/addstudent');
@@ -69,10 +66,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 //app.use('/', index);
-app.use('/api/tbgen', tbgen);
 app.use('/api/login', login);
-app.use('/api/gettb', gettb);
-app.use('/api/tbdel', tbdel);
 app.use('/api/getstudents', getstudents);
 app.use('/api/deletestudent', deletestudent);
 app.use('/api/addstudent', addstudent);

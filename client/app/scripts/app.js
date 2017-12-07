@@ -210,12 +210,6 @@ angular
         controller: 'ManageCsc191FormsCtrl',
         controllerAs: 'manageCsc191Forms'
       })
-      .state('dashboard.template-management', {
-        url: '/dashboard/template-management',
-        templateUrl: 'views/template-management.html',
-        controller: 'TemplateManagementCtrl',
-        controllerAs: 'templateManagement'
-      })
       .state('login', {
         url: '/login',
         templateUrl: 'views/login.html',

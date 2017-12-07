@@ -234,6 +234,7 @@
                             <md-radio-group ng-model="selectedContentType" md-is-error="submitCreateContent == true">
                               <md-radio-button value="externalLink">External Link</md-radio-button>
                               <md-radio-button value="uploadFile">Upload File</md-radio-button>
+                              <md-radio-button value="uploadTemplate">Upload Template</md-radio-button>
                             </md-radio-group>
                           </md-input-container>
                         </div>
@@ -246,7 +247,7 @@
                           </div>
                         </div>
 
-                        <div ng-show="selectedContentType == 'uploadFile'">
+                        <div ng-show="selectedContentType == 'uploadFile' || selectedContentType == 'uploadTemplate'">
                           <md-content layout-padding layout="row" layout-align="start end">
                             <aps-upload-file></aps-upload-file>
                           </md-content>
