@@ -10,7 +10,6 @@
 angular.module('clientApp')
   .controller('StudentsCtrl', ['$scope', '$http', '$mdDialog', '$state', function ($scope, $http, $mdDialog, $state) {
 
-  //$scope.downloadlink = 
   var req = $http.get('/api/getstudents');
   var scope = this;
   req.then(function (res) {
@@ -89,7 +88,7 @@ angular.module('clientApp')
   $scope.editstudent = function(student) {
     console.log('Edit student =' + student.name);
     var data = {
-      id: student._id,
+      id: student.student_id,
       name: student.name,
       email: student.email,
     };
